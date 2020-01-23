@@ -1,5 +1,6 @@
-from flask import Flask, render_template
-from flask_cors import CORS
+from flask import Flask, current_app, jsonify, render_template
+#from flask_cors import CORS
+import os
 
 #config
 DEBUG = True
@@ -7,7 +8,14 @@ DEBUG = True
 app = Flask(__name__,template_folder='../dist',static_folder='../static')
 app.config.from_object(__name__)
 
-CORS(app,resources={r'/*': {'origins':'*'}})
+jinja_options = app.jinja_options.copy()
+jinja_options.update(dict(
+    variable_start_string='%%',
+    variable_end_string='%%'
+))
+app.jinja_options = jinja_options
+
+#CORS(app,resources={r'/*': {'origins':'*'}})
 
 @app.route('/test', methods=['GET'])
 def test():
