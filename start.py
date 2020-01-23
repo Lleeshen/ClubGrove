@@ -1,5 +1,5 @@
-import os
-import backend.run as ok
+import backend
+from backend.run import app
 
-ok.app.run(port =3000)
+app.run(port =3000)
 

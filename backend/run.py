@@ -1,5 +1,5 @@
 from flask import Flask, current_app, jsonify, render_template
-from flask_cors import CORS
+#from flask_cors import CORS
 import os
 
 #config
@@ -15,7 +15,7 @@ jinja_options.update(dict(
 ))
 app.jinja_options = jinja_options
 
-CORS(app,resources={r'/*': {'origins':'*'}})
+#CORS(app,resources={r'/*': {'origins':'*'}})
 
 @app.route('/test', methods=['GET'])
 def test():
