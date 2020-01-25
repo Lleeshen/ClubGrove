@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <div id="title">
+      <h1>Club Grove<br>Finding clubs within the area</h1>
+    </div>
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -29,4 +32,11 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+#title {
+  background-color: antiquewhite;
+  color: darkred;
+  padding: 10px;
+}
+  
 </style>
