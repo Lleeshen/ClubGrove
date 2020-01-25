@@ -2,7 +2,7 @@ import psycopg2
 import configparser
 import os
 
-def createTable():
+def dropTable():
   parser = configparser.ConfigParser()
   parser.read(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'dbfile.ini'))
 
@@ -12,21 +12,8 @@ def createTable():
     password= parser.get('postgres', 'password'))
 
   statements = (
-    """
-    CREATE TABLE student (
-      email VARCHAR(20) PRIMARY KEY NOT NULL,
-      name VARCHAR(20) NOT NULL,
-      phone VARCHAR(15)
-    )
-    """,
-    """
-    CREATE TABLE club (
-      name VARCHAR(30) PRIMARY KEY NOT NULL,
-      description VARCHAR(150) NOT NULL,
-      website varchar(30),
-      email varchar(20) not null
-    )
-    """
+    'DROP TABLE club',
+    'DROP TABLE student'
   )
 
   cur = con.cursor()
