@@ -24,7 +24,28 @@ def createTable():
       name VARCHAR(30) PRIMARY KEY NOT NULL,
       description VARCHAR(150) NOT NULL,
       website varchar(30),
-      email varchar(20) not null
+      email varchar(20) NOT NULL
+    )
+    """,
+    """
+    CREATE TABLE keywords (
+      keywords VARCHAR(20) PRIMARY KEY NOT NULL
+    )
+    """,
+    """
+    CREATE TABLE faculty (
+      email VARCHAR(20) PRIMARY KEY NOT NULL,
+      name VARCHAR(20) NOT NULL
+    )
+    """,
+    """
+    CREATE TABLE events (
+      id INT PRIMARY KEY NOT NULL,
+      name VARCHAR(20) NOT NULL,
+      starttime TIME NOT NULL,
+      endtime TIME NOT NULL,
+      place VARCHAR(30) NOT NULL,
+      description VARCHAR(50) NOT NULL
     )
     """
   )

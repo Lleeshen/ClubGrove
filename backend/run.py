@@ -1,6 +1,7 @@
 from flask import Flask, current_app, jsonify, render_template
 #from flask_cors import CORS
 import os
+from . import model
 
 #config
 DEBUG = True
@@ -16,6 +17,16 @@ jinja_options.update(dict(
 app.jinja_options = jinja_options
 
 #CORS(app,resources={r'/*': {'origins':'*'}})
+
+@app.route('/db/init', methods=['GET'])
+def initdb():
+  model.dbModel.init()
+  return jsonify('Initialized database')
+
+@app.route('/db/reset', methods=['GET'])
+def resetdb():
+  model.dbModel.reset()
+  return jsonify('Reset database')
 
 @app.route('/test', methods=['GET'])
 def test():

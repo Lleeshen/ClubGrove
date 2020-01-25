@@ -12,6 +12,9 @@ def dropTable():
     password= parser.get('postgres', 'password'))
 
   statements = (
+    'DROP TABLE events'
+    'DROP TABLE faculty',
+    'DROP TABLE keywords'
     'DROP TABLE club',
     'DROP TABLE student'
   )

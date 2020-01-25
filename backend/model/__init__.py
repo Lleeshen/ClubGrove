@@ -1,15 +1,14 @@
-from createTables import createTable
-from dropTables import dropTable
+from . import createTables, dropTables
 
 class db:
   def init(self):
-    createTable()
+    createTables.createTable()
   def reset(self):
-    dropTable()
+    dropTables.dropTable()
 
 
-model = db()
-model.init()
-print('Add tables done')
-model.reset()
-print('Drop tables done')
+dbModel = db()
+# dbModel.init()
+# print('Add tables done')
+# model.reset()
+#print('Drop tables done')
