@@ -47,6 +47,13 @@ def createTable():
       place VARCHAR(30) NOT NULL,
       description VARCHAR(50) NOT NULL
     )
+    """,
+    """
+    CREATE TABLE IF NOT EXISTS interested (
+      email VARCHAR(20) REFERENCES student(email),
+      name VARCHAR(30) REFERENCES club(name),
+      PRIMARY KEY (email, name)
+    )
     """
   )
 
