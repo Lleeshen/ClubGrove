@@ -12,11 +12,11 @@ def dropTable():
     password= parser.get('postgres', 'password'))
 
   statements = (
-    'DROP TABLE events'
-    'DROP TABLE faculty',
-    'DROP TABLE keywords'
-    'DROP TABLE club',
-    'DROP TABLE student'
+    'DROP TABLE IF EXISTS events',
+    'DROP TABLE IF EXISTS faculty',
+    'DROP TABLE IF EXISTS keywords',
+    'DROP TABLE IF EXISTS club',
+    'DROP TABLE IF EXISTS student'
   )
 
   cur = con.cursor()

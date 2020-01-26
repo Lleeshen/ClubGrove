@@ -13,14 +13,14 @@ def createTable():
 
   statements = (
     """
-    CREATE TABLE student (
+    CREATE TABLE IF NOT EXISTS student (
       email VARCHAR(20) PRIMARY KEY NOT NULL,
       name VARCHAR(20) NOT NULL,
       phone VARCHAR(15)
     )
     """,
     """
-    CREATE TABLE club (
+    CREATE TABLE IF NOT EXISTS club (
       name VARCHAR(30) PRIMARY KEY NOT NULL,
       description VARCHAR(150) NOT NULL,
       website varchar(30),
@@ -28,18 +28,18 @@ def createTable():
     )
     """,
     """
-    CREATE TABLE keywords (
+    CREATE TABLE IF NOT EXISTS keywords (
       keywords VARCHAR(20) PRIMARY KEY NOT NULL
     )
     """,
     """
-    CREATE TABLE faculty (
+    CREATE TABLE IF NOT EXISTS faculty (
       email VARCHAR(20) PRIMARY KEY NOT NULL,
       name VARCHAR(20) NOT NULL
     )
     """,
     """
-    CREATE TABLE events (
+    CREATE TABLE IF NOT EXISTS events (
       id INT PRIMARY KEY NOT NULL,
       name VARCHAR(20) NOT NULL,
       starttime TIME NOT NULL,
