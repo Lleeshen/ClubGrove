@@ -28,6 +28,11 @@ def resetdb():
   model.dbModel.reset()
   return jsonify('Reset database')
 
+@app.route('/db/view/<tableName>', methods=['GET'])
+def viewdb(tableName):
+  res = model.dbModel.view(tableName)
+  return jsonify(res)
+
 @app.route('/test', methods=['GET'])
 def test():
   return jsonify('help!')
