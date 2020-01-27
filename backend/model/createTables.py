@@ -54,6 +54,41 @@ def createTable():
       name VARCHAR(30) REFERENCES club(name),
       PRIMARY KEY (email, name)
     )
+    """,
+    """
+    CREATE TABLE IF NOT EXISTS requests (
+      email VARCHAR(20) REFERENCES student(email),
+      name VARCHAR(30) REFERENCES club(name),
+      PRIMARY KEY (email, name)
+    )
+    """,
+    """
+    CREATE TABLE IF NOT EXISTS memberships (
+      email VARCHAR(20) REFERENCES student(email),
+      name VARCHAR(30) REFERENCES club(name),
+      PRIMARY KEY (email, name)
+    )
+    """,
+    """
+    CREATE TABLE IF NOT EXISTS leaders (
+      email VARCHAR(20) REFERENCES student(email),
+      name VARCHAR(30) REFERENCES club(name),
+      PRIMARY KEY (email, name)
+    )
+    """,
+    """
+    CREATE TABLE IF NOT EXISTS advising (
+      email VARCHAR(20) REFERENCES faculty(email),
+      name VARCHAR(30) REFERENCES club(name),
+      PRIMARY KEY (email, name)
+    )
+    """,
+    """
+    CREATE TABLE IF NOT EXISTS clubevents (
+      name VARCHAR(30) REFERENCES club(name),
+      id INT REFERENCES events(id),
+      PRIMARY KEY (name, id)
+    )
     """
   )
 
