@@ -17,7 +17,7 @@ def viewTable(tableName):
   cur.execute(checkNamestatement,(tableName,))
   item = cur.fetchall()
   if(len(item) == 0):
-    result = 'No table' + tableName
+    result = 'No table ' + tableName
   else:
     statement = "SELECT * FROM " + tableName
     cur1 = con.cursor()
