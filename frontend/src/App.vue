@@ -18,6 +18,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  margin: 0px 0px;
 }
 
 #nav {
@@ -38,5 +39,5 @@
   color: darkred;
   padding: 10px;
 }
-  
+
 </style>

@@ -37,8 +37,9 @@ def viewdb(tableName):
 def test():
   return jsonify('help!')
 
-@app.route('/',methods=['GET'])
-def home():
+@app.route('/',defaults={'path': ''},methods=['GET'])
+@app.route('/<path:path>')
+def home(path):
     return render_template('index.html')
 
 if __name__ == '__main__':
