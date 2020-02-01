@@ -33,6 +33,16 @@ def viewdb(tableName):
   res = model.dbModel.view(tableName)
   return jsonify(res)
 
+@app.route('/db/add', methods=['GET'])
+def addVal():
+  model.dbModel.insertValues()
+  return jsonify('init table database values')
+
+@app.route('/db/clear', methods=['GET'])
+def cleardb():
+  model.dbModel.removeValues()
+  return jsonify('Clear database values')
+
 @app.route('/test', methods=['GET'])
 def test():
   return jsonify('help!')

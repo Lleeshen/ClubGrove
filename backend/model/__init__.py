@@ -1,4 +1,4 @@
-from . import viewTables, createTables, dropTables
+from . import viewTables, createTables, dropTables, initTables, clearTables
 
 class db:
   def init(self):
@@ -7,7 +7,10 @@ class db:
     dropTables.dropTable()
   def view(self,tableName):
     return viewTables.viewTable(tableName)
-
+  def insertValues(self,**whateveryouwant):
+    initTables.initTable()
+  def removeValues(self):
+    clearTables.clearTable()
 
 dbModel = db()
 # dbModel.init()
