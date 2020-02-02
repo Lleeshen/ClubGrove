@@ -14,33 +14,37 @@ def initTable():
   statements = (
     """
     INSERT INTO student VALUES
-    ('test0@gmail.com','John Doe','1111111111'),
-    ('test1@gmail.com','John Doe','1111111112')
+    ('test0@gmail.com','John Doe','1111111111') ,
+    ('test1@gmail.com','John Doe','1111111112') 
+    ON CONFLICT DO NOTHING
     """,
     """
     INSERT INTO club VALUES
     ('Test0','Test0',NULL,'k'),
-    ('Test1','Test1','s','k')
+    ('Test1','Test1','s','k') 
+    ON CONFLICT DO NOTHING
     """,
     """
-    CREATE TABLE IF NOT EXISTS keywords (
-      keywords VARCHAR(20) PRIMARY KEY NOT NULL
+    INSERT INTO keywords VALUES(
+      ('sports') 
+    ) 
+    ON CONFLICT DO NOTHING
+    """,
+    """
+    INSERT INTO faculty VALUES(
+      'a@gmail.com',
+      'Davis Re'
     )
+    ON CONFLICT DO NOTHING
     """,
     """
-    CREATE TABLE IF NOT EXISTS faculty (
-      email VARCHAR(20) PRIMARY KEY NOT NULL,
-      name VARCHAR(20) NOT NULL
-    )
-    """,
-    """
-    CREATE TABLE IF NOT EXISTS events (
-      id INT PRIMARY KEY NOT NULL,
-      name VARCHAR(20) NOT NULL,
-      starttime TIME NOT NULL,
-      endtime TIME NOT NULL,
-      place VARCHAR(30) NOT NULL,
-      description VARCHAR(50) NOT NULL
+     INSERT INTO events VALUES(
+      1,
+      'CLub Club',
+      '10:00:00',
+      '12:00:00',
+      'Benson',
+      'Not Much'
     )
     """,
     """

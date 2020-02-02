@@ -1,7 +1,9 @@
 from flask import Flask, current_app, jsonify, render_template
 #from flask_cors import CORS
 import os
+import logging
 from . import model
+LOG = logging.getLogger(__name__)
 
 #config
 DEBUG = True
@@ -31,7 +33,8 @@ def resetdb():
 @app.route('/db/view/<tableName>', methods=['GET'])
 def viewdb(tableName):
   res = model.dbModel.view(tableName)
-  return jsonify(res)
+  app.logger.warn(res)
+  return jsonify(res, default = "str")
 
 @app.route('/db/add', methods=['GET'])
 def addVal():
