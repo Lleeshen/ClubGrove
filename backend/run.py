@@ -34,7 +34,7 @@ def resetdb():
 def viewdb(tableName):
   res = model.dbModel.view(tableName)
   app.logger.warn(res)
-  return jsonify(res, default = "str")
+  return jsonify(res)
 
 @app.route('/db/add', methods=['GET'])
 def addVal():
