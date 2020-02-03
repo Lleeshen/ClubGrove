@@ -1,6 +1,12 @@
 <template>
-  <div id="searchBar">
-    <span>clubName</span>
+  <div>
+    <div id="searchBar">
+      <span>Club Name</span>
+      <span>Club Categories</span>
+      <span>Sort Option </span>
+      <span>Search </span>
+    </div>
+    <h2> Club Results </h2>
   </div>
 </template>
 
