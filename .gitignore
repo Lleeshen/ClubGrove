@@ -130,4 +130,4 @@ dmypy.json
 .pyre/
 
 # custom files
-backend/model/dbfile.ini
+dbfile.ini

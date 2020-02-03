@@ -1,4 +1,5 @@
 import psycopg2
+import psycopg2.extras
 import configparser
 import os
 
@@ -13,17 +14,20 @@ def viewTable(tableName):
 
   checkNamestatement = "SELECT 1 FROM information_schema.tables WHERE table_schema = 'public' and table_name=%s LIMIT 1"
 
-  cur = con.cursor()
+  cur = con.cursor(cursor_factory=psycopg2.extras.DictCursor)
   cur.execute(checkNamestatement,(tableName,))
   item = cur.fetchall()
+  result = []
   if(len(item) == 0):
     result = 'No table ' + tableName
   else:
-    statement = "SELECT * FROM " + tableName
+    statement = "SELECT *  FROM " + tableName
     cur1 = con.cursor()
     cur1.execute(statement)
     item1 = cur1.fetchall()
-    result = item1
+    column = [desc[0] for desc in cur1.description]
+    for row in item1:
+        result.append(dict(zip(column,row)))
     cur1.close()
   cur.close()
   con.close()
