@@ -3,6 +3,7 @@ from flask import Flask, current_app, jsonify, render_template
 import os
 import logging
 from . import model
+from . import customJson
 LOG = logging.getLogger(__name__)
 
 #config
@@ -17,6 +18,7 @@ jinja_options.update(dict(
     variable_end_string='%%'
 ))
 app.jinja_options = jinja_options
+app.json_encoder = customJson.Custom_Jsonify
 
 #CORS(app,resources={r'/*': {'origins':'*'}})
 
