@@ -8,7 +8,7 @@
         </div>
         <div class="form-group">
           <label for="clubCat">Select Categories</label>
-          <select multiple class="form-control" id="clubCat">
+          <select class="form-control" id="clubCat">
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -17,7 +17,7 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="clubSort">Select Categories:</label>
+          <label for="clubSort">Sort Option:</label>
           <select class="form-control" id="clubSort">
             <option>Alphabetical ascending</option>
             <option>Alphabetical descending</option>
@@ -42,11 +42,12 @@ export default {
 <style scoped>
 #searchBar {
   height: auto;
-  background-color: green;
+  background-color: #AFB781;
 }
 
 form {
   margin: 0 auto;
+  padding: 15px 15px;
 }
 
 </style>
