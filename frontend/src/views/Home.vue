@@ -10,12 +10,11 @@
 <script>
 // @ is an alias to /src
 import HomeDescription from '@/components/HomeDescription.vue'
-import NavBar from '@/components/NavBar.vue'
 
 export default {
   name: 'home',
   components: {
-    HomeDescription,NavBar
+    HomeDescription
   }
 }
 </script>
@@ -27,4 +26,5 @@ export default {
   padding: 10px;
   background-color:grey;
 }
+
 </style>
