@@ -1,9 +1,6 @@
 <template>
   <div class="home">
     <HomeDescription/><br>
-    <h2>Links to get started</h2>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
   </div>
 </template>
 
@@ -21,10 +18,5 @@ export default {
 
 <style scoped>
 
-.home a{
-  display: inline-block;
-  padding: 10px;
-  background-color:grey;
-}
 
 </style>
