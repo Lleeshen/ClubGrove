@@ -50,4 +50,10 @@ form {
   padding: 15px 15px;
 }
 
+h2 {
+  text-align: left;
+  margin-left: 5%;
+  margin-top: 20px;
+}
+
 </style>
