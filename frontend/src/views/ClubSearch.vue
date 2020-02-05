@@ -28,6 +28,7 @@
       </form>
     </div>
     <h2> Club Results </h2>
+    <b-table bordered hover :items="items"></b-table>
   </div>
 </template>
 
@@ -35,8 +36,20 @@
 // @ is an alias to /src
 
 export default {
-  name: 'Search Clubs'
+  name: 'Search Clubs',
+  data() {
+    return {
+      //Replace this with actual club results
+      items: [
+        { clubName: 'Dickerson', clubDescription: 'Macdonald' },
+        { clubName: 'Larsen', clubDescription: 'Shaw' },
+        { clubName: 'Geneva', clubDescription: 'Wilson' },
+        { clubName: 'Jami', clubDescription: 'Carney' }
+      ]
+    }
+  }
 }
+
 </script>
 
 <style scoped>
