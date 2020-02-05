@@ -3,13 +3,17 @@
     <div id="title">
       <h1>Club Grove<br>Finding clubs within the area</h1>
     </div>
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <BaseNavBar></BaseNavBar>
     <router-view/>
   </div>
 </template>
+
+<script>
+import BaseNavBar from './components/BaseNavBar'
+export default {
+  components : {BaseNavBar}
+}
+</script>
 
 <style>
 #app {
@@ -21,17 +25,13 @@
   margin: 0px 0px;
 }
 
-#nav {
-  padding: 30px;
-}
-
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #42b983;
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #2c3e50;
 }
 
 #title {
@@ -39,5 +39,6 @@
   color: darkred;
   padding: 10px;
 }
+
 
 </style>
