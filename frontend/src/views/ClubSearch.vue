@@ -34,19 +34,22 @@
 
 <script>
 // @ is an alias to /src
+import axios from 'axios'
 
 export default {
-  name: 'Search Clubs',
+  name: 'searchClubs',
   data() {
     return {
       //Replace this with actual club results
-      items: [
-        { clubName: 'Dickerson', clubDescription: 'Macdonald' },
-        { clubName: 'Larsen', clubDescription: 'Shaw' },
-        { clubName: 'Geneva', clubDescription: 'Wilson' },
-        { clubName: 'Jami', clubDescription: 'Carney' }
-      ]
+      items: null
     }
+  },
+  mounted() {
+    axios
+      .get('http://localhost:5000/db/view/club')
+      .then(response => {this.items = response.data;
+       console.log(response) })
+      .catch(error => {console.log(error)})
   }
 }
 
