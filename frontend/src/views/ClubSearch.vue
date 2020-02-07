@@ -3,7 +3,7 @@
     <div id="searchBar">
       <b-form inline action="/club">
         <label class="sr-only" for="searchTerm">Club Name</label>
-        <b-form-input class="searchFormElt" v-model="text" id="searchTerm" placeholder="Club name"></b-form-input>
+        <b-form-input class="searchFormElt" v-model="clubName" id="searchTerm" placeholder="Club name"></b-form-input>
         <label class="sr-only" for="clubCategory">Club Category</label>
         <b-form-select class="searchFormElt" v-model="selectedClubCat" :options="clubCatOptions" id="clubCategory"></b-form-select>
         <label for="sortOption">Sorting Option</label>
@@ -23,6 +23,7 @@ export default {
   name: 'searchClubs',
   data() {
     return {
+      clubName: null,
       selectedClubCat: null,
       clubCatOptions: [
           { value: null, text: 'Select a Club Category' },
