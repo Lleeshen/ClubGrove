@@ -27,7 +27,7 @@ const routes = [
     component: ClubSearch
   },
   {
-    path: '/club/events',
+    path: '/events',
     name: 'eventSearch',
     component: EventSearch
   },
