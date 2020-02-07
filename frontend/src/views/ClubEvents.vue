@@ -2,52 +2,39 @@
   <div>
     <div id="searchBar">
       <b-form inline action="/club">
-        <label class="sr-only" for="searchTerm">Club Name</label>
-        <b-form-input class="searchFormElt" v-model="clubName" id="searchTerm" placeholder="Club name"></b-form-input>
-        <label class="sr-only" for="clubCategory">Club Category</label>
-        <b-form-select class="searchFormElt" v-model="selectedClubCat" :options="clubCatOptions" id="clubCategory"></b-form-select>
+        <label class="sr-only" for="searchTerm">Event Name</label>
+        <b-form-input class="searchFormElt" v-model="eventName" id="searchTerm" placeholder="Event name"></b-form-input>
+        <label class="sr-only" for="searchDescription">Event Description</label>
+        <b-form-input class="searchFormElt" v-model="eventDesc" id="searchDescription" placeholder="Event description"></b-form-input>
         <label for="sortOption">Sorting Option</label>
         <b-form-select class="searchFormElt" v-model="selectedSortOption" :options="sortOptions" id="sortOption"></b-form-select>
         <b-button class="searchFormElt" variant="secondary">Search</b-button>
       </b-form>
     </div>
-    <h2> Club Results </h2>
+    <h2> Event Results </h2>
     <b-table bordered hover :items="items"></b-table>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import axios from 'axios'
 
 export default {
-  name: 'searchClubs',
+  name: 'eventSearch',
   data() {
     return {
-      clubName: null,
-      selectedClubCat: null,
-      clubCatOptions: [
-          { value: null, text: 'Select a Club Category' },
-          { value: '1', text: 'Games' },
-          { value: '2', text: 'Science' },
-          { value: '3', text: 'Film' },
-          { value: '3', text: 'Culture' },
-      ],
+      eventName: null,
+      searchDescription: null,
       selectedSortOption: '1',
       sortOptions: [
         { value: '1', text: 'Similarity to Search Term'},
         { value: '2', text: 'Alphabetical ascending'},
         { value: '3', text: 'Alphabetical descending'},
       ],
-      items: null
+      items: [
+        { Name: 'Food Run', Description: 'Come get food with us at Cupertino, rides provided', startTime: '2/12/20 5:00 PM', endTime: '2/12/20 7:00 PM', location: 'Shappell Center' },
+      ]
     }
-  },
-  mounted() {
-    axios
-      .get('http://localhost:5000/db/view/club')
-      .then(response => {this.items = response.data;
-       console.log(response) })
-      .catch(error => {console.log(error)})
   }
 }
 

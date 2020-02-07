@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import ClubSearch from '../views/ClubSearch.vue'
+import EventSearch from '../views/ClubEvents.vue'
 import NotFound from '../views/NotFound.vue'
 
 Vue.use(VueRouter)
@@ -22,14 +23,19 @@ const routes = [
   },
   {
     path: '/club',
-    name: 'Club Search',
+    name: 'clubSearch',
     component: ClubSearch
+  },
+  {
+    path: '/events',
+    name: 'eventSearch',
+    component: EventSearch
   },
   {
     path: '*',
     name: 'Not Found',
     component: NotFound
-  }
+  },
 ]
 
 const router = new VueRouter({
