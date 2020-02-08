@@ -39,6 +39,12 @@ def viewdb(tableName):
   app.logger.warn(res)
   return jsonify(res)
 
+@app.route('/db/view/<tableName>/<number>', methods=['GET'])
+def viewdbrow(tableName, number):
+  res = model.dbModel.viewRow(tableName,number)
+  app.logger.warn(res)
+  return jsonify(res)
+
 @app.route('/db/add', methods=['GET'])
 def addVal():
   model.dbModel.insertValues()
