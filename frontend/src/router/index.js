@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import ClubSearch from '../views/ClubSearch.vue'
 import EventSearch from '../views/ClubEvents.vue'
 import NotFound from '../views/NotFound.vue'
+import ClubPage from '../views/ClubPage.vue'
 
 Vue.use(VueRouter)
 
@@ -25,6 +26,11 @@ const routes = [
     path: '/club',
     name: 'clubSearch',
     component: ClubSearch
+  },
+  {
+    path: '/club/:name',
+    name: 'clubPage',
+    component: ClubPage
   },
   {
     path: '/events',
