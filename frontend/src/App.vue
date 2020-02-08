@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import BaseNavBar from './components/BaseNavBar'
 export default {
   components : {BaseNavBar}
