@@ -13,13 +13,24 @@ def viewRow(tableName,name):
   cur.execute(checkNamestatement,(tableName,))
   item = cur.fetchall()
   result = []
+  tableid =""
   if(len(item) == 0):
     result = 'No table ' + tableName
   else:
-    strname = str(name)
-    statement = "SELECT *  FROM " + tableName +" WHERE name = %s"
+    #note got this off a wiki Just grabs the primary key
+    pStatement = "SELECT a.attname \
+                  FROM   pg_index i\
+                  JOIN   pg_attribute a ON a.attrelid = i.indrelid\
+                     AND a.attnum = ANY(i.indkey)\
+                  WHERE  i.indrelid =%s::regclass\
+                  AND    i.indisprimary;"
+    cur2 = con.cursor()
+    cur2.execute(pStatement,(tableName,))
+    tableid = cur2.fetchone()
+
+    statement = "SELECT *  FROM " + tableName +" WHERE "+ tableid[0]+ " = %s"
     cur1 = con.cursor()
-    cur1.execute(statement,(strname,))
+    cur1.execute(statement,(name,))
     item1 = cur1.fetchone()
     column = [desc[0] for desc in cur1.description]
     if (item1 != None):
