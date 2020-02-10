@@ -1,4 +1,4 @@
-from . import viewTables, createTables, dropTables, initTables, clearTables
+from . import viewTables, createTables, dropTables, initTables, clearTables, getEvents
 
 class db:
   def init(self):
@@ -11,6 +11,8 @@ class db:
     initTables.initTable()
   def removeValues(self):
     clearTables.clearTable()
+  def getEventfromClub(self,clubName):
+    return getEvents.getEventList(clubName)
 
 dbModel = db()
 # dbModel.init()
