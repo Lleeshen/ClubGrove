@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3> Club  {{ name }} </h3>
-    <b-table bordered hover :items="items"></b-table>
+    <b-table bordered hover :items='items' :fields='fields'></b-table>
   </div>
 </template>
 
@@ -12,20 +12,12 @@ export default {
   data() {
     return {
       validClub: false,
-      clubName: null,
-      selectedClubCat: null,
-      clubCatOptions: [
-          { value: null, text: 'Select a Club Category' },
-          { value: '1', text: 'Games' },
-          { value: '2', text: 'Science' },
-          { value: '3', text: 'Film' },
-          { value: '3', text: 'Culture' },
-      ],
-      selectedSortOption: '1',
-      sortOptions: [
-        { value: '1', text: 'Similarity to Search Term'},
-        { value: '2', text: 'Alphabetical ascending'},
-        { value: '3', text: 'Alphabetical descending'},
+      fields: [
+        {key:'name', label: 'Event Name'},
+        {key:'description', label: 'Description'},
+        {key:'place', label: 'Location'},
+        {key: 'starttime', label: 'Start Time'},
+        {key: 'endtime', label: 'End Time'}
       ],
       items: null
     }
