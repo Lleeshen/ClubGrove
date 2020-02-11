@@ -41,7 +41,7 @@ export default {
     }
   },
   mounted() {
-    axios
+    this.$axios
       .get('http://localhost:5000/db/view/club')
       .then(response => {this.items = response.data;
        console.log(response) })
