@@ -1,6 +1,7 @@
 <template>
   <div>
     <h3> Club  {{ name }} </h3>
+    <b-table bordered hover :items="items"></b-table>
   </div>
 </template>
 
@@ -10,6 +11,7 @@ export default {
   name: 'clubEvent',
   data() {
     return {
+      validClub: false,
       clubName: null,
       selectedClubCat: null,
       clubCatOptions: [
@@ -29,10 +31,10 @@ export default {
     }
   },
   mounted() {
-    axios
-      .get('http://localhost:5000/db/view/club')
+    this.$axios
+      .get('http://localhost:5000/api/getEvents/'+this.name)
       .then(response => {this.items = response.data;
-       console.log(response) })
+       console.log(response.data) })
       .catch(error => {console.log(error)})
   },
   props: ['name']

@@ -13,7 +13,7 @@ def getEventList(clubName):
     password= parser.get('postgres', 'password'))
 
     checkNamestatement = """
-        SELECT *
+        SELECT name, description, place, starttime, endtime
         FROM events
         WHERE id IN (SELECT id
         FROM clubevents
@@ -22,8 +22,12 @@ def getEventList(clubName):
 
     cur = con.cursor(cursor_factory=psycopg2.extras.DictCursor)
     cur.execute(checkNamestatement,(clubName,))
+    result = []
     item = cur.fetchall()
-    print(item)
+    column = [desc[0] for desc in cur.description]
+    for row in item:
+        result.append(dict(zip(column,row)))
     cur.close()
     con.close()
-    return item
+    print(result)
+    return result
