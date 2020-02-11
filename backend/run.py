@@ -52,8 +52,9 @@ def cleardb():
 def test():
   return jsonify('help!')
 
-@app.route('/api/getEvents/<clubName>',methods=['GET'])
-def getEvent(clubName):
+@app.route('/api/getEvents',methods=['POST'])
+def getEvent():
+  clubName = request.get_json().get('nm','')
   res = model.dbModel.getEventfromClub(clubName)
   return jsonify(res)
 

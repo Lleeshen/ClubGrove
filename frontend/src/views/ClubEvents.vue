@@ -32,7 +32,7 @@ export default {
   },
   mounted() {
     this.$axios
-      .get('http://localhost:5000/api/getEvents/'+this.name)
+      .post('http://localhost:5000/api/getEvents',{'nm': this.name})
       .then(response => {this.items = response.data;
        console.log(response.data) })
       .catch(error => {console.log(error)})
