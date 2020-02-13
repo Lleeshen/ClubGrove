@@ -1,5 +1,5 @@
 from flask import Flask, current_app, jsonify, render_template
-#from flask_cors import CORS
+from flask_cors import CORS
 import os
 import logging
 from . import model
@@ -20,7 +20,8 @@ jinja_options.update(dict(
 app.jinja_options = jinja_options
 app.json_encoder = customJson.Custom_Jsonify
 
-#CORS(app,resources={r'/*': {'origins':'*'}})
+#Change this security purposes
+CORS(app,resources={r'/*': {'origins':'*'}})
 
 @app.route('/db/init', methods=['GET'])
 def initdb():
@@ -35,6 +36,12 @@ def resetdb():
 @app.route('/db/view/<tableName>', methods=['GET'])
 def viewdb(tableName):
   res = model.dbModel.view(tableName)
+  app.logger.warn(res)
+  return jsonify(res)
+
+@app.route('/db/view/<tableName>/<number>', methods=['GET'])
+def viewdbrow(tableName, number):
+  res = model.dbModel.viewRow(tableName,number)
   app.logger.warn(res)
   return jsonify(res)
 
