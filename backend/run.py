@@ -1,4 +1,5 @@
-from flask import Flask, current_app, jsonify, render_template
+from flask import Flask, current_app, jsonify, render_template, request
+
 from flask_cors import CORS
 import os
 import logging
@@ -58,6 +59,12 @@ def cleardb():
 @app.route('/test', methods=['GET'])
 def test():
   return jsonify('help!')
+
+@app.route('/api/getEvents',methods=['POST'])
+def getEvent():
+  clubName = request.get_json().get('nm','')
+  res = model.dbModel.getEventfromClub(clubName)
+  return jsonify(res)
 
 @app.route('/',defaults={'path': ''},methods=['GET'])
 @app.route('/<path:path>')
