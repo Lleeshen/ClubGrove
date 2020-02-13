@@ -1,8 +1,14 @@
 <template>
-  <div>
-    <h3> Club  {{ name }} </h3>
-    <b-table bordered hover :items='items' :fields='fields'></b-table>
-  </div>
+  <b-container fluid class="mainPage">
+    <b-row>
+      <b-col>
+        <h3> Club  {{ name }} </h3>
+      </b-col>
+      <b-col cols="9">
+        <b-table bordered hover :items='items' :fields='fields'></b-table>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -33,3 +39,9 @@ export default {
 }
 
 </script>
+
+<style scoped>
+.mainPage {
+  margin-top: 20px;
+}
+</style>
