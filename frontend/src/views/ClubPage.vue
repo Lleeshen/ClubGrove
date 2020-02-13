@@ -1,6 +1,28 @@
 <template>
   <div>
-    {{item}}
+    <b-container fluid="sm">
+      <b-row class= "club-page text-center">
+        <b-col>
+          <h2 v-if="item">{{item[0].name}}</h2>
+        </b-col>
+      </b-row>
+    </b-container>
+     <b-container fluid>
+      <b-row class= "club-page text-center">
+        <b-col v-if="item">
+          <h3>Description</h3>
+          {{item[0].description}}
+        </b-col>
+        <b-col cols="5">
+          picture here
+        </b-col>
+        <b-col>
+        </b-col>
+      </b-row>
+    </b-container>
+  <b-container>
+    
+  </b-container>
   </div>
 </template>
 
@@ -31,5 +53,6 @@ export default {
 
 </script>
 
+<style>
 
 </style>
