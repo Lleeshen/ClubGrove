@@ -15,19 +15,19 @@ def initTable():
     """
     INSERT INTO student VALUES
     ('test0@gmail.com','John Doe','1111111111') ,
-    ('test1@gmail.com','John Doe','1111111112') 
+    ('test1@gmail.com','John Doe','1111111112')
     ON CONFLICT DO NOTHING
     """,
     """
     INSERT INTO club VALUES
     ('Test0','Test0',NULL,'k'),
-    ('Test1','Test1','s','k') 
+    ('Test1','Test1','s','k')
     ON CONFLICT DO NOTHING
     """,
     """
-    INSERT INTO keywords VALUES(
-      ('sports') 
-    ) 
+    INSERT INTO keywords VALUES
+      ('Sports') ,
+      ('Culture')
     ON CONFLICT DO NOTHING
     """,
     """

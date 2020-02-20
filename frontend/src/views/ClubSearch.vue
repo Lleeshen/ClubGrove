@@ -1,14 +1,14 @@
 <template>
   <div>
     <div id="searchBar">
-      <b-form inline action="/club">
+      <b-form inline action="/club" @submit.prevent="searchClubs">
         <label class="sr-only" for="searchTerm">Club Name</label>
         <b-form-input class="searchFormElt" v-model="clubName" id="searchTerm" placeholder="Club name"></b-form-input>
         <label class="sr-only" for="clubCategory">Club Category</label>
         <b-form-select class="searchFormElt" v-model="selectedClubCat" :options="clubCatOptions" id="clubCategory"></b-form-select>
         <label for="sortOption">Sorting Option</label>
         <b-form-select class="searchFormElt" v-model="selectedSortOption" :options="sortOptions" id="sortOption"></b-form-select>
-        <b-button class="searchFormElt" variant="secondary">Search</b-button>
+        <b-button class="searchFormElt" variant="secondary" type="submit">Search</b-button>
       </b-form>
     </div>
     <h2> Club Results </h2>
@@ -25,15 +25,11 @@ export default {
       clubName: null,
       selectedClubCat: null,
       clubCatOptions: [
-          { value: null, text: 'Select a Club Category' },
-          { value: '1', text: 'Games' },
-          { value: '2', text: 'Science' },
-          { value: '3', text: 'Film' },
-          { value: '3', text: 'Culture' },
+          { value: null, text: 'Select a Club Category' }
       ],
       selectedSortOption: '1',
       sortOptions: [
-        { value: '1', text: 'Similarity to Search Term'},
+        //{ value: '1', text: 'Similarity to Search Term'},
         { value: '2', text: 'Alphabetical ascending'},
         { value: '3', text: 'Alphabetical descending'},
       ],
@@ -43,9 +39,20 @@ export default {
   mounted() {
     this.$axios
       .get('http://localhost:5000/db/view/club')
-      .then(response => {this.items = response.data;
-       console.log(response) })
-      .catch(error => {console.log(error)})
+      .then(response => {this.items = response.data;})
+      .catch(error => {console.log(error)});
+    this.$axios
+      .get('http://localhost:5000/api/getClubCategories')
+      .then(response => {
+        console.log(response.data);
+        this.clubCatOptions = this.clubCatOptions.concat(response.data);
+       })
+      .catch(error => {console.log(error)});
+  },
+  methods: {
+    searchClubs() {
+      console.log(this.clubName,this.selectedClubCat,this.selectedSortOption);
+    }
   }
 }
 
