@@ -71,6 +71,14 @@ def getCategories():
   res = model.dbModel.getClubKeywords()
   return jsonify(res)
 
+@app.route('/api/getSearchedClubs',methods=['POST'])
+def getSearchedClubs():
+  searchTerm = request.get_json().get('searchTerm','')
+  keyword = request.get_json().get('keyword','')
+  sort = request.get_json().get('sort','')
+  print(searchTerm,keyword,sort)
+  return jsonify('testing')
+
 @app.route('/',defaults={'path': ''},methods=['GET'])
 @app.route('/<path:path>')
 def home(path):

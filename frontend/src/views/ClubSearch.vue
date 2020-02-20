@@ -30,8 +30,8 @@ export default {
       selectedSortOption: '1',
       sortOptions: [
         //{ value: '1', text: 'Similarity to Search Term'},
-        { value: '2', text: 'Alphabetical ascending'},
-        { value: '3', text: 'Alphabetical descending'},
+        { value: 'ASC', text: 'Alphabetical ascending'},
+        { value: 'DESC', text: 'Alphabetical descending'},
       ],
       items: null
     }
@@ -52,6 +52,16 @@ export default {
   methods: {
     searchClubs() {
       console.log(this.clubName,this.selectedClubCat,this.selectedSortOption);
+      this.$axios
+        .post('http://localhost:5000/api/getSearchedClubs',{
+          'searchTerm': this.clubName,
+          'keyword': this.selectedClubCat,
+          'sort': this.selectedSortOption
+        })
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => console.log(error))
     }
   }
 }
