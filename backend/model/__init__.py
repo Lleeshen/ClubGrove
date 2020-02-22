@@ -11,8 +11,10 @@ class db:
     initTables.initTable()
   def removeValues(self):
     clearTables.clearTable()
-  def getEventfromClub(self,clubName):
-    return getEvents.getEventList(clubName)
+  def getEventfromClub(self,clubName, **kwargs):
+    return getEvents.getEventList(clubName, **kwargs)
+  def getEventfromClub2(self, **kwargs):
+    return getEvents.getEventList2(**kwargs)
   def viewRow(self, tableName, primaryId):
     return viewSelection.viewRow(tableName,primaryId)
 

@@ -66,6 +66,12 @@ def getEvent():
   res = model.dbModel.getEventfromClub(clubName)
   return jsonify(res)
 
+@app.route('/api/getEvents2',methods=['GET'])
+def getEvent2():
+  app.logger.warn(request.args)
+  res = model.dbModel.getEventfromClub2(**request.args)
+  return jsonify(res)
+
 @app.route('/',defaults={'path': ''},methods=['GET'])
 @app.route('/<path:path>')
 def home(path):
