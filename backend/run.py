@@ -68,8 +68,8 @@ def getEvent():
 
 @app.route('/api/getEvents2',methods=['GET'])
 def getEvent2():
-  app.logger.warn(request.args)
-  res = model.dbModel.getEventfromClub2(**request.args)
+  app.logger.warn(request.args.to_dict())
+  res = model.dbModel.getEventfromClub2(**request.args.to_dict())
   return jsonify(res)
 
 @app.route('/',defaults={'path': ''},methods=['GET'])
