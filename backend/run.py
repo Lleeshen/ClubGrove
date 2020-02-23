@@ -67,6 +67,20 @@ def getEvent():
   res = model.dbModel.getEventfromClub(clubName)
   return jsonify(res)
 
+@app.route('/api/getClubCategories',methods=['GET'])
+def getCategories():
+  res = model.dbModel.getClubKeywords()
+  return jsonify(res)
+
+@app.route('/api/getSearchedClubs',methods=['POST'])
+def getSearchedClubs():
+  searchTerm = request.get_json().get('searchTerm','')
+  keyword = request.get_json().get('keyword','')
+  sort = request.get_json().get('sort','')
+  print(searchTerm,keyword,sort)
+  res = model.dbModel.searchClub(searchTerm,keyword,sort)
+  return jsonify(res)
+
 @app.route('/api/getEvents2',methods=['GET'])
 def getEvent2():
   app.logger.warn(request.args.to_dict())
