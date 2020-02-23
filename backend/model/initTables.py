@@ -1,15 +1,8 @@
 import psycopg2
-import configparser
-import os
+from . import startdb as startdb
 
 def initTable():
-  parser = configparser.ConfigParser()
-  parser.read(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'dbfile.ini'))
-
-  con = psycopg2.connect(dbname=parser.get('postgres','dbname'),
-    user=parser.get('postgres','user'),
-    host=parser.get('postgres','host'),
-    password= parser.get('postgres', 'password'))
+  con = startdb.startdb()
 
   statements = (
     """
@@ -45,7 +38,13 @@ def initTable():
       '12:00:00',
       'Benson',
       'Not Much'
-    )
+    ),(
+      2,
+      'CLub Club2',
+      '1:00:00',
+      '2:00:00',
+      'Benson',
+      'Not Much ok')
     ON CONFLICT DO NOTHING
     """,
     """
@@ -80,12 +79,14 @@ def initTable():
       'a@gmail.com',
       'Test0'
     )
+    ON CONFLICT DO NOTHING
     """,
     """
     INSERT INTO clubevents VALUES(
      'Test0',
       1
     )
+    ON CONFLICT DO NOTHING
     """
   )
 

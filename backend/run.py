@@ -8,6 +8,7 @@ from . import customJson
 LOG = logging.getLogger(__name__)
 
 #config
+logging.basicConfig(level=logging.DEBUG) #for logging
 DEBUG = True
 
 app = Flask(__name__,template_folder='../dist',static_folder='../static')
@@ -64,6 +65,12 @@ def test():
 def getEvent():
   clubName = request.get_json().get('nm','')
   res = model.dbModel.getEventfromClub(clubName)
+  return jsonify(res)
+
+@app.route('/api/getEvents2',methods=['GET'])
+def getEvent2():
+  app.logger.warn(request.args.to_dict())
+  res = model.dbModel.getEventfromClub2(**request.args.to_dict())
   return jsonify(res)
 
 @app.route('/',defaults={'path': ''},methods=['GET'])
