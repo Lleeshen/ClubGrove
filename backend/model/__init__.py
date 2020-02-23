@@ -11,7 +11,7 @@ class db:
     initTables.initTable()
   def removeValues(self):
     clearTables.clearTable()
-  def getClubKeywords(selft):
+  def getClubKeywords(self):
     return clubCategories.getKeywords()
   def searchClub(self,searchTerm,keyword,sort):
     return clubSearch.clubSearch(searchTerm,keyword,sort)
