@@ -8,6 +8,7 @@ from . import customJson
 LOG = logging.getLogger(__name__)
 
 #config
+logging.basicConfig(level=logging.DEBUG) #for logging
 DEBUG = True
 
 app = Flask(__name__,template_folder='../dist',static_folder='../static')

@@ -38,7 +38,13 @@ def initTable():
       '12:00:00',
       'Benson',
       'Not Much'
-    )
+    ),(
+      2,
+      'CLub Club2',
+      '1:00:00',
+      '2:00:00',
+      'Benson',
+      'Not Much ok')
     ON CONFLICT DO NOTHING
     """,
     """

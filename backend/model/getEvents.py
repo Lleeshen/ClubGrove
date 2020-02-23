@@ -1,6 +1,9 @@
 import psycopg2
 import psycopg2.extras
 from . import startdb as startdb
+import logging
+
+LOG = logging.getLogger(__name__)
 
 def getEventList(clubName, **kargs):
     con = startdb.startdb()
@@ -32,7 +35,6 @@ def getEventList2(**kwargs):
         FROM events
     """
     if 'sort' in kwargs and kwargs['sort']:
-        print('ok')
         checkNamestatement += " ORDER BY name DESC"
     else:
         checkNamestatement += " ORDER BY name ASC"
@@ -46,7 +48,6 @@ def getEventList2(**kwargs):
         result.append(dict(zip(column,row)))
     cur.close()
     con.close()
-    print(result)
     return result
     
 
