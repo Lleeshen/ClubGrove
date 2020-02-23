@@ -60,6 +60,7 @@ export default {
         })
         .then(response => {
           console.log(response.data);
+          this.items = response.data;
         })
         .catch(error => console.log(error))
     }

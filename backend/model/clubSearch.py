@@ -12,9 +12,9 @@ def clubSearch(searchTerm,keyword,sort):
   SQLstatement += " ORDER BY name %s"
   cur = con.cursor(cursor_factory=psycopg2.extras.DictCursor)
   if(keyword):
-    cur.execute(SQLstatement,(searchTerm,keyword,sort,))
+    cur.execute(SQLstatement,('%' + searchTerm + '%',keyword,sort,))
   else:
-    cur.execute(SQLstatement,(searchTerm,sort))
+    cur.execute(SQLstatement,('%' + searchTerm + '%',sort))
   item = cur.fetchall()
   result = []
   column = [desc[0] for desc in cur.description]

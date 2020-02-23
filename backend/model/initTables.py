@@ -87,6 +87,11 @@ def initTable():
       1
     )
     ON CONFLICT DO NOTHING
+    """,
+    """
+    INSERT INTO clubkeywords VALUES
+    ('Test0','Sports')
+    ON CONFLICT DO NOTHING
     """
   )
 

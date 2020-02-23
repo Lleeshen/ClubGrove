@@ -79,7 +79,7 @@ def getSearchedClubs():
   sort = request.get_json().get('sort','')
   print(searchTerm,keyword,sort)
   res = model.dbModel.searchClub(searchTerm,keyword,sort)
-  return jsonify("test")
+  return jsonify(res)
 
 @app.route('/api/getEvents2',methods=['GET'])
 def getEvent2():
