@@ -89,6 +89,13 @@ def createTable():
       id INT REFERENCES events(id),
       PRIMARY KEY (name, id)
     )
+    """,
+    """
+    CREATE TABLE IF NOT EXISTS clubkeywords (
+      name VARCHAR(30) REFERENCES club(name),
+      keywords VARCHAR(20) REFERENCES keywords(keywords),
+      PRIMARY KEY (name, keywords)
+    )
     """
   )
 

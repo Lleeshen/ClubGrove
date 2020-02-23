@@ -77,7 +77,8 @@ def getSearchedClubs():
   keyword = request.get_json().get('keyword','')
   sort = request.get_json().get('sort','')
   print(searchTerm,keyword,sort)
-  return jsonify('testing')
+  res = model.dbModel.searchClub(searchTerm,keyword,sort)
+  return jsonify("test")
 
 @app.route('/',defaults={'path': ''},methods=['GET'])
 @app.route('/<path:path>')

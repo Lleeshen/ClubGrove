@@ -27,7 +27,7 @@ export default {
       clubCatOptions: [
           { value: null, text: 'Select a Club Category' }
       ],
-      selectedSortOption: '1',
+      selectedSortOption: 'ASC',
       sortOptions: [
         //{ value: '1', text: 'Similarity to Search Term'},
         { value: 'ASC', text: 'Alphabetical ascending'},
