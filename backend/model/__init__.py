@@ -1,4 +1,5 @@
-from . import viewTables, createTables, dropTables, initTables, clearTables, getEvents, viewSelection, clubCategories, clubSearch
+from . import createTables, dropTables, initTables, clearTables, clubCategories, clubSearch
+from .helper import getEvents, viewSelection, viewTables
 
 class db:
   def init(self):
