@@ -1,5 +1,5 @@
 import psycopg2
-from . import startdb as startdb
+from .. import startdb as startdb
 
 def clearTable():
   con = startdb.startdb()

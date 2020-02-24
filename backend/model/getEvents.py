@@ -1,6 +1,6 @@
 import psycopg2
 import psycopg2.extras
-from . import startdb as startdb
+from .. import startdb as startdb
 import logging
 
 LOG = logging.getLogger(__name__)
@@ -43,6 +43,7 @@ def getEventList2(**kwargs):
     cur.execute(checkNamestatement)
     result = []
     item = cur.fetchall()
+
     column = [desc[0] for desc in cur.description]
     for row in item:
         result.append(dict(zip(column,row)))
