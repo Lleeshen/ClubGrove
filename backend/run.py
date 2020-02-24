@@ -5,6 +5,7 @@ from flask_cors import CORS
 import os
 import logging
 from . import customJson
+from . import model
 from .controller import (
   dbController, viewController,
   apiController)
