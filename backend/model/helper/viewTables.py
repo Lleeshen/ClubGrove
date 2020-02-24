@@ -1,6 +1,6 @@
 import psycopg2
 import psycopg2.extras
-from . import startdb as startdb
+from .. import startdb as startdb
 
 def viewTable(tableName):
   con = startdb.startdb()

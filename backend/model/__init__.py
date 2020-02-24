@@ -1,4 +1,5 @@
-from . import viewTables, createTables, dropTables, initTables, clearTables, getEvents, viewSelection
+from . import createTables, dropTables, initTables, clearTables
+from .helper import getEvents, viewSelection, viewTables
 
 class db:
   def init(self):
