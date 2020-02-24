@@ -5,6 +5,7 @@ import os
 import logging
 from . import model
 from . import customJson
+from .controller import dbController
 LOG = logging.getLogger(__name__)
 
 #config
@@ -25,6 +26,9 @@ app.json_encoder = customJson.Custom_Jsonify
 #Change this security purposes
 CORS(app,resources={r'/*': {'origins':'*'}})
 
+app.register_blueprint(dbController.bp)
+
+"""
 @app.route('/db/init', methods=['GET'])
 def initdb():
   model.dbModel.init()
@@ -34,7 +38,7 @@ def initdb():
 def resetdb():
   model.dbModel.reset()
   return jsonify('Reset database')
-
+"""
 @app.route('/db/view/<tableName>', methods=['GET'])
 def viewdb(tableName):
   res = model.dbModel.view(tableName)
@@ -47,6 +51,7 @@ def viewdbrow(tableName, number):
   app.logger.warn(res)
   return jsonify(res)
 
+"""
 @app.route('/db/add', methods=['GET'])
 def addVal():
   model.dbModel.insertValues()
@@ -56,6 +61,7 @@ def addVal():
 def cleardb():
   model.dbModel.removeValues()
   return jsonify('Clear database values')
+"""
 
 @app.route('/test', methods=['GET'])
 def test():
