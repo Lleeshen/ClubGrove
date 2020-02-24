@@ -1,8 +1,8 @@
 const path = require('path');
 
 module.exports = {
-  //note: comment assestsDir out if want to test npm run serve
-  //outputDir: path.resolve(__dirname,'../dist'),
+  //note: comment outputDir and assestsDir out if want to test npm run serve
+  outputDir: path.resolve(__dirname,'../dist'),
   //assetsDir: '../static',
   pages: {
     index: {
