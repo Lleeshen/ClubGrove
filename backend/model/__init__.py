@@ -1,4 +1,4 @@
-from . import createTables, dropTables, initTables, clearTables
+from . import createTables, dropTables, initTables, clearTables, clubCategories, clubSearch
 from .helper import getEvents, viewSelection, viewTables
 
 class db:
@@ -12,6 +12,10 @@ class db:
     initTables.initTable()
   def removeValues(self):
     clearTables.clearTable()
+  def getClubKeywords(self):
+    return clubCategories.getKeywords()
+  def searchClub(self,searchTerm,keyword,sort):
+    return clubSearch.clubSearch(searchTerm,keyword,sort)
   def getEventfromClub(self,clubName, **kwargs):
     return getEvents.getEventList(clubName, **kwargs)
   def getEventfromClub2(self, **kwargs):
