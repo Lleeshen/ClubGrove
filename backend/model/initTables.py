@@ -93,6 +93,7 @@ def initTable():
     ('Test0','Sports')
     ON CONFLICT DO NOTHING
     """,
+    #5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8 is sha256 hash of password
     """
     INSERT INTO users VALUES
     ('llshen@scu.edu','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',0),

@@ -4,11 +4,6 @@
       <b-button v-if=this.loggedIn square variant="info" @click=logOut> Log out </b-button>
       <b-button v-else square variant="info" @click="startLogIn"> Sign in </b-button>
     </div>
-    <div id="title">
-      <h1>Club Grove<br>Finding clubs within the area</h1>
-    </div>
-    <BaseNavBar></BaseNavBar>
-    <router-view/>
     <b-modal v-model="logInModal">
       <b-form action="/club" @submit.prevent="logIn">
         <b-form-group>
@@ -20,8 +15,16 @@
           <b-form-input type="password" v-model="password" id="password"></b-form-input>
         </b-form-group>
         <b-button variant="secondary" type="submit">Log In</b-button>
+        <br />
+        <br />
+        <div v-if=failedLogin id="formText"> {{failedLogin}} </div>
       </b-form>
     </b-modal>
+    <div id="title">
+      <h1>Club Grove<br>Finding clubs within the area</h1>
+    </div>
+    <BaseNavBar></BaseNavBar>
+    <router-view/>
   </div>
 </template>
 
@@ -35,6 +38,7 @@ export default {
       logInModal: false,
       username: '',
       password: '',
+      failedLogin: false,
     }
   },
   methods: {
@@ -52,12 +56,21 @@ export default {
           if(response.data.length != 0) {
             this.logInModal = false;
             this.loggedIn = true;
+            this.failedLogin = false;
+          } else {
+            this.failedLogin = "Invalid credentials";
           }
         })
         .catch(error => {console.log(error)});
     },
     logOut() {
-      this.loggedIn = false;
+      this.$axios
+        .get('http://localhost:5000/api/logout')
+        .then(response => {
+           this.loggedIn = false;
+           this.failedLogin = false;
+         })
+        .catch(error => {console.log(error)});
     }
   }
 }
@@ -93,6 +106,10 @@ export default {
   float: right;
   margin-top: 30px;
   margin-right: 70px;
+}
+
+#formText {
+  font-size: 16px !important;
 }
 
 </style>

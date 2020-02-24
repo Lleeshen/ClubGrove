@@ -24,6 +24,7 @@ app.json_encoder = customJson.Custom_Jsonify
 
 #Change this security purposes
 CORS(app,resources={r'/*': {'origins':'*'}})
+app.secret_key = 'secretkey'
 
 @app.route('/db/init', methods=['GET'])
 def initdb():
@@ -93,9 +94,23 @@ def login():
   password = request.get_json().get('password','')
   res = model.dbModel.checkLogin(username,password)
   print(res)
-  # session['username'] =
-  # session['adminStatus'] =
+  if(len(res) == 1):
+    session['username'] = res[0]['email']
+    session['adminStatus'] = res[0]['email']
   return jsonify(res)
+
+@app.route('/api/logout',methods=['GET'])
+def logout():
+  session.pop('username',None)
+  session.pop('adminStatus',None)
+  return jsonify('loggedOut')
+
+@app.route('/api/loginStatus',methods=['GET'])
+def checkLoginStatus():
+  if (session['username']):
+    return jsonify([session['username'],session['adminStatus']])
+  else:
+    return jsonify('')
 
 @app.route('/',defaults={'path': ''},methods=['GET'])
 @app.route('/<path:path>')
