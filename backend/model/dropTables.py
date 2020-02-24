@@ -5,6 +5,8 @@ def dropTable():
   con = startdb.startdb()
 
   statements = (
+    'DROP TABLE IF EXISTS users',
+    'DROP TABLE IF EXISTS clubkeywords',
     'DROP TABLE IF EXISTS clubevents',
     'DROP TABLE IF EXISTS advising',
     'DROP TABLE IF EXISTS leaders',

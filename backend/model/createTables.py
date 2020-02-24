@@ -90,6 +90,13 @@ def createTable():
       keywords VARCHAR(20) REFERENCES keywords(keywords),
       PRIMARY KEY (name, keywords)
     )
+    """,
+    """
+    CREATE TABLE IF NOT EXISTS users (
+      email VARCHAR(20) PRIMARY KEY NOT NULL,
+      password VARCHAR(64),
+      isadmin INT
+    )
     """
   )
 

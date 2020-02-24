@@ -1,6 +1,7 @@
 from flask import (
-  Flask, current_app, jsonify, render_template, 
-  )
+  Flask, current_app, jsonify, render_template, request, session
+)
+
 from flask_cors import CORS
 import os
 import logging
@@ -28,6 +29,7 @@ app.json_encoder = customJson.Custom_Jsonify
 
 #Change this security purposes
 CORS(app,resources={r'/*': {'origins':'*'}})
+app.secret_key = 'secretkey'
 
 app.register_blueprint(dbController.bp)
 app.register_blueprint(viewController.bp)
@@ -50,6 +52,30 @@ def getSearchedClubs():
   print(searchTerm,keyword,sort)
   res = model.dbModel.searchClub(searchTerm,keyword,sort)
   return jsonify(res)
+
+@app.route('/api/login',methods=['POST'])
+def login():
+  username = request.get_json().get('username','')
+  password = request.get_json().get('password','')
+  res = model.dbModel.checkLogin(username,password)
+  print(res)
+  if(len(res) == 1):
+    session['username'] = res[0]['email']
+    session['adminStatus'] = res[0]['email']
+  return jsonify(res)
+
+@app.route('/api/logout',methods=['GET'])
+def logout():
+  session.pop('username',None)
+  session.pop('adminStatus',None)
+  return jsonify('loggedOut')
+
+@app.route('/api/loginStatus',methods=['GET'])
+def checkLoginStatus():
+  if (session['username']):
+    return jsonify([session['username'],session['adminStatus']])
+  else:
+    return jsonify('')
 
 @app.route('/',defaults={'path': ''},methods=['GET'])
 @app.route('/<path:path>')
