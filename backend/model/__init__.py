@@ -1,4 +1,4 @@
-from . import viewTables, createTables, dropTables, initTables, clearTables, getEvents, viewSelection, clubCategories, clubSearch
+from . import viewTables, createTables, dropTables, initTables, clearTables, getEvents, viewSelection, clubCategories, clubSearch, checkLogin
 
 class db:
   def init(self):
@@ -21,6 +21,8 @@ class db:
     return getEvents.getEventList2(**kwargs)
   def viewRow(self, tableName, primaryId):
     return viewSelection.viewRow(tableName,primaryId)
+  def checkLogin(self,username,password):
+    return checkLogin.checkLogin(username,password)
 
 
 dbModel = db()

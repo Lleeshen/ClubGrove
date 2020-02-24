@@ -1,4 +1,4 @@
-from flask import Flask, current_app, jsonify, render_template, request
+from flask import Flask, current_app, jsonify, render_template, request, session
 
 from flask_cors import CORS
 import os
@@ -85,6 +85,16 @@ def getSearchedClubs():
 def getEvent2():
   app.logger.warn(request.args.to_dict())
   res = model.dbModel.getEventfromClub2(**request.args.to_dict())
+  return jsonify(res)
+
+@app.route('/api/login',methods=['POST'])
+def login():
+  username = request.get_json().get('username','')
+  password = request.get_json().get('password','')
+  res = model.dbModel.checkLogin(username,password)
+  print(res)
+  # session['username'] =
+  # session['adminStatus'] =
   return jsonify(res)
 
 @app.route('/',defaults={'path': ''},methods=['GET'])
