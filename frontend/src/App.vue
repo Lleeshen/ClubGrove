@@ -41,6 +41,14 @@ export default {
       failedLogin: false,
     }
   },
+  mounted() {
+    this.$axios
+      .get('http://localhost:5000/api/loginStatus')
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {console.log(error)});
+  },
   methods: {
     startLogIn() {
       this.logInModal = true;

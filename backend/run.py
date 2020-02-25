@@ -61,7 +61,8 @@ def login():
   print(res)
   if(len(res) == 1):
     session['username'] = res[0]['email']
-    session['adminStatus'] = res[0]['email']
+    session['adminStatus'] = res[0]['isadmin']
+  print(session)
   return jsonify(res)
 
 @app.route('/api/logout',methods=['GET'])
@@ -72,7 +73,9 @@ def logout():
 
 @app.route('/api/loginStatus',methods=['GET'])
 def checkLoginStatus():
-  if (session['username']):
+  print(session)
+  if 'username' in session:
+    print([session['username'],session['adminStatus']])
     return jsonify([session['username'],session['adminStatus']])
   else:
     return jsonify('')

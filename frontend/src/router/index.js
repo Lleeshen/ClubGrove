@@ -4,8 +4,9 @@ import Home from '../views/Home.vue'
 import ClubSearch from '../views/ClubSearch.vue'
 import ClubEvent from '../views/ClubEvents.vue'
 import EventSearch from '../views/Events.vue'
-import NotFound from '../views/NotFound.vue'
 import ClubPage from '../views/ClubPage.vue'
+import Admin from '../views/Admin.vue'
+import NotFound from '../views/NotFound.vue'
 
 Vue.use(VueRouter)
 
