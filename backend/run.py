@@ -1,5 +1,5 @@
 from flask import (
-  Flask, current_app, jsonify, render_template, request, session, make_response
+  Flask, current_app, jsonify, render_template, request, session
 )
 
 from flask_cors import CORS
@@ -76,17 +76,22 @@ def checkLoginStatus():
   print(session)
   if 'username' in session:
     print([session['username'],session['adminStatus']])
-    resp = make_response(jsonify([session['username'],session['adminStatus']]))
+    return jsonify([session['username'],session['adminStatus']])
   else:
-    resp = make_response(jsonify(''))
-  # resp.headers['Access-Control-Allow-Origin'] = '*'
-  # resp.headers['Access-Control-Allow-Credentials'] = 'true'
-  return resp
+    return jsonify('')
 
 @app.route('/',defaults={'path': ''},methods=['GET'])
 @app.route('/<path:path>')
 def home(path):
     return render_template('index.html')
+
+# Security flaw, only run during dev testing
+@app.after_request
+def after_request(response):
+  print(request.headers['Origin'])
+  response.headers['Access-Control-Allow-Origin'] = request.headers['Origin']
+  response.headers['Access-Control-Allow-Credentials'] = 'true'
+  return response
 
 if __name__ == '__main__':
   app.run('0.0.0.0')

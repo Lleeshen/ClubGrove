@@ -65,7 +65,7 @@ export default {
         .then(response => {
           console.log(response.data);
           if(response.data.length != 0) {
-            window.reload();
+            location.reload();
           } else {
             this.failedLogin = "Invalid credentials";
           }

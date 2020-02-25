@@ -9,6 +9,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
+//This is a security flaw, only needed for run dev testing
+axios.defaults.withCredentials = true
 Vue.use(BootstrapVue)
 
 new Vue({
