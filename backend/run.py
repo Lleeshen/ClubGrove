@@ -1,5 +1,5 @@
 from flask import (
-  Flask, current_app, jsonify, render_template, request, session
+  Flask, current_app, jsonify, render_template, request, session, make_response
 )
 
 from flask_cors import CORS
@@ -76,9 +76,12 @@ def checkLoginStatus():
   print(session)
   if 'username' in session:
     print([session['username'],session['adminStatus']])
-    return jsonify([session['username'],session['adminStatus']])
+    resp = make_response(jsonify([session['username'],session['adminStatus']]))
   else:
-    return jsonify('')
+    resp = make_response(jsonify(''))
+  # resp.headers['Access-Control-Allow-Origin'] = '*'
+  # resp.headers['Access-Control-Allow-Credentials'] = 'true'
+  return resp
 
 @app.route('/',defaults={'path': ''},methods=['GET'])
 @app.route('/<path:path>')

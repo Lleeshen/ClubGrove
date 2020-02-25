@@ -46,6 +46,9 @@ export default {
       .get('http://localhost:5000/api/loginStatus')
       .then(response => {
         console.log(response.data);
+        if (response.data != '') {
+          this.loggedIn = true;
+        }
       })
       .catch(error => {console.log(error)});
   },
@@ -62,9 +65,7 @@ export default {
         .then(response => {
           console.log(response.data);
           if(response.data.length != 0) {
-            this.logInModal = false;
-            this.loggedIn = true;
-            this.failedLogin = false;
+            window.reload();
           } else {
             this.failedLogin = "Invalid credentials";
           }
