@@ -5,13 +5,15 @@
       <b-row id="addEvent">
         <b-col> <b-button> Add Event </b-button> </b-col>
      </b-row>
-      <b-list-group-item v-for="item in items" key=item.id>
-        <b-row>
-          <b-col> Name: {{ item.name }} </b-col>
-          <b-col> Description: {{ item.description }} </b-col>
-          <b-col> <b-button> Delete Event </b-button> </b-col>
-       </b-row>
-      </b-list-group-item>
+      <div v-for="item in items">
+        <b-list-group-item  key=item.id>
+          <b-row>
+            <b-col> Name: {{ item.name }} </b-col>
+            <b-col> Description: {{ item.description }} </b-col>
+            <b-col> <b-button> Delete Event </b-button> </b-col>
+         </b-row>
+        </b-list-group-item>
+      </div>
     </b-list-group>
   </div>
   <div v-else>
