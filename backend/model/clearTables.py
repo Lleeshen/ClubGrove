@@ -5,6 +5,8 @@ def clearTable():
   con = startdb.startdb()
 
   statements = (
+    'DELETE FROM users',
+    'DELETE FROM clubkeywords',
     'DELETE FROM clubevents',
     'DELETE FROM advising',
     'DELETE FROM leaders',
