@@ -45,7 +45,7 @@ export default {
     this.$axios
       .get('http://localhost:5000/api/loginStatus')
       .then(response => {
-        console.log(response.data);
+        //console.log(response.data);
         if (response.data != '') {
           this.loggedIn = true;
         }
@@ -78,6 +78,7 @@ export default {
         .then(response => {
            this.loggedIn = false;
            this.failedLogin = false;
+           location.reload();
          })
         .catch(error => {console.log(error)});
     }

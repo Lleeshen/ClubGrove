@@ -30,12 +30,18 @@ export default {
       items: null
     }
   },
-  /*mounted() {
+  mounted() {
     this.$axios
       .get('http://localhost:5000/api/loginStatus')
-      .then(response => {this.items = response.data;})
+      .then(response => {
+        //this.items = response.data;
+        console.log(response.data);
+        if(response.data != "") {
+          this.loggedInAsAdmin = (response.data[1] === 1) ? true : false
+        }
+      })
       .catch(error => {console.log(error)});
-  }, */
+  },
   methods: {
     searchClubs() {
     }
