@@ -46,6 +46,11 @@ const routes = [
     component: EventSearch
   },
   {
+    path: '/admin',
+    name: 'admin',
+    component: Admin
+  },
+  {
     path: '*',
     name: 'Not Found',
     component: NotFound
