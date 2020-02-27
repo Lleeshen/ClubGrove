@@ -1,25 +1,37 @@
 <template>
   <div v-if="loggedInAsAdmin">
     <b-list-group class="manage">
-      <h3> Events </h3>
-      <b-row id="addEvent">
-        <b-col> <b-button @click="setUpEvent"> Add Event </b-button> </b-col>
+      <h3> Clubs </h3>
+      <b-row id="addclub">
+        <b-col> <b-button @click="setUpClub"> Add Club </b-button> </b-col>
      </b-row>
       <div v-for="item in items">
         <b-list-group-item  key=item.id>
           <b-row>
             <b-col> Name: {{ item.name }} </b-col>
             <b-col> Description: {{ item.description }} </b-col>
-            <b-col> <b-button> Delete Event </b-button> </b-col>
+            <b-col> <b-button> Delete club </b-button> </b-col>
          </b-row>
         </b-list-group-item>
       </div>
     </b-list-group>
-    <b-modal v-model="eventModal">
+    <b-modal v-model="clubModal">
       <b-form action="/admin" @submit.prevent="logIn">
         <b-form-group>
-          <label for="eventTitle">Title:</label>
-          <b-form-input v-model="newEventTitle" id="eventTitle"></b-form-input>
+          <label for="clubTitle">Title:</label>
+          <b-form-input v-model="newClubTitle" id="clubTitle"></b-form-input>
+        </b-form-group>
+        <b-form-group>
+          <label for="clubDescription">Description:</label>
+          <b-form-input v-model="newClubDescription" id="clubDescription"></b-form-input>
+        </b-form-group>
+        <b-form-group>
+          <label for="clubWebsite">Website:</label>
+          <b-form-input v-model="newClubWebsite" id="clubWebsite"></b-form-input>
+        </b-form-group>
+        <b-form-group>
+          <label for="clubEmail">Description:</label>
+          <b-form-input v-model="newClubEmail" id="clubEmail"></b-form-input>
         </b-form-group>
       </b-form>
     </b-modal>
@@ -38,8 +50,11 @@ export default {
       loggedInAsAdmin: false,
       clubName: null,
       items: null,
-      eventModal: false,
-      newEventTitle: "",
+      clubModal: false,
+      newClubTitle: "",
+      newClubDescription: "",
+      newClubWebsite: "",
+      newClubEmail: "",
     }
   },
   mounted() {
@@ -54,18 +69,20 @@ export default {
       })
       .catch(error => {console.log(error)});
     this.$axios
-      .get('http://localhost:5000/db/view/events')
+      .get('http://localhost:5000/db/view/club')
       .then(response => {
-        //console.log(response.data);
+        console.log(response.data);
         if(this.loggedInAsAdmin) {
-          this.items = response.data;
+          if(typeof response.data !== "string"){
+            this.items = response.data;
+          }
         }
       })
       .catch(error => {console.log(error)});
   },
   methods: {
-    setUpEvent() {
-      this.eventModal = true;
+    setUpClub() {
+      this.clubModal = true;
     }
   }
 }
@@ -97,7 +114,7 @@ h2 {
   margin: 10px;
 }
 
-#addEvent {
+#addclub {
   margin-top: 10px;
   margin-bottom: 30px;
 }
