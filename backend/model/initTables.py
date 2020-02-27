@@ -98,6 +98,7 @@ def initTable():
     INSERT INTO users VALUES
     ('llshen@scu.edu','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',0),
     ('admin@scu.edu','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',1)
+    ON CONFLICT DO NOTHING
     """
   )
 
