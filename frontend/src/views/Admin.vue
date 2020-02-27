@@ -5,7 +5,7 @@
       <b-row id="addEvent">
         <b-col> <b-button> Add Event </b-button> </b-col>
      </b-row>
-      <b-list-group-item v-for="item in items">
+      <b-list-group-item v-for="item in items" key=item.id>
         <b-row>
           <b-col> Name: {{ item.name }} </b-col>
           <b-col> Description: {{ item.description }} </b-col>
@@ -35,9 +35,18 @@ export default {
       .get('http://localhost:5000/api/loginStatus')
       .then(response => {
         //this.items = response.data;
-        console.log(response.data);
+        //console.log(response.data);
         if(response.data != "") {
-          this.loggedInAsAdmin = (response.data[1] === 1) ? true : false
+          this.loggedInAsAdmin = (response.data[1] === 1) ? true : false;
+        }
+      })
+      .catch(error => {console.log(error)});
+    this.$axios
+      .get('http://localhost:5000/db/view/events')
+      .then(response => {
+        //console.log(response.data);
+        if(this.loggedInAsAdmin) {
+          this.items = response.data;
         }
       })
       .catch(error => {console.log(error)});
