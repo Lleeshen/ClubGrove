@@ -88,10 +88,10 @@ def home(path):
 # Security flaw, only run during dev testing
 @app.after_request
 def after_request(response):
-  #if 'Origin' in request.headers:
-  response.headers['Access-Control-Allow-Origin'] = request.headers['Origin']
-  response.headers['Access-Control-Allow-Credentials'] = 'true'
-  response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+  if 'Origin' in request.headers:
+    response.headers['Access-Control-Allow-Origin'] = request.headers['Origin']
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
   return response
 
 if __name__ == '__main__':
