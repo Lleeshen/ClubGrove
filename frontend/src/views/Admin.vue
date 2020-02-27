@@ -3,7 +3,7 @@
     <b-list-group class="manage">
       <h3> Events </h3>
       <b-row id="addEvent">
-        <b-col> <b-button> Add Event </b-button> </b-col>
+        <b-col> <b-button @click="setUpEvent"> Add Event </b-button> </b-col>
      </b-row>
       <div v-for="item in items">
         <b-list-group-item  key=item.id>
@@ -15,6 +15,14 @@
         </b-list-group-item>
       </div>
     </b-list-group>
+    <b-modal v-model="eventModal">
+      <b-form action="/admin" @submit.prevent="logIn">
+        <b-form-group>
+          <label for="eventTitle">Title:</label>
+          <b-form-input v-model="newEventTitle" id="eventTitle"></b-form-input>
+        </b-form-group>
+      </b-form>
+    </b-modal>
   </div>
   <div v-else>
     <h3> You do not have permission to access this page. </h3>
@@ -29,7 +37,9 @@ export default {
     return {
       loggedInAsAdmin: false,
       clubName: null,
-      items: null
+      items: null,
+      eventModal: false,
+      newEventTitle: "",
     }
   },
   mounted() {
@@ -54,7 +64,8 @@ export default {
       .catch(error => {console.log(error)});
   },
   methods: {
-    searchClubs() {
+    setUpEvent() {
+      this.eventModal = true;
     }
   }
 }
