@@ -16,7 +16,7 @@
       </div>
     </b-list-group>
     <b-modal v-model="clubModal">
-      <b-form action="/admin" @submit.prevent="logIn">
+      <b-form action="/admin" @submit.prevent="addClub">
         <b-form-group>
           <label for="clubTitle">Title:</label>
           <b-form-input v-model="newClubTitle" id="clubTitle"></b-form-input>
@@ -33,6 +33,7 @@
           <label for="clubEmail">Description:</label>
           <b-form-input v-model="newClubEmail" id="clubEmail"></b-form-input>
         </b-form-group>
+        <b-button variant="secondary" type="submit">Add event</b-button>
       </b-form>
     </b-modal>
   </div>
@@ -51,6 +52,7 @@ export default {
       clubName: null,
       items: null,
       clubModal: false,
+      newClubId: "",
       newClubTitle: "",
       newClubDescription: "",
       newClubWebsite: "",
@@ -83,6 +85,9 @@ export default {
   methods: {
     setUpClub() {
       this.clubModal = true;
+    },
+    addClub() {
+      this.clubModal = false;
     }
   }
 }
