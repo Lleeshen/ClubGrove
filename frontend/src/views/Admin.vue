@@ -84,7 +84,7 @@ export default {
     this.$axios
       .get('http://localhost:5000/db/view/club')
       .then(response => {
-        //console.log(response.data);
+        console.log(response.data);
         if(this.loggedInAsAdmin) {
           if(typeof response.data !== "string"){
             this.items = response.data;
@@ -98,11 +98,14 @@ export default {
       this.clubModal = true;
     },
     deleteClub(clubName) {
-      console.log(clubName);
+      //console.log(clubName);
       this.$axios
         .post('http://localhost:5000/api/deleteClub',{'name': clubName})
         .then(response =>{
-          console.log(response.data)
+          //console.log(response.data);
+          if(response.data === "success") {
+            this.items = this.items.filter((club) => club.name !== clubName);
+          }
         })
         .catch(error => {
           console.log(error);
@@ -117,7 +120,7 @@ export default {
           'email': this.newClubEmail,
         })
         .then(response => {
-          console.log(response.data);
+          //console.log(response.data);
           if(response.data === "success") {
             this.items = this.items.concat({
               'name': this.newClubTitle,
@@ -125,7 +128,6 @@ export default {
               'website': this.newClubWebsite,
               'email': this.newClubEmail,
             })
-            location.reload();
           }
         })
         .catch(error => {
