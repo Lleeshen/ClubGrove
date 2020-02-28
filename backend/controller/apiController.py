@@ -16,3 +16,12 @@ def getEvent2():
   current_app.logger.warn(request.args.to_dict())
   res = model.dbModel.getEventfromClub2(**request.args.to_dict())
   return jsonify(res)
+
+@bp.route('/addClub',methods=['POST'])
+def changeEvent():
+  clubName = request.get_json().get('name','')
+  clubDescription = request.get_json().get('description','')
+  clubWebsite = request.get_json().get('website','')
+  clubEmail = request.get_json().get('email','')
+  model.dbModel.addEvent(clubName,clubDescription,clubWebsite,clubEmail)
+  return jsonify('success')

@@ -6,10 +6,12 @@
         <b-col> <b-button @click="setUpClub"> Add Club </b-button> </b-col>
      </b-row>
       <div v-for="item in items">
-        <b-list-group-item  key=item.id>
+        <b-list-group-item  key=item.name>
           <b-row>
-            <b-col> Name: {{ item.name }} </b-col>
-            <b-col> Description: {{ item.description }} </b-col>
+            <b-col> {{ item.name }} </b-col>
+            <b-col> {{ item.description }} </b-col>
+            <b-col> {{ item.website }} </b-col>
+            <b-col> {{ item.description }} </b-col>
             <b-col> <b-button> Delete club </b-button> </b-col>
          </b-row>
         </b-list-group-item>
@@ -30,10 +32,11 @@
           <b-form-input v-model="newClubWebsite" id="clubWebsite"></b-form-input>
         </b-form-group>
         <b-form-group>
-          <label for="clubEmail">Description:</label>
+          <label for="clubEmail">Email:</label>
           <b-form-input v-model="newClubEmail" id="clubEmail"></b-form-input>
         </b-form-group>
         <b-button variant="secondary" type="submit">Add event</b-button>
+        <div v-if=failedAdd id="formText"> {{failedAdd}} </div>
       </b-form>
     </b-modal>
   </div>
@@ -52,18 +55,17 @@ export default {
       clubName: null,
       items: null,
       clubModal: false,
-      newClubId: "",
       newClubTitle: "",
       newClubDescription: "",
       newClubWebsite: "",
       newClubEmail: "",
+      failedAdd: false,
     }
   },
   mounted() {
     this.$axios
       .get('http://localhost:5000/api/loginStatus')
       .then(response => {
-        //this.items = response.data;
         //console.log(response.data);
         if(response.data != "") {
           this.loggedInAsAdmin = (response.data[1] === 1) ? true : false;
@@ -87,7 +89,33 @@ export default {
       this.clubModal = true;
     },
     addClub() {
-      this.clubModal = false;
+      this.$axios
+        .post('http://localhost:5000/api/addClub',{
+          'name': this.newClubTitle,
+          'description': this.newClubDescription,
+          'website': this.newClubWebsite,
+          'email': this.newClubEmail,
+        })
+        .then(response => {
+          console.log(response.data);
+          if(response.data === "success") {
+            this.items = this.items.concat({
+              'name': this.newClubTitle,
+              'description': this.newClubDescription,
+              'website': this.newClubWebsite,
+              'email': this.newClubEmail,
+            })
+            newClubTitle: "";
+            newClubDescription: "";
+            newClubWebsite: "";
+            newClubEmail: "";
+            this.clubModal = false;
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          this.failedAdd = "Failed to add event. Check to make sure name is available.";
+        })
     }
   }
 }
