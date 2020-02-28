@@ -5,13 +5,22 @@
       <b-row id="addclub">
         <b-col> <b-button @click="setUpClub"> Add Club </b-button> </b-col>
      </b-row>
+     <b-list-group-item>
+       <b-row>
+         <b-col> Name </b-col>
+         <b-col> Description </b-col>
+         <b-col> Website </b-col>
+         <b-col> Email </b-col>
+         <b-col> Delete </b-col>
+      </b-row>
+    </b-list-group-item>
       <div v-for="item in items">
         <b-list-group-item  key=item.name>
           <b-row>
             <b-col> {{ item.name }} </b-col>
             <b-col> {{ item.description }} </b-col>
             <b-col> {{ item.website }} </b-col>
-            <b-col> {{ item.description }} </b-col>
+            <b-col> {{ item.email }} </b-col>
             <b-col> <b-button> Delete club </b-button> </b-col>
          </b-row>
         </b-list-group-item>
