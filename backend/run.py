@@ -58,11 +58,11 @@ def login():
   username = request.get_json().get('username','')
   password = request.get_json().get('password','')
   res = model.dbModel.checkLogin(username,password)
-  print(res)
+  # print(res)
   if(len(res) == 1):
     session['username'] = res[0]['email']
     session['adminStatus'] = res[0]['isadmin']
-  print(session)
+  # print(session)
   return jsonify(res)
 
 @app.route('/api/logout',methods=['GET'])

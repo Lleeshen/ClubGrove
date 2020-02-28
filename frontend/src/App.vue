@@ -63,7 +63,7 @@ export default {
           'password': this.password
         })
         .then(response => {
-          console.log(response.data);
+          //console.log(response.data);
           if(response.data.length != 0) {
             location.reload();
           } else {

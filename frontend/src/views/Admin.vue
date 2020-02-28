@@ -21,7 +21,7 @@
             <b-col> {{ item.description }} </b-col>
             <b-col> {{ item.website }} </b-col>
             <b-col> {{ item.email }} </b-col>
-            <b-col> <b-button @click="deleteClub"> Delete club </b-button> </b-col>
+            <b-col> <b-button @click="deleteClub(item.name)"> Delete club </b-button> </b-col>
          </b-row>
         </b-list-group-item>
       </div>
@@ -84,7 +84,7 @@ export default {
     this.$axios
       .get('http://localhost:5000/db/view/club')
       .then(response => {
-        console.log(response.data);
+        //console.log(response.data);
         if(this.loggedInAsAdmin) {
           if(typeof response.data !== "string"){
             this.items = response.data;
@@ -97,8 +97,16 @@ export default {
     setUpClub() {
       this.clubModal = true;
     },
-    deleteClub() {
-      console.log("button clicked");
+    deleteClub(clubName) {
+      console.log(clubName);
+      this.$axios
+        .post('http://localhost:5000/api/deleteClub',{'name': clubName})
+        .then(response =>{
+          console.log(response.data)
+        })
+        .catch(error => {
+          console.log(error);
+        })
     },
     addClub() {
       this.$axios
@@ -117,11 +125,7 @@ export default {
               'website': this.newClubWebsite,
               'email': this.newClubEmail,
             })
-            this.newClubTitle = "";
-            this.newClubDescription = "";
-            this.newClubWebsite = "";
-            this.newClubEmail = "";
-            this.clubModal = false;
+            location.reload();
           }
         })
         .catch(error => {
@@ -129,7 +133,7 @@ export default {
           this.failedAdd = "Failed to add event. Check to make sure name is available.";
         })
     }
-  },
+  }
 }
 
 </script>
