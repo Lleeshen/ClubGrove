@@ -21,7 +21,7 @@
             <b-col> {{ item.description }} </b-col>
             <b-col> {{ item.website }} </b-col>
             <b-col> {{ item.email }} </b-col>
-            <b-col> <b-button> Delete club </b-button> </b-col>
+            <b-col> <b-button @click="deleteClub"> Delete club </b-button> </b-col>
          </b-row>
         </b-list-group-item>
       </div>
@@ -97,6 +97,9 @@ export default {
     setUpClub() {
       this.clubModal = true;
     },
+    deleteClub() {
+      console.log("button clicked");
+    },
     addClub() {
       this.$axios
         .post('http://localhost:5000/api/addClub',{
@@ -114,10 +117,10 @@ export default {
               'website': this.newClubWebsite,
               'email': this.newClubEmail,
             })
-            newClubTitle: "";
-            newClubDescription: "";
-            newClubWebsite: "";
-            newClubEmail: "";
+            this.newClubTitle = "";
+            this.newClubDescription = "";
+            this.newClubWebsite = "";
+            this.newClubEmail = "";
             this.clubModal = false;
           }
         })
@@ -126,7 +129,7 @@ export default {
           this.failedAdd = "Failed to add event. Check to make sure name is available.";
         })
     }
-  }
+  },
 }
 
 </script>
