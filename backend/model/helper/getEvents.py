@@ -35,6 +35,8 @@ def getEventList2(**kwargs):
     SELECT name, description, place, starttime, endtime
         FROM events
     """
+    if 'event' in kwargs:
+        checkNamestatement += 'Where name LIKE %s'
     if 'sort' in kwargs and kwargs['sort'] == 'false' or kwargs['sort'] == 'None':
         checkNamestatement += " ORDER BY {table_name} DESC"
     else:
@@ -46,7 +48,10 @@ def getEventList2(**kwargs):
         sqlState = sql.SQL(checkNamestatement).format(table_name = sql.Identifier(kwargs['name']))
     else:
         sqlState = sql.SQL(checkNamestatement).format(table_name = sql.Identifier('name'))
-    cur.execute(sqlState)
+    if 'event' in kwargs:
+        cur.execute(sqlState,('%' + kwargs['event'] + "%",))
+    else:
+        cur.execute(sqlState)
     result = []
     item = cur.fetchall()
 

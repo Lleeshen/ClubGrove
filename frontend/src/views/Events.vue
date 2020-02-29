@@ -4,8 +4,9 @@
       <b-form inline action="/club">
         <label class="sr-only" for="searchTerm">Event Name</label>
         <b-form-input class="searchFormElt" v-model="eventName" id="searchTerm" placeholder="Event name"></b-form-input>
-        <label class="sr-only" for="searchDescription">Event Description</label>
+        <!--<label class="sr-only" for="searchDescription">Event Description</label>
         <b-form-input class="searchFormElt" v-model="searchDescription" id="searchDescription" placeholder="Event description"></b-form-input>
+        -->
         <label for="sortOption">Sorting Option</label>
         <b-form-select class="searchFormElt" v-model="selectedSortOption" :options="sortOptions" id="sortOption"></b-form-select>
         <label for="sortOptionT">Type</label>
@@ -26,11 +27,10 @@ export default {
   data() {
     return {
       eventName: null,
-      searchDescription: null,
+      //searchDescription: null,
       selectedType: 'name',
-      selectedSortOption: 'None',
+      selectedSortOption: 'true',
       sortOptions: [
-        { value: 'None', text: 'Similarity to Search Term'},
         { value: 'true', text: 'Alphabetical ascending'},
         { value: 'false', text: 'Alphabetical descending'},
       ],
@@ -53,7 +53,10 @@ export default {
   },
   methods:{
     generateParams: function() {
-      return '?name=' + this.selectedType + '&sort=' + this.selectedSortOption;
+      if(this.name !=null)
+        return '?name=' + this.selectedType + '&sort=' + this.selectedSortOption;
+      else
+        return '?name=' + this.selectedType + '&sort=' + this.selectedSortOption + '&event=' + this.eventName;
     },
     updateEvent: function (){
       var string2 = 'http://localhost:5000/api/getEvents2'.concat(this.generateParams());
