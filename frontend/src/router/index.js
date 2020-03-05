@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import ClubSearch from '../views/ClubSearch.vue'
 import ClubEvent from '../views/ClubEvents.vue'
+import manageClubEvent from '../views/ManageClubEvents'
 import EventSearch from '../views/Events.vue'
 import ClubPage from '../views/ClubPage.vue'
 import ManageClub from '../views/ManageClub.vue'
@@ -45,6 +46,12 @@ const routes = [
     path: '/club/:name/events',
     name: 'clubEvent',
     component: ClubEvent,
+    props: true
+  },
+  {
+    path: '/club/:name/events/manage',
+    name: 'manageClubEvent',
+    component: manageClubEvent,
     props: true
   },
   {
