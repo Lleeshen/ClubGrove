@@ -41,6 +41,17 @@ export default {
       failedLogin: false,
     }
   },
+  mounted() {
+    this.$axios
+      .get('http://localhost:5000/api/loginStatus')
+      .then(response => {
+        //console.log(response.data);
+        if (response.data != '') {
+          this.loggedIn = true;
+        }
+      })
+      .catch(error => {console.log(error)});
+  },
   methods: {
     startLogIn() {
       this.logInModal = true;
@@ -52,11 +63,9 @@ export default {
           'password': this.password
         })
         .then(response => {
-          console.log(response.data);
+          //console.log(response.data);
           if(response.data.length != 0) {
-            this.logInModal = false;
-            this.loggedIn = true;
-            this.failedLogin = false;
+            location.reload();
           } else {
             this.failedLogin = "Invalid credentials";
           }
@@ -69,6 +78,7 @@ export default {
         .then(response => {
            this.loggedIn = false;
            this.failedLogin = false;
+           location.reload();
          })
         .catch(error => {console.log(error)});
     }

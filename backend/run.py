@@ -58,10 +58,11 @@ def login():
   username = request.get_json().get('username','')
   password = request.get_json().get('password','')
   res = model.dbModel.checkLogin(username,password)
-  print(res)
+  # print(res)
   if(len(res) == 1):
     session['username'] = res[0]['email']
-    session['adminStatus'] = res[0]['email']
+    session['adminStatus'] = res[0]['isadmin']
+  # print(session)
   return jsonify(res)
 
 @app.route('/api/logout',methods=['GET'])
@@ -72,7 +73,9 @@ def logout():
 
 @app.route('/api/loginStatus',methods=['GET'])
 def checkLoginStatus():
-  if (session['username']):
+  print(session)
+  if 'username' in session:
+    print([session['username'],session['adminStatus']])
     return jsonify([session['username'],session['adminStatus']])
   else:
     return jsonify('')
@@ -81,6 +84,15 @@ def checkLoginStatus():
 @app.route('/<path:path>')
 def home(path):
     return render_template('index.html')
+
+# Security flaw, only run during dev testing
+@app.after_request
+def after_request(response):
+  if 'Origin' in request.headers:
+    response.headers['Access-Control-Allow-Origin'] = request.headers['Origin']
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+  return response
 
 if __name__ == '__main__':
   app.run('0.0.0.0')
