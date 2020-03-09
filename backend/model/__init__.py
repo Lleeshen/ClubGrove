@@ -1,5 +1,5 @@
 from . import createTables, dropTables, initTables, clearTables, clubCategories, clubSearch, checkLogin
-from .helper import getEvents, viewSelection, viewTables
+from .helper import getEvents, viewSelection, viewTables, changeClubs
 
 
 class db:
@@ -23,6 +23,10 @@ class db:
     return getEvents.getEventList2(**kwargs)
   def viewRow(self, tableName, primaryId):
     return viewSelection.viewRow(tableName,primaryId)
+  def addClub(self,name,description,website,email,**kwargs):
+      changeClubs.addClubs(name,description,website,email)
+  def deleteClub(self,name,**kwargs):
+      changeClubs.deleteClub(name)
   def checkLogin(self,username,password):
     return checkLogin.checkLogin(username,password)
 
