@@ -1,4 +1,4 @@
-from . import createTables, dropTables, initTables, clearTables, clubCategories, clubSearch, checkLogin
+from . import createTables, dropTables, initTables, clearTables, clubCategories, clubSearch, checkLogin, requestMange
 from .helper import getEvents, viewSelection, viewTables, changeClubs
 
 
@@ -29,6 +29,10 @@ class db:
       changeClubs.deleteClub(name)
   def checkLogin(self,username,password):
     return checkLogin.checkLogin(username,password)
+  def acceptRequest(clubName,email):
+    return requestMange.add(clubName,email)
+  def declineRequest(clubName,email):
+    return requestMange.remove(clubName,email)
 
 
 dbModel = db()
