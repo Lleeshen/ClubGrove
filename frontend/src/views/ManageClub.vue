@@ -30,7 +30,24 @@
         Here are a list of request:
     </p>
     <div v-if= "item2">
-      <b-table bordered hover :items="item2"></b-table>
+    <b-list-group>
+      <b-list-group-item>
+       <b-row>
+         <b-col> Email </b-col>
+         <b-col> Accept </b-col>
+         <b-col> Decline </b-col>
+        </b-row>
+      </b-list-group-item>
+      <div v-for="item in item2">
+        <b-list-group-item  key=item.name>
+          <b-row>
+            <b-col> {{ item.email }} </b-col>
+            <b-col> <b-button @click="acceptRequest(item.email, item.name)">Accept Request </b-button> </b-col>
+            <b-col> <b-button @click="declineRequest(item.email, item.name)">Decline Request </b-button> </b-col>
+         </b-row>
+        </b-list-group-item>
+      </div>
+    </b-list-group>
     </div>
     <div v-else>
       no
@@ -77,7 +94,36 @@ export default {
       
   },
   methods: {
-
+    acceptRequest(email,name) {
+      this.$axios
+        .post('http://localhost:5000/api/acceptClubRequest',{
+          'name': name,
+          'email':email})
+        .then(response =>{
+          //console.log(response.data);
+          if(response.data === "success") {
+            this.item2 = this.item2.filter((student) => student.email !== email);
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        })
+    },
+    declineRequest(email, name){
+      this.$axios
+        .post('http://localhost:5000/api/declineClubRequest',{
+          'name': name,
+          'email':email})
+        .then(response =>{
+          //console.log(response.data);
+          if(response.data === "success") {
+            this.item2 = this.item2.filter((student) => student.email !== email);
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        })
+    }
   }
 }
 

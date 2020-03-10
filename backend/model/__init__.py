@@ -29,10 +29,10 @@ class db:
       changeClubs.deleteClub(name)
   def checkLogin(self,username,password):
     return checkLogin.checkLogin(username,password)
-  def acceptRequest(clubName,email):
-    return requestMange.add(clubName,email)
-  def declineRequest(clubName,email):
-    return requestMange.remove(clubName,email)
+  def acceptRequest(self,clubName,email):
+    return requestMange.requestMange(clubName,email, True)
+  def declineRequest(self,clubName,email):
+    return requestMange.requestMange(clubName,email, False)
   def viewRow2(self, clubname):
     return requestMange.view(clubname)
 

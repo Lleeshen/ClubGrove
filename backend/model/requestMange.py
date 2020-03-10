@@ -19,7 +19,7 @@ def view(clubName):
       result.append(dict(zip(column,row)))
   cur1.close()
   con.close()
-  LOG.debug(result)
+  LOG.debug(item1)
   return result
 
 def add(clubName, email):
