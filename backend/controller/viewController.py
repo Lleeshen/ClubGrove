@@ -12,6 +12,10 @@ def viewdb(tableName):
 
 @bp.route('/<tableName>/<number>', methods=['GET'])
 def viewdbrow(tableName, number):
-  res = model.dbModel.viewRow(tableName,number)
+  res = None
+  if (tableName == "requests"):
+    res = model.dbModel.viewRow2(number)
+  else:
+    res = model.dbModel.viewRow(tableName,number)
   current_app.logger.warn(res)
   return jsonify(res)

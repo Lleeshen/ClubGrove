@@ -33,7 +33,8 @@ class db:
     return requestMange.add(clubName,email)
   def declineRequest(clubName,email):
     return requestMange.remove(clubName,email)
-
+  def viewRow2(self, clubname):
+    return requestMange.view(clubname)
 
 dbModel = db()
 # dbModel.init()
