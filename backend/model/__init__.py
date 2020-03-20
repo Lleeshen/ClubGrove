@@ -1,5 +1,5 @@
 from . import createTables, dropTables, initTables, clearTables, clubCategories, clubSearch, checkLogin, requestMange
-from .helper import getEvents, viewSelection, viewTables, changeClubs
+from .helper import getEvents, viewSelection, viewTables, changeClubs, users
 
 
 class db:
@@ -35,6 +35,8 @@ class db:
     return requestMange.requestMange(clubName,email, False)
   def viewRow2(self, clubname):
     return requestMange.view(clubname)
+  def getUser(self, **kwargs):
+    return users.info(**kwargs)
 
 dbModel = db()
 # dbModel.init()
