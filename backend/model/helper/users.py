@@ -1,4 +1,8 @@
+import psycopg2
+import psycopg2.extras
+from psycopg2 import sql
 from urllib.parse import urlparse
+from .. import startdb as startdb
 
 def info(**kwargs):
 
@@ -9,7 +13,7 @@ def info(**kwargs):
     SELECT * from memberships where name = %s
     """
     cur = con.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    cur.execute(checkNamestatement,)
+    cur.execute(checkNamestatement,(kwargs['name'],))
     result = []
     item = cur.fetchall()
 
