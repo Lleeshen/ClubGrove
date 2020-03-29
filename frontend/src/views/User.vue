@@ -27,7 +27,7 @@
       </b-col>
       <b-col>
         <h3>Interested</h3>
-          <div v-for="item in requests">
+          <div v-for="item in interested">
           <b-container fluid>
             <b-row>
               <b-col> {{ item.name }} </b-col>
@@ -72,10 +72,13 @@ export default {
       var self = this;
       axios.all([this.getInfo()])
       .then(function (first){
-        console.log(self.user2[0]);
-        self.isValid = true;
-        self.getRequests(self.user2[0]);
-        self.getinterested(self.user2[0]);
+        if(self.user2)
+        {
+          self.isValid = true;
+          console.log(self.user2[0]);
+          self.getRequests(self.user2[0]);
+          self.getinterested(self.user2[0]);
+        }
       })
     },
     getInfo(){
@@ -107,13 +110,28 @@ export default {
       .get('http://localhost:5000/db/view/interested/'.concat(name))
       .then(response => {
         console.log(response.data);
-        self.requests = response.data;
+        self.interested = response.data;
       })
       .catch(error => {console.log(error)});
     },
-    addRequest(name)
+    addRequest(clubName)
     {
-        console.log(name)
+      console.log(clubName);
+      var self = this;
+      console.log(this.user2[0]);
+      console.log(this.interested);
+      this.$axios
+        .post('http://localhost:5000/api/toRequest',{'name': clubName, 'email': this.user2[0]})
+        .then(response =>{
+          //console.log(response.data);
+          if(response.data === "success") {
+            console.log(self.interested);
+            self.interested = self.interested.filter((club) => club.name !== clubName);
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        })
     }
   }
 }

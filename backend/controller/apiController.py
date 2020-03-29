@@ -2,6 +2,8 @@ from flask import (
     Blueprint, jsonify, current_app, request
 )
 from .. import model
+import logging
+LOG = logging.getLogger(__name__)
 
 bp = Blueprint('apiController', __name__, url_prefix='/api')
 
@@ -54,6 +56,7 @@ def requestRemoveClub():
 
 @bp.route('/toRequest',methods=['POST'])
 def interestedAddClub():
+  LOG.debug("hey")
   clubName = request.get_json().get('name','')
   email = request.get_json().get('email','')
   model.dbModel.interestedtoRequested(clubName,email)

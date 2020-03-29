@@ -11,7 +11,7 @@ def view(clubName, section = "request", **kwargs):
   LOG.debug(kwargs)
   #note got this off a wiki Just grabs the primary key
   statement = "SELECT * FROM Requests WHERE name = %s"
-  if kwargs['user']:
+  if 'user' in kwargs and kwargs['user']:
     statement = "SELECT * FROM Requests WHERE email = %s"
     LOG.debug(clubName)
   cur1 = con.cursor()
@@ -50,11 +50,11 @@ def requestMange(clubName, email, isAccept, section = "request"):
   if section == "interested":
     SQLstatement= "DELETE from interested where name= %s and email = %s"
   cur = con.cursor(cursor_factory=psycopg2.extras.DictCursor)
-  cur.execute(SQLstatement,(email, clubName))
+  cur.execute(SQLstatement,(clubName, email))
   if isAccept:
     SQLstatement = "INSERT INTO memberships VALUES (%s,%s) "
     if section == "interested":
-      SQLstatement= "INSERT INTO requests where name= %s and email = %s"
+      SQLstatement= "INSERT INTO requests VALUES(%s,%s) on conflict do nothing"
     cur.execute(SQLstatement,(email, clubName))
   cur.close()
   con.commit()

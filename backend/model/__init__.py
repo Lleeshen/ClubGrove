@@ -1,5 +1,5 @@
 from . import createTables, dropTables, initTables, clearTables, clubCategories, clubSearch, checkLogin
-from .helper import getEvents, viewSelection, viewTables, changeClubs, users
+from .helper import getEvents, viewSelection, viewTables, changeClubs, users, requestMange
 
 
 class db:
