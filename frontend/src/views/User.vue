@@ -1,20 +1,40 @@
 <template>
   <div v-if="isValid">
-    <b-container fluid="sm">
-      <b-row class= "club-page text-left">
+     <b-container fluid>
+     <b-row class= "club-page text-left">
         <b-col>
           <h2>User Page</h2>
         </b-col>
       </b-row>
-    </b-container>
-     <b-container fluid>
-      <b-row class= "club-page text-center">
+      <b-row class= "club-page text-left">
         <b-col>
-          Here is your information<br>
-           Name: {{user[0].name}}
+          <h3>Info</h3>
+           Email: {{user2[0]}}
         </b-col>
         <b-col>
+          <h3>Pending requests</h3>
+          <div v-for="item in requests">
+          <b-container fluid>
+            <b-row>
+              <b-col> {{ item.name }} </b-col>
+           </b-row>
+          </b-container>
+          </div>
         </b-col>
+      </b-row>
+      <b-row class= "club-page text-left">
+      <b-col>
+      </b-col>
+      <b-col>
+        <h3>Interested</h3>
+          <div v-for="item in requests">
+          <b-container fluid>
+            <b-row>
+              <b-col> {{ item.name }} </b-col>
+           </b-row>
+          </b-container>
+          </div>
+      </b-col>
       </b-row>
     </b-container>
   <b-container>
@@ -37,7 +57,8 @@ export default {
       item: null,
       user: null,
       user2: null,
-      isValid: false
+      isValid: false,
+      requests: null
 
     }
   },
@@ -47,29 +68,12 @@ export default {
   methods:{
     loginStatus (){
       var self = this;
-      axios.all([this.getLogin(),this.getInfo()])
-      .then(function (first,second){
-        console.log(self.user[0].email);
+      axios.all([this.getInfo()])
+      .then(function (first){
         console.log(self.user2[0]);
         self.isValid = true;
-        if(self.user[0].email == self.user2[0])
-        {
-          self.isValid = true;
-        }
+        self.getinterested(self.user2[0]);
       })
-    },
-    getLogin() {
-      var a = this.$route.params.name;
-      var strin2 = 'http://localhost:5000/api/getUserInfo?name='.concat(a)
-      console.log(strin2)
-      return axios
-        .get(strin2)
-        .then(response => {
-        this.user = response.data;
-        //console.log(this.user);
-        //console.log(response) 
-        })
-        .catch(error => {console.log(error)});
     },
     getInfo(){
       return axios
@@ -77,6 +81,18 @@ export default {
       .then(response => {
         //console.log(response.data);
         this.user2 = response.data;
+      })
+      .catch(error => {console.log(error)});
+    },
+    getinterested(name){
+      var self = this;
+      var a = encodeURIComponent(name);
+      console.log(name);
+      return axios
+      .get('http://localhost:5000/db/view/requests/'.concat(name).concat('?user=True'))
+      .then(response => {
+        console.log(response.data);
+        self.requests = response.data;
       })
       .catch(error => {console.log(error)});
     }

@@ -58,7 +58,7 @@ const routes = [
     component: Admin
   },
   {
-    path:'/user/:name',
+    path:'/user',
     name: 'user',
     component: User
   },

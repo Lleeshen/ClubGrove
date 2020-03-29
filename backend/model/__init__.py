@@ -33,8 +33,8 @@ class db:
     return requestMange.requestMange(clubName,email, True)
   def declineRequest(self,clubName,email):
     return requestMange.requestMange(clubName,email, False)
-  def viewRow2(self, clubname):
-    return requestMange.view(clubname)
+  def viewRow2(self, clubname, **kwargs):
+    return requestMange.view(clubname, **kwargs)
   def getUser(self, **kwargs):
     return users.info(**kwargs)
 

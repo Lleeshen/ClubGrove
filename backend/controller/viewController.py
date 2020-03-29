@@ -1,4 +1,4 @@
-from flask import (Blueprint, jsonify, current_app
+from flask import (Blueprint, jsonify, current_app, request
 )
 from .. import model
 
@@ -14,7 +14,7 @@ def viewdb(tableName):
 def viewdbrow(tableName, number):
   res = None
   if (tableName == "requests"):
-    res = model.dbModel.viewRow2(number)
+    res = model.dbModel.viewRow2(number, **request.args.to_dict())
   else:
     res = model.dbModel.viewRow(tableName,number)
   current_app.logger.warn(res)

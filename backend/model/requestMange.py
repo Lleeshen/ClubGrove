@@ -6,10 +6,14 @@ import logging
 from . import startdb as startdb
 
 LOG = logging.getLogger(__name__)
-def view(clubName):
+def view(clubName, **kwargs):
   con = startdb.startdb()
+  LOG.debug(kwargs)
   #note got this off a wiki Just grabs the primary key
   statement = "SELECT * FROM Requests WHERE name = %s"
+  if kwargs['user']:
+    statement = "SELECT * FROM Requests WHERE email = %s"
+    LOG.debug(clubName)
   cur1 = con.cursor()
   cur1.execute(statement,(clubName,))
   item1 = cur1.fetchall()
