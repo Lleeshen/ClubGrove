@@ -3,10 +3,10 @@ import psycopg2.extras
 import configparser
 import os
 import logging
-from . import startdb as startdb
+from .. import startdb as startdb
 
 LOG = logging.getLogger(__name__)
-def view(clubName, **kwargs):
+def view(clubName, section = "request", **kwargs):
   con = startdb.startdb()
   LOG.debug(kwargs)
   #note got this off a wiki Just grabs the primary key
@@ -44,13 +44,17 @@ def remove(clubName, email):
   con.commit()
   con.close()
 
-def requestMange(clubName, email, isAccept):
+def requestMange(clubName, email, isAccept, section = "request"):
   con = startdb.startdb()
   SQLstatement = "DELETE from requests where name= %s and email = %s"
+  if section == "interested":
+    SQLstatement= "DELETE from interested where name= %s and email = %s"
   cur = con.cursor(cursor_factory=psycopg2.extras.DictCursor)
   cur.execute(SQLstatement,(email, clubName))
   if isAccept:
     SQLstatement = "INSERT INTO memberships VALUES (%s,%s) "
+    if section == "interested":
+      SQLstatement= "INSERT INTO requests where name= %s and email = %s"
     cur.execute(SQLstatement,(email, clubName))
   cur.close()
   con.commit()

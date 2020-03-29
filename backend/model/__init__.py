@@ -1,4 +1,4 @@
-from . import createTables, dropTables, initTables, clearTables, clubCategories, clubSearch, checkLogin, requestMange
+from . import createTables, dropTables, initTables, clearTables, clubCategories, clubSearch, checkLogin
 from .helper import getEvents, viewSelection, viewTables, changeClubs, users
 
 
@@ -33,6 +33,10 @@ class db:
     return requestMange.requestMange(clubName,email, True)
   def declineRequest(self,clubName,email):
     return requestMange.requestMange(clubName,email, False)
+  def interestedtoRequested(self,clubName,email):
+    return requestMange.requestMange(clubName,email, True, 'interested')
+  def notInterested(self,clubName,email):
+    return requestMange.requestMange(clubName,email, False, 'interested')
   def viewRow2(self, clubname, **kwargs):
     return requestMange.view(clubname, **kwargs)
   def getUser(self, **kwargs):

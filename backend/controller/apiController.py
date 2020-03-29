@@ -51,3 +51,17 @@ def requestRemoveClub():
   email = request.get_json().get('email','')
   model.dbModel.declineRequest(clubName, email)
   return jsonify('success')
+
+@bp.route('/toRequest',methods=['POST'])
+def interestedAddClub():
+  clubName = request.get_json().get('name','')
+  email = request.get_json().get('email','')
+  model.dbModel.interestedtoRequested(clubName,email)
+  return jsonify('success')
+
+@bp.route('/notInterested',methods=['POST'])
+def interestedRemoveClub():
+  clubName = request.get_json().get('name','')
+  email = request.get_json().get('email','')
+  model.dbModel.notInterested(clubName, email)
+  return jsonify('success')

@@ -31,6 +31,7 @@
           <b-container fluid>
             <b-row>
               <b-col> {{ item.name }} </b-col>
+              <b-col><b-button variant="primary" @click="addRequest(item.name)"> Join? </b-button> </b-col>
            </b-row>
           </b-container>
           </div>
@@ -58,7 +59,8 @@ export default {
       user: null,
       user2: null,
       isValid: false,
-      requests: null
+      requests: null,
+      interested: null
 
     }
   },
@@ -72,6 +74,7 @@ export default {
       .then(function (first){
         console.log(self.user2[0]);
         self.isValid = true;
+        self.getRequests(self.user2[0]);
         self.getinterested(self.user2[0]);
       })
     },
@@ -84,7 +87,7 @@ export default {
       })
       .catch(error => {console.log(error)});
     },
-    getinterested(name){
+    getRequests(name){
       var self = this;
       var a = encodeURIComponent(name);
       console.log(name);
@@ -95,6 +98,22 @@ export default {
         self.requests = response.data;
       })
       .catch(error => {console.log(error)});
+    },
+    getinterested(name){
+      var self = this;
+      var a = encodeURIComponent(name);
+      console.log(name);
+      return axios
+      .get('http://localhost:5000/db/view/interested/'.concat(name))
+      .then(response => {
+        console.log(response.data);
+        self.requests = response.data;
+      })
+      .catch(error => {console.log(error)});
+    },
+    addRequest(name)
+    {
+        console.log(name)
     }
   }
 }
