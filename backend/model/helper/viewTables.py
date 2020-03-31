@@ -2,7 +2,7 @@ import psycopg2
 import psycopg2.extras
 from .. import startdb as startdb
 
-def viewTable(tableName):
+def viewTable(tableName, **kwargs):
   con = startdb.startdb()
 
   checkNamestatement = "SELECT 1 FROM information_schema.tables WHERE table_schema = 'public' and table_name=%s LIMIT 1"
@@ -16,7 +16,11 @@ def viewTable(tableName):
   else:
     statement = "SELECT *  FROM " + tableName
     cur1 = con.cursor()
-    cur1.execute(statement)
+    if 'user' in kwargs and kwargs['user']:
+      statement += " where name in (select name from memberships where email =%s)"
+      cur1.execute(statement,(kwargs['user'],))
+    else:
+      cur1.execute(statement)
     item1 = cur1.fetchall()
     column = [desc[0] for desc in cur1.description]
     for row in item1:

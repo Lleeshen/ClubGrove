@@ -7,27 +7,46 @@
         </b-col>
       </b-row>
       <b-row class= "club-page text-left">
-        <b-col>
+        <b-col sm="3" class = "border">
           <h3>Info</h3>
-           Email: {{user2[0]}}
+           Email: {{user2[0]}} <br><br>
+           <b-button class = "float-left" size="sm" style="margin-bottom: 5px;" v-b-modal.modal-2>Pending Requests</b-button> <br><br>
+           <b-button class = "float-left" size="sm" style="margin-bottom: 5px;" v-b-modal.modal-1>Interested Clubs</b-button>
         </b-col>
         <b-col>
-          <h3>Pending requests</h3>
-          <div v-for="item in requests">
-          <b-container fluid>
-            <b-row>
-              <b-col> {{ item.name }} </b-col>
-           </b-row>
-          </b-container>
-          </div>
+        <BasicClubSearch v-bind:user="user2[0]"></BasicClubSearch>
         </b-col>
       </b-row>
       <b-row class= "club-page text-left">
       <b-col>
       </b-col>
-      <b-col>
-        <h3>Interested</h3>
-          <div v-for="item in interested">
+      </b-row>
+    </b-container>
+  <b-container>
+  </b-container>
+  <b-modal id="modal-2" title="Pending Request" ok-only>
+    <p>
+        Here are a list of request:
+    </p>
+    <div v-if= "requests">
+      <div v-for="item in requests">
+          <b-container fluid>
+            <b-row>
+              <b-col> {{ item.name }} </b-col>
+           </b-row>
+          </b-container>
+      </div>
+    </div>
+    <div v-else>
+      no
+    </div>
+    </b-modal>
+  <b-modal id="modal-1" title="Interested Clubs" ok-only>
+    <p>
+        Here what you are intereseted in:
+    </p>
+    <div v-if= "interested">
+      <div v-for="item in interested">
           <b-container fluid>
             <b-row>
               <b-col> {{ item.name }} </b-col>
@@ -35,11 +54,11 @@
            </b-row>
           </b-container>
           </div>
-      </b-col>
-      </b-row>
-    </b-container>
-  <b-container>
-  </b-container>
+    </div>
+    <div v-else>
+      no
+    </div>
+    </b-modal>
   </div>
   <div v-else>
     <p>Please login to see page</p>
@@ -49,9 +68,11 @@
 <script>
 // @ is an alias to /src
 import axios from 'axios'
+import BasicClubSearch from '../components/BasicClubSearch'
 
 export default {
   name: 'User',
+  components : {BasicClubSearch},
   data() {
     return {
       //Replace this with actual club results
@@ -75,7 +96,7 @@ export default {
         if(self.user2)
         {
           self.isValid = true;
-          console.log(self.user2[0]);
+          //console.log(self.user2[0]);
           self.getRequests(self.user2[0]);
           self.getinterested(self.user2[0]);
         }
@@ -93,11 +114,11 @@ export default {
     getRequests(name){
       var self = this;
       var a = encodeURIComponent(name);
-      console.log(name);
+      //console.log(name);
       return axios
       .get('http://localhost:5000/db/view/requests/'.concat(name).concat('?user=True'))
       .then(response => {
-        console.log(response.data);
+        //console.log(response.data);
         self.requests = response.data;
       })
       .catch(error => {console.log(error)});
@@ -105,11 +126,11 @@ export default {
     getinterested(name){
       var self = this;
       var a = encodeURIComponent(name);
-      console.log(name);
+      //console.log(name);
       return axios
       .get('http://localhost:5000/db/view/interested/'.concat(name))
       .then(response => {
-        console.log(response.data);
+        //console.log(response.data);
         self.interested = response.data;
       })
       .catch(error => {console.log(error)});

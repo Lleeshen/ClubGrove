@@ -7,8 +7,8 @@ class db:
     createTables.createTable()
   def reset(self):
     dropTables.dropTable()
-  def view(self,tableName):
-    return viewTables.viewTable(tableName)
+  def view(self,tableName, **kwargs):
+    return viewTables.viewTable(tableName, **kwargs)
   def insertValues(self,**whateveryouwant):
     initTables.initTable()
   def removeValues(self):
