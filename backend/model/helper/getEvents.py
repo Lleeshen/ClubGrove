@@ -1,5 +1,6 @@
 import psycopg2
 import psycopg2.extras
+from psycopg2 import sql
 from .. import startdb as startdb
 import logging
 
@@ -34,13 +35,23 @@ def getEventList2(**kwargs):
     SELECT name, description, place, starttime, endtime
         FROM events
     """
-    if 'sort' in kwargs and kwargs['sort']:
-        checkNamestatement += " ORDER BY name DESC"
+    if 'event' in kwargs:
+        checkNamestatement += 'Where name LIKE %s'
+    if 'sort' in kwargs and kwargs['sort'] == 'false' or kwargs['sort'] == 'None':
+        checkNamestatement += " ORDER BY {table_name} DESC"
     else:
-        checkNamestatement += " ORDER BY name ASC"
+        checkNamestatement += " ORDER BY {table_name} ASC"
     
     cur = con.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    cur.execute(checkNamestatement)
+    sqlState = sql.SQL("")
+    if 'name' in kwargs and kwargs['name']:
+        sqlState = sql.SQL(checkNamestatement).format(table_name = sql.Identifier(kwargs['name']))
+    else:
+        sqlState = sql.SQL(checkNamestatement).format(table_name = sql.Identifier('name'))
+    if 'event' in kwargs:
+        cur.execute(sqlState,('%' + kwargs['event'] + "%",))
+    else:
+        cur.execute(sqlState)
     result = []
     item = cur.fetchall()
 

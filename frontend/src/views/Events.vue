@@ -4,10 +4,13 @@
       <b-form inline action="/club">
         <label class="sr-only" for="searchTerm">Event Name</label>
         <b-form-input class="searchFormElt" v-model="eventName" id="searchTerm" placeholder="Event name"></b-form-input>
-        <label class="sr-only" for="searchDescription">Event Description</label>
+        <!--<label class="sr-only" for="searchDescription">Event Description</label>
         <b-form-input class="searchFormElt" v-model="searchDescription" id="searchDescription" placeholder="Event description"></b-form-input>
+        -->
         <label for="sortOption">Sorting Option</label>
         <b-form-select class="searchFormElt" v-model="selectedSortOption" :options="sortOptions" id="sortOption"></b-form-select>
+        <label for="sortOptionT">Type</label>
+        <b-form-select class="searchFormElt" v-model="selectedType" :options="sortOptionsType" id="sortOptionT"></b-form-select>
         <b-button class="searchFormElt" variant="secondary" v-on:click="updateEvent">Search</b-button>
       </b-form>
     </div>
@@ -24,12 +27,17 @@ export default {
   data() {
     return {
       eventName: null,
-      searchDescription: null,
-      selectedSortOption: '1',
+      //searchDescription: null,
+      selectedType: 'name',
+      selectedSortOption: 'true',
       sortOptions: [
-        { value: '1', text: 'Similarity to Search Term'},
-        { value: '2', text: 'Alphabetical ascending'},
-        { value: '3', text: 'Alphabetical descending'},
+        { value: 'true', text: 'Alphabetical ascending'},
+        { value: 'false', text: 'Alphabetical descending'},
+      ],
+      sortOptionsType: [
+         { value: 'name', text: 'Name'},
+        { value: 'starttime', text: 'Start Time'},
+        { value: 'place', text: 'Location'}
       ],
       fields: [
         {key:'name', label: 'Event Name'},
@@ -45,15 +53,10 @@ export default {
   },
   methods:{
     generateParams: function() {
-      if(this.selectedSortOption == 1)
-      {
-        return "";
-      }
-      else if(this.selectedSortOption == 2)
-      {
-        return "?sort=true";
-      }
-      return "";
+      if(this.name !=null)
+        return '?name=' + this.selectedType + '&sort=' + this.selectedSortOption;
+      else
+        return '?name=' + this.selectedType + '&sort=' + this.selectedSortOption + '&event=' + this.eventName;
     },
     updateEvent: function (){
       var string2 = 'http://localhost:5000/api/getEvents2'.concat(this.generateParams());

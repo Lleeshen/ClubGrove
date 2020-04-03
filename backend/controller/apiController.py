@@ -2,6 +2,8 @@ from flask import (
     Blueprint, jsonify, current_app, request
 )
 from .. import model
+import logging
+LOG = logging.getLogger(__name__)
 
 bp = Blueprint('apiController', __name__, url_prefix='/api')
 
@@ -15,6 +17,12 @@ def getEvent():
 def getEvent2():
   current_app.logger.warn(request.args.to_dict())
   res = model.dbModel.getEventfromClub2(**request.args.to_dict())
+  return jsonify(res)
+
+@bp.route('/getUserInfo',methods=['GET'])
+def getUser():
+  current_app.logger.warn(request.args.to_dict())
+  res = model.dbModel.getUser(**request.args.to_dict())
   return jsonify(res)
 
 @bp.route('/addClub',methods=['POST'])
@@ -31,3 +39,33 @@ def deleteClub():
   clubName = request.get_json().get('name','')
   model.dbModel.deleteClub(clubName)
   return jsonify('success')
+
+@bp.route('/acceptClubRequest',methods=['POST'])
+def requestAddClub():
+  clubName = request.get_json().get('name','')
+  email = request.get_json().get('email','')
+  model.dbModel.acceptRequest(clubName,email)
+  return jsonify('success')
+
+@bp.route('/declineClubRequest',methods=['POST'])
+def requestRemoveClub():
+  clubName = request.get_json().get('name','')
+  email = request.get_json().get('email','')
+  model.dbModel.declineRequest(clubName, email)
+  return jsonify('success')
+
+@bp.route('/toRequest',methods=['POST'])
+def interestedAddClub():
+  LOG.debug("hey")
+  clubName = request.get_json().get('name','')
+  email = request.get_json().get('email','')
+  model.dbModel.interestedtoRequested(clubName,email)
+  return jsonify('success')
+
+@bp.route('/notInterested',methods=['POST'])
+def interestedRemoveClub():
+  clubName = request.get_json().get('name','')
+  email = request.get_json().get('email','')
+  model.dbModel.notInterested(clubName, email)
+  return jsonify('success')
+
