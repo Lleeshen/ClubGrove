@@ -68,3 +68,4 @@ def interestedRemoveClub():
   email = request.get_json().get('email','')
   model.dbModel.notInterested(clubName, email)
   return jsonify('success')
+
