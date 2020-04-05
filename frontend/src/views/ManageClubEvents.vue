@@ -23,6 +23,7 @@ export default {
   data() {
     return {
       loggedInAsClubLeader: false,
+      loggedIn: false,
       validClub: false,
       fields: [
         {key:'name', label: 'Event Name'},
@@ -36,10 +37,20 @@ export default {
   },
   mounted() {
     this.$axios
-      .post('http://localhost:5000/api/getEvents',{'nm': this.name})
-      .then(response => {this.items = response.data;
-       console.log(response.data) })
-      .catch(error => {console.log(error)})
+      .get('http://localhost:5000/api/loginStatus')
+      .then(response => {
+        console.log(response.data);
+        if(response.data != "") {
+          this.loggedIn = response.data[0];
+          console.log(this.loggedIn);
+          this.$axios
+            .get('http://localhost:5000/api/getLeadingClubs',{'user': this.loggedIn})
+            .then(response => {this.items = response.data;
+             console.log(response.data) })
+            .catch(error => {console.log(error)})
+        }
+      })
+      .catch(error => console.log(error));
   },
   props: ['name']
 }
