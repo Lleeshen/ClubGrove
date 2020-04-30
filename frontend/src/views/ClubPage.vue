@@ -1,27 +1,27 @@
 <template>
   <div>
-    <b-container fluid="sm">
+    <b-container fluid>
       <b-row class= "club-page text-center">
         <b-col>
           <h2 v-if="item">{{item[0].name}}</h2>
         </b-col>
       </b-row>
-    </b-container>
-     <b-container fluid>
       <b-row class= "club-page text-center">
         <b-col v-if="item">
           <h3>Description</h3>
           {{item[0].description}}
         </b-col>
         <b-col cols="5">
-          picture here
+          <img src="@/assets/noImage.png" style = "max-width: 100%">
         </b-col>
         <b-col>
         </b-col>
       </b-row>
+      <b-row>
+    <EventBar v-bind:name="$route.params.name"></EventBar>
+      </b-row>
     </b-container>
   <b-container>
-    
   </b-container>
   </div>
 </template>
@@ -29,9 +29,11 @@
 <script>
 // @ is an alias to /src
 import axios from 'axios'
+import EventBar from '../components/EventBar'
 
 export default {
   name: 'clubPage',
+  components: {EventBar},
   data() {
     return {
       //Replace this with actual club results
