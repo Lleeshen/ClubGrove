@@ -1,14 +1,14 @@
 <template>
   <div v-if="hasParams()">
     <b-card 
-      style="width: 20rem" 
+      style="width: 20rem; height: 15rem" 
       class="text-center" 
       v-bind:header= "property.name"
       border-variant="dark"
       bg-variant="light">
     <b-card-text class="text-left">
-    <b>Summary</b><br>
-      {{property.description}}
+    <b>Short Description</b><br>
+      {{shortenDescript()}}
         <div v-if= "hasEventParams()">
         Place: {{property.place}} <br>
         Start Time: {{property.starttime}} <br>
@@ -16,7 +16,7 @@
         </div>
     </b-card-text>
     <div v-if= "!isEvent">
-    <b-button v-bind:to="link">To club Page</b-button>
+    <b-button v-bind:to="link" class="mt-auto">To club Page</b-button>
     </div>
   </b-card>
     
@@ -52,6 +52,20 @@ export default {
                 return true;
             }
             return false;
+      },
+      shortenDescript: function ()
+      {
+          if(this.property.description.length > 110)
+          {
+            var sub=  this.property.description.substring(0,110);
+            var index = sub.lastIndexOf(' ');
+            return sub.substring(0,index).concat("...");
+          }
+          else
+          {
+            return this.property.description;
+          }
+
       }
 
   },

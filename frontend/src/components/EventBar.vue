@@ -5,7 +5,7 @@
         <h3> {{ name }} Events </h3>
       </b-col>
       <b-col cols="9">
-        <b-card-group v-if="fields" style="margin: 10px">
+        <b-card-group v-if="items && items.length > 0" style="margin: 10px">
       <div v-for="item in items" :key="item.name">
         <Baseholder 
             v-bind:items="item" 
@@ -13,9 +13,17 @@
         </Baseholder>
       </div>
       </b-card-group>
-        <!---
-        <b-table bordered hover :items='items' :fields='fields'></b-table>
-        --->
+      <b-card-group class ="h-100" v-else >
+        <b-card 
+      style="width: 20rem; height: 10rem"  
+      border-variant="dark"
+      bg-variant="light"
+      align= "center">
+    <b-card-text class="text-center">
+    <p>There are no events</p>
+    </b-card-text>
+    </b-card>
+    </b-card-group>
       </b-col>
     </b-row>
   </b-container>

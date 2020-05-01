@@ -14,7 +14,21 @@ def initTable():
     """
     INSERT INTO club VALUES
     ('Test0','Test0',NULL,'k'),
-    ('Test1','Test1','s','k')
+    ('Test1','Test1','s','k'),
+    ('Fun Club','',NULL,'k'),
+    ('Chinese Student Association',
+    'The Chinese Student Association (CSA) aims to 
+    educate about diversity, as well as to support 
+    and encourage a further understanding of Chinese culture 
+    through social events and activities we provide to all
+     students of Santa Clara University. CSA also promotes 
+     outreach to the Asian community through community 
+     service events.',NULL,'k'),
+    ('The Forge Garden Club', 
+    'We promote a sustainable lifestyle in an urban setting through eating locally and enjoying the outdoors.',NULL,'k'),
+    ('Commuter Student Union', 
+    'The Commuter Student Union serves as a centralized hub for commuters to link with one another, 
+    integrate into the student community and discuss important commuting-related issues.',NULL,'k')
     ON CONFLICT DO NOTHING
     """,
     """
