@@ -13,7 +13,7 @@ def info(**kwargs):
     SELECT * from memberships where name = %s
     """
     cur = con.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    cur.execute(checkNamestatement,(kwargs['name'],))
+    cur.execute(checkNamestatement,(kwargs['name'].lower(),))
     result = []
     item = cur.fetchall()
 

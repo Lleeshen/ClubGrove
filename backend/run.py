@@ -49,7 +49,7 @@ def getSearchedClubs():
   searchTerm = request.get_json().get('searchTerm','')
   keyword = request.get_json().get('keyword','')
   sort = request.get_json().get('sort','')
-  print(searchTerm,keyword,sort)
+  LOG.debug(searchTerm,keyword,sort)
   res = model.dbModel.searchClub(searchTerm,keyword,sort)
   return jsonify(res)
 
@@ -73,9 +73,9 @@ def logout():
 
 @app.route('/api/loginStatus',methods=['GET'])
 def checkLoginStatus():
-  print(session)
+  LOG.debug(session)
   if 'username' in session:
-    print([session['username'],session['adminStatus']])
+    LOG.debug([session['username'],session['adminStatus']])
     return jsonify([session['username'],session['adminStatus']])
   else:
     return jsonify('')
