@@ -3,15 +3,15 @@
     <b-card 
       style="width: 20rem; height: 15rem" 
       class="text-center" 
-      v-bind:header= "property.name"
+      v-bind:header= "items.name"
       border-variant="dark"
       bg-variant="light">
     <b-card-text class="text-left">
       {{shortenDescript()}}
         <div v-if= "hasEventParams()">
-        Place: {{property.place}} <br>
-        Start Time: {{property.starttime}} <br>
-        End Time: {{property.starttime}}
+        Place: {{items.place}} <br>
+        Start Time: {{items.starttime}} <br>
+        End Time: {{items.starttime}}
         </div>
     </b-card-text>
     <div v-if= "!isEvent">
@@ -36,8 +36,8 @@ export default {
   {
       hasParams: function() 
       {
-          if(this.property && this.property.name
-            && this.property.description)
+          if(this.items && this.items.name
+            && this.items.description)
             {
                 return true;
             }
@@ -45,8 +45,8 @@ export default {
       },
       hasEventParams: function() 
       {
-          if(this.property && this.property.place
-            && this.property.starttime && this.property.endtime)
+          if(this.items && this.items.place
+            && this.items.starttime && this.items.endtime)
             {
                 return true;
             }
@@ -54,15 +54,15 @@ export default {
       },
       shortenDescript: function ()
       {
-          if(this.property.description.length > 110)
+          if(this.items.description.length > 110)
           {
-            var sub=  this.property.description.substring(0,110);
+            var sub=  this.items.description.substring(0,110);
             var index = sub.lastIndexOf(' ');
             return sub.substring(0,index).concat("...");
           }
           else
           {
-            return this.property.description;
+            return this.items.description;
           }
 
       }
@@ -72,7 +72,7 @@ export default {
   {
       link: function()
       {
-          return "club/" + this.items.name;
+          return "club/" + encodeURI(this.items.name);
       }
 
   }

@@ -64,7 +64,7 @@ export default {
     },
     hasitem()
     {
-      if(this.item && this.item.length > 1)
+      if(this.item && this.item.length >= 1)
       {
         return true;
       }
