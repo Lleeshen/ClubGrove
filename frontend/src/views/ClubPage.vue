@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <b-container fluid>
+  <div v-if="hasitem()">
+    <b-container fluid >
       <b-row class= "club-page text-center">
         <b-col>
-          <h2 v-if="item">{{item[0].name}}</h2>
+          <h2 v-if="hasitem()">{{item[0].name}}</h2>
         </b-col>
       </b-row>
       <b-row class= "club-page text-center">
-        <b-col v-if="item">
+        <b-col v-if="hasitem()">
           <h3>Description</h3>
           {{item[0].description}}
         </b-col>
@@ -29,6 +29,9 @@
     </b-container>
   <b-container>
   </b-container>
+  </div>
+  <div v-else>
+    This page does not exist.
   </div>
 </template>
 
@@ -58,6 +61,14 @@ export default {
         this.user = response.data;
       })
       .catch(error => {console.log(error)});
+    },
+    hasitem()
+    {
+      if(this.item && this.item.length > 1)
+      {
+        return true;
+      }
+      return false;
     }
   },
   mounted() {

@@ -7,7 +7,6 @@
       border-variant="dark"
       bg-variant="light">
     <b-card-text class="text-left">
-    <b>Short Description</b><br>
       {{shortenDescript()}}
         <div v-if= "hasEventParams()">
         Place: {{property.place}} <br>
