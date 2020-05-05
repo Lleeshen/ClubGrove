@@ -4,7 +4,7 @@
       <b-col>
         <h3> {{ name }} Events </h3>
       </b-col>
-      <b-col cols="9">
+      <b-col cols="8" class= "border border-dark">
         <b-card-group v-if="items && items.length > 0" style="margin: 10px">
       <div v-for="item in items" :key="item.name">
         <Baseholder 
@@ -19,11 +19,14 @@
       border-variant="dark"
       bg-variant="light"
       align= "center">
-    <b-card-text class="text-center">
-    <p>There are no events</p>
-    </b-card-text>
-    </b-card>
-    </b-card-group>
+      <b-card-text class="text-center">
+      <p>There are no events</p>
+      </b-card-text>
+      </b-card>
+      </b-card-group>
+      </b-col>
+      <b-col>
+      <b-button v-bind:to="eventLink" class="mt-auto">More Club events</b-button>
       </b-col>
     </b-row>
   </b-container>
@@ -59,11 +62,21 @@ export default {
         .catch(error => {console.log(error)})
     }
   },
+  computed:
+  {
+      eventLink: function()
+      {
+          return this.name.concat("/events");
+      } 
+
+  },
   props: ['name']
 }
 
 </script>
 
 <style scoped>
-
+.border{
+  border-width: 2px !important;
+}
 </style>

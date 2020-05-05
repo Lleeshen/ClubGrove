@@ -15,15 +15,21 @@
       </b-form>
     </div>
     <h2> Event Results </h2>
-    <b-table bordered hover :items="items" :fields ="fields"></b-table>
+    <b-card-group deck v-if="items" style="margin: 10px">
+      <div v-for="item in items">
+        <Baseholder v-bind:items="item" isEvent="true"></Baseholder>
+      </div>
+    </b-card-group>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import Baseholder from '../components/Baseholder'
 
 export default {
   name: 'eventSearch',
+  components: {Baseholder},
   data() {
     return {
       eventName: null,
