@@ -44,6 +44,13 @@ def deleteClub():
   model.dbModel.deleteClub(clubName)
   return jsonify('success')
 
+@bp.route('/generateClubRequest',methods=['POST'])
+def requestGenerateClub():
+  clubName = request.get_json().get('name','')
+  email = request.get_json().get('email','')
+  model.dbModel.generateRequest(clubName,email)
+  return jsonify('success') 
+
 @bp.route('/acceptClubRequest',methods=['POST'])
 def requestAddClub():
   clubName = request.get_json().get('name','')

@@ -19,6 +19,9 @@
           You are the Leader of this group.
         </div>
         <div v-else-if="user">
+        <b-button :disabled="isMember" v-on:click="greet">Join Club </b-button>
+        <b-button :disabled="isMember" v-on:click="greet">Follow Club</b-button><br>
+        
           You are logged in.
         </div>
         </b-col>
@@ -47,8 +50,11 @@ export default {
     return {
       //Replace this with actual club results
       item: null,
+
       isLeader: null,
-      user: null
+      user: null,
+      isInterested: false,
+      isMember: false
     }
   },
   methods: {
@@ -69,6 +75,14 @@ export default {
         return true;
       }
       return false;
+    },
+    generateRequestorInterested(re)
+    {
+      return false;
+    },
+    greet()
+    {
+      alert("a");
     }
   },
   mounted() {
