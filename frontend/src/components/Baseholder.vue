@@ -9,7 +9,11 @@
       <b-card-body class="d-flex flex-column" 
         style="height: 7rem">
         <b-card-text class="text-left">
+        <div v-if="items.description">
           Summary: {{shortenDescript()}}
+        </div>
+        <div else>
+        </div>
           <div v-if= "hasEventParams()">
             Place: {{items.place}} <br>
             Start Time: {{items.starttime}} <br>
@@ -43,8 +47,7 @@ export default {
   {
       hasParams: function() 
       {
-          if(this.items && this.items.name
-            && this.items.description)
+          if(this.items && this.items.name)
             {
                 return true;
             }

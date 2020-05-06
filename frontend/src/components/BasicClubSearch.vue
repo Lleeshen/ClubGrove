@@ -12,23 +12,29 @@
       </b-form>
     </div>
     <h2> Club Results </h2>
+
     <!---<b-table bordered hover :items="items"></b-table>--->
+    <BasicholderPage 
+    :items="items">
+    </BasicholderPage>
+    <!---
     <b-card-group deck v-if="items" style="margin: 10px">
       <div v-for="item in items">
-        <Baseholder v-bind:items="item"></Baseholder>
+        <Baseholder v-bind:items="item" style="margin-bottom: 30px"></Baseholder>
       </div>
     </b-card-group>
-    
+    --->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import Baseholder from '../components/Baseholder'
+import BasicholderPage from '../components/BasicholderPage'
 export default {
   name: 'basicSearchClubs',
   props: ['baseClub', 'user'],
-  components : {Baseholder},
+  components : {Baseholder,BasicholderPage},
   data() {
     return {
       clubName: null,
