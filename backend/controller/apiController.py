@@ -6,7 +6,7 @@ import logging
 LOG = logging.getLogger(__name__)
 
 bp = Blueprint('apiController', __name__, url_prefix='/api')
-
+#get events
 @bp.route('/getEvents',methods=['POST'])
 def getEvent():
   clubName = request.get_json().get('nm','')
@@ -29,6 +29,7 @@ def getLeader():
     LOG.debug(res)
   return jsonify(res)
 
+#managing clubs
 @bp.route('/addClub',methods=['POST'])
 def addClub():
   clubName = request.get_json().get('name','')
@@ -44,6 +45,7 @@ def deleteClub():
   model.dbModel.deleteClub(clubName)
   return jsonify('success')
 
+#club requests
 @bp.route('/generateClubRequest',methods=['POST'])
 def requestGenerateClub():
   clubName = request.get_json().get('name','')

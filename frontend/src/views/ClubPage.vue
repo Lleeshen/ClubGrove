@@ -19,8 +19,8 @@
           You are the Leader of this group.
         </div>
         <div v-else-if="user">
-        <b-button :disabled="isMember" v-on:click="greet">Join Club </b-button>
-        <b-button :disabled="isMember" v-on:click="greet">Follow Club</b-button><br>
+        <b-button :disabled="isMember" v-on:click="generateJoinRequest()">Join Club </b-button>
+        <b-button :disabled="isMemberOrInterested()" v-on:click="greet">Follow Club</b-button><br>
         
           You are logged in.
         </div>
@@ -60,13 +60,32 @@ export default {
   methods: {
     isloggedin()
     {
+      var self = this;
       return axios
       .get('http://localhost:5000/api/loginStatus')
       .then(response => {
-        console.log(response.data);
+        console.log(response.data[0]);
         this.user = response.data;
+        self.isPartOfClub();
       })
       .catch(error => {console.log(error)});
+    },
+    isPartOfClub(){
+      var self = this;
+      if(this.user)
+      {
+        var a = encodeURIComponent(this.user);
+        return axios
+          .get('http://localhost:5000/db/view/requests/'.concat(this.user).concat('?user=True'))
+          .then(response => {
+          console.log(response.data);
+          if(response.data.length < 1)
+          {
+              self.isMember = true;
+          }
+        })
+      .catch(error => {console.log(error)});
+      }
     },
     hasitem()
     {
@@ -76,14 +95,36 @@ export default {
       }
       return false;
     },
-    generateRequestorInterested(re)
+    isMemberOrInterested()
     {
-      return false;
+        if(this.isMember || this.isInterested)
+        {
+          return true;
+        }
+        return false;
+    },
+    generateRequestForInterested()
+    {
+    
+    },
+    generateJoinRequest()
+    {
+      if(this.hasitem() && this.item[0].name)
+      {
+        
+        this.$axios
+        .post('http://localhost:5000/api/generateClubRequest',{'name': this.item[0].name, 
+          'email': this.user[0]})
+        .then(response => {//this.items = response.data;
+        console.log(response.data);
+        this.isMember = true })
+        .catch(error => {console.log(error)})
+      }
     },
     greet()
     {
       alert("a");
-    }
+    },
   },
   mounted() {
     var a = this.$route.params.name;
@@ -106,6 +147,7 @@ export default {
           self.isloggedin();
         }})
       .catch(error => {console.log(error)})
+    
   }
 }
 
