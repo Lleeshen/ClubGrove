@@ -70,9 +70,11 @@ export default {
       return [];
     }
   },
-  created(){
+  updated(){
     if(this.items)
+    {
       this.totalRows = this.items.length;
+    }
   }
 }
 

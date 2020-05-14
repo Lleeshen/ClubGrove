@@ -15,21 +15,29 @@
       </b-form>
     </div>
     <h2> Event Results </h2>
+    <BasicholderPage 
+    :items="items"
+    :isEvent="isevent">
+    </BasicholderPage>
+    <!--
     <b-card-group deck v-if="items" style="margin: 10px">
       <div v-for="item in items">
-        <Baseholder v-bind:items="item" isEvent="true"></Baseholder>
+        <Baseholder v-bind:items="item" 
+        :isEvent="false"></Baseholder>
       </div>
     </b-card-group>
+    -->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import Baseholder from '../components/Baseholder'
+import BasicholderPage from '../components/BasicholderPage'
 
 export default {
   name: 'eventSearch',
-  components: {Baseholder},
+  components: {Baseholder,BasicholderPage},
   data() {
     return {
       eventName: null,
@@ -54,7 +62,8 @@ export default {
       ],
       items: [
         { Name: 'Food Run', Description: 'Come get food with us at Cupertino, rides provided', startTime: '2/12/20 5:00 PM', endTime: '2/12/20 7:00 PM', location: 'Shappell Center' },
-      ]
+      ],
+      isevent: true
     }
   },
   methods:{

@@ -30,6 +30,7 @@ def getEventList(clubName, **kargs):
     return result
 
 def getEventList2(**kwargs):
+    #solve case insesnity
     con = startdb.startdb()
     checkNamestatement = """
     SELECT name, description, place, starttime, endtime
@@ -50,6 +51,7 @@ def getEventList2(**kwargs):
         sqlState = sql.SQL(checkNamestatement).format(table_name = sql.Identifier('name'))
     if 'event' in kwargs:
         cur.execute(sqlState,('%' + kwargs['event'] + "%",))
+        LOG.debug(sqlState)
     else:
         cur.execute(sqlState)
     result = []

@@ -58,7 +58,25 @@ def initTable():
       '1:00:00',
       '2:00:00',
       'Benson',
-      'Not Much ok')
+      'Not Much ok'),(
+      3,
+      'Racing',
+      '5:00:00',
+      '10:00:00',
+      'Benson',
+      'Running in the 90s'),(
+      4,
+      'SSBM Tournament',
+      '12:00:00',
+      '14:00:00',
+      'Benson',
+      '4 stocks, No items on, Fox only, Final Destination'),(
+      5,
+      'Scavenger Hunt',
+      '12:00:00',
+      '14:00:00',
+      'Benson',
+      'I do not not want to collect eggs, they are trash- Animal Crossing')
     ON CONFLICT DO NOTHING
     """,
     """

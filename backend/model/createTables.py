@@ -39,7 +39,7 @@ def createTable():
       starttime TIME NOT NULL,
       endtime TIME NOT NULL,
       place VARCHAR(30) NOT NULL,
-      description VARCHAR(50) NOT NULL
+      description VARCHAR(350) NOT NULL
     )
     """,
     """
