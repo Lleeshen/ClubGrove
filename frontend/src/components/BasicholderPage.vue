@@ -13,8 +13,8 @@
       v-model="currentPage"
       :total-rows= "totalRows"
       :per-page="perPage"
-    ></b-pagination>
-</div>
+  ></b-pagination>
+  </div>
 </template>
 
 <script>
@@ -41,6 +41,15 @@ export default {
       totalRows: 0,
       pagniated_items: {},
       nbPages: 0
+    }
+  },
+  methods:{
+    setlength: function()
+    {
+      if(this.items)
+      {
+        this.totalRows = this.items.length;
+      }
     }
   },
   computed:
@@ -70,12 +79,14 @@ export default {
       return [];
     }
   },
+  mounted()
+  {
+    this.setlength();
+  },
   updated(){
-    if(this.items)
-    {
-      this.totalRows = this.items.length;
-    }
+    this.setlength();
   }
+
 }
 
 </script>

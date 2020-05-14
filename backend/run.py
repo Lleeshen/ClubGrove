@@ -49,7 +49,7 @@ def getSearchedClubs():
   searchTerm = request.get_json().get('searchTerm','')
   keyword = request.get_json().get('keyword','')
   sort = request.get_json().get('sort','')
-  LOG.debug(searchTerm,keyword,sort)
+  #LOG.debug(searchTerm,keyword,sort)
   res = model.dbModel.searchClub(searchTerm,keyword,sort)
   return jsonify(res)
 

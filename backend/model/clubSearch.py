@@ -6,7 +6,7 @@ from . import startdb as startdb
 
 def clubSearch(searchTerm,keyword,sort):
   con = startdb.startdb()
-  SQLstatement = "SELECT name, description, website, email FROM club WHERE name LIKE %s"
+  SQLstatement = "SELECT name, description, website, email FROM club WHERE name ILIKE %s"
   if(keyword):
     SQLstatement += " AND name in (SELECT name FROM clubkeywords WHERE keywords = %s)"
   SQLstatement += " ORDER BY name %s"

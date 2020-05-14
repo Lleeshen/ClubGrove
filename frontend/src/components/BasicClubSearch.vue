@@ -14,7 +14,7 @@
     <h2> Club Results </h2>
 
     <!---<b-table bordered hover :items="items"></b-table>--->
-    <BasicholderPage 
+    <BasicholderPage v-if="hasitems()"
     :items="items">
     </BasicholderPage>
     <!---
@@ -37,8 +37,8 @@ export default {
   components : {Baseholder,BasicholderPage},
   data() {
     return {
-      clubName: null,
-      selectedClubCat: null,
+      clubName: "",
+      selectedClubCat: "",
       clubCatOptions: [
           { value: null, text: 'Select a Club Category' }
       ],
@@ -88,6 +88,14 @@ export default {
           this.items = response.data;
         })
         .catch(error => console.log(error))
+    },
+    hasitems()
+    {
+      if(this.items && Array.isArray(this.items) && this.items.length >=1 )
+      {
+        return true;
+      }
+      return false;
     }
   }
 }

@@ -37,7 +37,7 @@ def getEventList2(**kwargs):
         FROM events
     """
     if 'event' in kwargs and not kwargs['event'] == 'null':
-        checkNamestatement += 'Where name LIKE %s'
+        checkNamestatement += 'Where name ILIKE %s'
     if 'sort' in kwargs and kwargs['sort'] == 'false' or kwargs['sort'] == 'None':
         checkNamestatement += " ORDER BY {table_name} DESC"
     else:

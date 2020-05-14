@@ -12,13 +12,14 @@
         <div v-if="items.description">
           Summary: {{shortenDescript()}}
         </div>
-        <div else>
+        <div v-else>
+          No Description
         </div>
-          <div v-if= "hasEventParams()">
-            Place: {{items.place}} <br>
-            Start Time: {{items.starttime}} <br>
-            End Time: {{items.starttime}}
-          </div>
+        <div v-if= "hasEventParams()">
+          Place: {{items.place}} <br>
+          Start Time: {{items.starttime}} <br>
+          End Time: {{items.starttime}}
+        </div>
         </b-card-text>
       </b-card-body>
       <b-card-body>
