@@ -82,3 +82,14 @@ def interestedRemoveClub():
   model.dbModel.notInterested(clubName, email)
   return jsonify('success')
 
+#club membership
+@bp.route('/isMemberOrRequested/<club>', methods=['GET'])
+def isMemorReq(club):
+  res = []
+  LOG.debug(session)
+  if 'username' in session:
+    current_app.logger.warn(request.args.to_dict())
+    res = model.dbModel.requestOrMember(club, session['username'], **request.args.to_dict())
+    LOG.debug(res)
+  return jsonify(res)
+

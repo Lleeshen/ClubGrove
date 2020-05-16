@@ -49,6 +49,12 @@ class db:
   def viewRow2(self, clubname, **kwargs):
     return requestMange.view(clubname, **kwargs)
   
+  #memeberships
+  def viewMembership(self, clubname, email, **kwargs):
+    return users.info(clubname, email, **kwargs)
+  def requestOrMember(self, clubname, email, **kwargs):
+    return users.requestOrMember(clubname, email, **kwargs)
+  
   #leader information
   def getLeader(self, user, **kwargs):
     return getleader.view(user, **kwargs)

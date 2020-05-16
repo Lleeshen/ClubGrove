@@ -72,19 +72,20 @@ export default {
     },
     isPartOfClub(){
       var self = this;
-      if(this.user)
+      if(self.user && self.item[0])
       {
         var a = encodeURIComponent(this.user);
+        var b = encodeURIComponent(this.item[0].name);
         return axios
-          .get('http://localhost:5000/db/view/requests/'.concat(this.user).concat('?user=True'))
+          .get('http://localhost:5000/api/isMemberOrRequested/'.concat(this.item[0].name))
           .then(response => {
-          console.log(response.data);
-          if(response.data.length < 1)
+          console.log(response.data.length);
+          if(response.data.length >= 1 )
           {
               self.isMember = true;
           }
         })
-      .catch(error => {console.log(error)});
+      .catch(error => {console.log("error")});
       }
     },
     hasitem()
@@ -135,7 +136,8 @@ export default {
     axios
       .get(strin2)
       .then(response => {this.item = response.data;
-       console.log(response) })
+       console.log(response);
+       self.isloggedin(); })
       .catch(error => {console.log(error)})
     axios
       .get(strin3)
@@ -144,7 +146,6 @@ export default {
         {
           this.isLeader = response.data[0].count; 
           console.log(response.data[0].count);
-          self.isloggedin();
         }})
       .catch(error => {console.log(error)})
     
