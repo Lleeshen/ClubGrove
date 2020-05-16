@@ -18,7 +18,9 @@ class db:
     return clubCategories.getKeywords()
 
   #Searching and events
-  def searchClub(self,searchTerm,keyword,sort):
+  def searchClub(self,searchTerm,keyword,sort, user = None):
+    if user:
+      return clubSearch.clubSearchUser(searchTerm,keyword,sort,user)
     return clubSearch.clubSearch(searchTerm,keyword,sort)
   def getEventfromClub(self,clubName, **kwargs):
     return getEvents.getEventList(clubName, **kwargs)

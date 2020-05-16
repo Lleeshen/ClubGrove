@@ -49,8 +49,9 @@ def getSearchedClubs():
   searchTerm = request.get_json().get('searchTerm','')
   keyword = request.get_json().get('keyword','')
   sort = request.get_json().get('sort','')
+  user = request.get_json(silent=True).get('user','')
   #LOG.debug(searchTerm,keyword,sort)
-  res = model.dbModel.searchClub(searchTerm,keyword,sort)
+  res = model.dbModel.searchClub(searchTerm,keyword,sort,user)
   return jsonify(res)
 
 @app.route('/api/login',methods=['POST'])

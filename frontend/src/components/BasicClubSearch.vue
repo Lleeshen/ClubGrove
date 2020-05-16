@@ -58,6 +58,7 @@ export default {
             .get('http://localhost:5000/db/view/club?user='.concat(this.user))
             .then(response => {this.items = response.data;})
             .catch(error => {console.log(error)});
+            
       }
       else{
         this.$axios
@@ -81,7 +82,8 @@ export default {
         .post('http://localhost:5000/api/getSearchedClubs',{
           'searchTerm': this.clubName,
           'keyword': this.selectedClubCat,
-          'sort': this.selectedSortOption
+          'sort': this.selectedSortOption,
+          'user': this.user
         })
         .then(response => {
           console.log(response.data);
