@@ -8,15 +8,19 @@ LOG = logging.getLogger(__name__)
 
 def clubSearch(searchTerm,keyword,sort):
   con = startdb.startdb()
+  LOG.debug(sort)
   SQLstatement = "SELECT name, description, website, email FROM club WHERE name ILIKE %s"
   if(keyword):
     SQLstatement += " AND name in (SELECT name FROM clubkeywords WHERE keywords = %s)"
-  SQLstatement += " ORDER BY name %s"
+  if sort=='ASC':
+    SQLstatement += " ORDER BY name ASC"
+  elif sort=='DESC':
+    SQLstatement += " ORDER BY name DESC"
   cur = con.cursor(cursor_factory=psycopg2.extras.DictCursor)
   if(keyword):
-    cur.execute(SQLstatement,('%' + searchTerm + '%',keyword,sort,))
+    cur.execute(SQLstatement,('%' + searchTerm + '%',keyword,))
   else:
-    cur.execute(SQLstatement,('%' + searchTerm + '%',sort))
+    cur.execute(SQLstatement,('%' + searchTerm + '%',))
   item = cur.fetchall()
   result = []
   column = [desc[0] for desc in cur.description]
@@ -39,12 +43,15 @@ def clubSearchUser(searchTerm,keyword,sort, user):
       select name from interested where email = %s)"""
   if(keyword):
     SQLstatement += " AND name in (SELECT name FROM clubkeywords WHERE keywords = %s)"
-  SQLstatement += " ORDER BY name %s"
+  if sort=='ASC':
+    SQLstatement += " ORDER BY name ASC"
+  elif sort=='DESC':
+    SQLstatement += " ORDER BY name DESC"
   cur = con.cursor(cursor_factory=psycopg2.extras.DictCursor)
   if(keyword):
-    cur.execute(SQLstatement,('%' + searchTerm + '%',user, user, user, keyword,sort,))
+    cur.execute(SQLstatement,('%' + searchTerm + '%',user, user, user, keyword,))
   else:
-    cur.execute(SQLstatement,('%' + searchTerm + '%',user, user, user,sort))
+    cur.execute(SQLstatement,('%' + searchTerm + '%',user, user, user,))
   item = cur.fetchall()
   result = []
   column = [desc[0] for desc in cur.description]

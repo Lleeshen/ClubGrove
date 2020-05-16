@@ -42,9 +42,9 @@ export default {
       clubCatOptions: [
           { value: null, text: 'Select a Club Category' }
       ],
-      selectedSortOption: 'ASC',
+      selectedSortOption: '1',
       sortOptions: [
-        //{ value: '1', text: 'Similarity to Search Term'},
+        { value: '1', text: 'Order Created'},
         { value: 'ASC', text: 'Alphabetical ascending'},
         { value: 'DESC', text: 'Alphabetical descending'},
       ],
@@ -69,7 +69,7 @@ export default {
     this.$axios
       .get('http://localhost:5000/api/getClubCategories')
       .then(response => {
-        console.log(response.data);
+        //console.log(response.data);
         this.clubCatOptions = this.clubCatOptions.concat(response.data);
        })
       .catch(error => {console.log(error)});
@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     searchClubs() {
-      console.log(this.clubName,this.selectedClubCat,this.selectedSortOption);
+      //console.log(this.clubName,this.selectedClubCat,this.selectedSortOption);
       this.$axios
         .post('http://localhost:5000/api/getSearchedClubs',{
           'searchTerm': this.clubName,
@@ -86,7 +86,7 @@ export default {
           'user': this.user
         })
         .then(response => {
-          console.log(response.data);
+          //console.log(response.data);
           this.items = response.data;
         })
         .catch(error => console.log(error))
