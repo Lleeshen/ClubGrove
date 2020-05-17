@@ -6,22 +6,20 @@
           <h2>{{item[0].name}}</h2>
         </b-col>
       </b-row>
-      <b-row class= "club-page text-left" style= "height: 100px;">
+      <b-row class= "club-page text-left">
         <b-col>
           <h3 >Description</h3>
           {{item[0].description}}
-        </b-col>
-        <b-col class = "text-center float-center">
-          picture here
-        </b-col>
-      </b-row>
-      <b-row>
-          <b-col>
+          <br><br>
+          <b-row>
+          <b-col class="club-page text-left">
+          <h3>Requests</h3>
               <b-button class = "float-left" size="sm" style="margin-bottom: 5px;" v-b-modal.modal-1>Accept Requests</b-button>
           </b-col>
-          <b-col cols="5">
+          </b-row>
         </b-col>
-        <b-col>
+        <b-col class = "text-center float-center">
+          <img src="@/assets/noImage.png" style = "max-width: 100%">
         </b-col>
       </b-row>
     </b-container>

@@ -28,7 +28,7 @@
       </b-form>
     </b-modal>
     <div id="title">
-      <h1>Club Grove<br>Finding clubs within the area</h1>
+      <h1>Club Grove<br>Finding clubs within SCU</h1>
     </div>
     <BaseNavBar></BaseNavBar>
     <router-view/>
@@ -101,6 +101,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin: 0px 0px;
+  font-size: 18px !important;
 }
 
 #nav a {
@@ -129,4 +130,7 @@ export default {
   font-size: 16px !important;
 }
 
+h1, h2, h3 {
+  color: darkred;
+}
 </style>

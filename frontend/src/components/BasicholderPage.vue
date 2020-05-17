@@ -31,12 +31,17 @@ export default {
     {
       type: Boolean,
       default: false
+    },
+    isUser:
+    {
+      type: Boolean,
+      default: false
     }
    },
   components : {Baseholder},
   data() {
     return{
-      perPage: 4,
+      perPage: 5,
       currentPage: 1,
       totalRows: 0,
       pagniated_items: {},
@@ -77,6 +82,13 @@ export default {
         return this.pagniated_items[this.currentPage -1];
       }
       return [];
+    }
+  },
+  created()
+  {
+    if(this.isUser)
+    {
+      this.perPage = 3;
     }
   },
   mounted()

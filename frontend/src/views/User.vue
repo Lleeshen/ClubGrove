@@ -1,17 +1,21 @@
 <template>
   <div v-if="isValid">
-     <b-container fluid>
+     <b-container fluid class="ml-1">
      <b-row class= "club-page text-left">
         <b-col>
           <h2>User Page</h2>
         </b-col>
       </b-row>
       <b-row class= "club-page text-left">
-        <b-col sm="3" class = "border">
+        <b-col sm="3">
+        <b-row>
+        <b-col class = "border">
           <h3>Info</h3>
            Email: {{user2[0]}} <br><br>
            <b-button class = "float-left" size="sm" style="margin-bottom: 5px;" v-b-modal.modal-2>Pending Requests</b-button> <br><br>
            <b-button class = "float-left" size="sm" style="margin-bottom: 5px;" v-b-modal.modal-1>Interested Clubs</b-button>
+        </b-col>
+        </b-row>
         </b-col>
         <b-col>
         <BasicClubSearch v-bind:user="user2[0]"></BasicClubSearch>

@@ -15,7 +15,7 @@
 
     <!---<b-table bordered hover :items="items"></b-table>--->
     <BasicholderPage v-if="hasitems()"
-    :items="items">
+    :items="items" :isUser="isUser">
     </BasicholderPage>
     <!---
     <b-card-group deck v-if="items" style="margin: 10px">
@@ -38,7 +38,7 @@ export default {
   data() {
     return {
       clubName: "",
-      selectedClubCat: "",
+      selectedClubCat: null,
       clubCatOptions: [
           { value: null, text: 'Select a Club Category' }
       ],
@@ -48,12 +48,14 @@ export default {
         { value: 'ASC', text: 'Alphabetical ascending'},
         { value: 'DESC', text: 'Alphabetical descending'},
       ],
-      items: null
+      items: null,
+      isUser: false
     }
   },
   mounted() {
       if(this.user != null)
       {
+        this.isUser = true;
         this.$axios
             .get('http://localhost:5000/db/view/club?user='.concat(this.user))
             .then(response => {this.items = response.data;})

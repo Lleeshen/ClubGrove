@@ -79,10 +79,10 @@ export default {
         return axios
           .get('http://localhost:5000/api/isMemberOrRequested/'.concat(this.item[0].name))
           .then(response => {
-          console.log(response.data.length);
-          if(response.data.length >= 1 )
+          console.log(response.data);
           {
-              self.isMember = true;
+              self.isMember = response.data.member;
+              self.isInterested= response.data.interested
           }
         })
       .catch(error => {console.log("error")});
@@ -112,14 +112,30 @@ export default {
     {
       if(this.hasitem() && this.item[0].name)
       {
-        
-        this.$axios
-        .post('http://localhost:5000/api/generateClubRequest',{'name': this.item[0].name, 
+        if(this.isInterested)
+        {
+          this.$axios
+            .post('http://localhost:5000/api/toRequest',{'name': this.item[0].name, 'email': this.user[0]})
+          .then(response =>{
+          //console.log(response.data)
+          this.isMember = true;
+        })
+        .catch(error => {
+          console.log(error);
+        })
+        }
+        else
+        {
+          this.$axios
+          .post('http://localhost:5000/api/generateClubRequest',{'name': this.item[0].name, 
           'email': this.user[0]})
-        .then(response => {//this.items = response.data;
-        console.log(response.data);
-        this.isMember = true })
-        .catch(error => {console.log(error)})
+          .then(response => {//this.items = response.data;
+          console.log(response.data);
+          this.isMember = true;
+          self.isInterested = true;
+          })
+          .catch(error => {console.log(error)})
+        }
       }
     },
     greet()

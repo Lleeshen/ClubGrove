@@ -1,7 +1,7 @@
 <template>
   <div v-if="hasParams()">
     <b-card no-body
-      style="width: 20rem; height: 15rem""  
+      style="width: 20rem; height: 17rem""  
       class="text-center d-flex flex-column" 
       v-bind:header= "items.name"
       border-variant="dark"

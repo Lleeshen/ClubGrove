@@ -34,7 +34,19 @@ def requestOrMember(clubname, email, **kwargs):
     cur = con.cursor(cursor_factory=psycopg2.extras.DictCursor)
     cur.execute(checkNamestatement,(clubname, email,clubname, email,))
     result = []
+    result2= {'member' : False, 'interested': False}
     item = cur.fetchall()
+    if len(item) > 0:
+        return {'member' : True, 'interested': True}
+    else:
+        otherState = """
+        SELECT * from Interested where name = %s and email = %s
+        """
+        cur.execute(otherState,(clubname, email,))
+        item = cur.fetchall()
+        if len(item) > 0:
+            return {'member' : False, 'interested': True}
+    return result2
     column = [desc[0] for desc in cur.description]
     for row in item:
         result.append(dict(zip(column,row)))
