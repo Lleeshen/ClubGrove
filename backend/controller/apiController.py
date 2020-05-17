@@ -82,6 +82,13 @@ def interestedRemoveClub():
   model.dbModel.notInterested(clubName, email)
   return jsonify('success')
 
+@bp.route('/interested',methods=['POST'])
+def interestedGenerateClub():
+  clubName = request.get_json().get('name','')
+  email = request.get_json().get('email','')
+  model.dbModel.generateInterested(clubName, email)
+  return jsonify('success')
+
 #club membership
 @bp.route('/isMemberOrRequested/<club>', methods=['GET'])
 def isMemorReq(club):

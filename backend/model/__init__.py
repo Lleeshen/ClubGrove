@@ -40,6 +40,8 @@ class db:
   #interested and requests
   def generateRequest(self,clubName,email):
     return requestMange.add(clubName,email)
+  def generateInterested(self,clubName,email):
+    return requestMange.addInterested(clubName,email)
   def acceptRequest(self,clubName,email):
     return requestMange.requestMange(clubName,email, True)
   def declineRequest(self,clubName,email):

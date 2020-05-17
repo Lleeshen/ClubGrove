@@ -20,7 +20,7 @@
         </div>
         <div v-else-if="user">
         <b-button :disabled="isMember" v-on:click="generateJoinRequest()">Join Club </b-button>
-        <b-button :disabled="isMemberOrInterested()" v-on:click="greet">Follow Club</b-button><br>
+        <b-button :disabled="isMemberOrInterested()" v-on:click="generateRequestForInterested()">Follow Club</b-button><br>
         
           You are logged in.
         </div>
@@ -106,7 +106,18 @@ export default {
     },
     generateRequestForInterested()
     {
-    
+      var self = this;
+      if(this.hasitem() && this.item[0].name)
+      {
+        this.$axios
+          .post('http://localhost:5000/api/interested',{'name': this.item[0].name, 
+          'email': this.user[0]})
+          .then(response => {
+          console.log(response.data);
+          self.isInterested = true;
+          })
+          .catch(error => {console.log(error)})
+      }
     },
     generateJoinRequest()
     {

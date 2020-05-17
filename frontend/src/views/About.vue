@@ -19,15 +19,14 @@
     </b-row>
     <b-row>
     <b-col>
-    Travis Le
+    Le
     </b-col>
     <b-col>
-    tle2@scu.edu
     </b-col>
     </b-row>
     <b-row>
     <b-col>
-    Lyman Shen
+    Shen
     </b-col>
     </b-row>
     </b-container>
@@ -43,7 +42,7 @@
     </b-row>
     <b-row>
     <b-col>
-    Angela Musurlian
+    Musurlian
     </b-col>
     <b-col>
     ""
