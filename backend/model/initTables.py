@@ -44,7 +44,15 @@ def initTable():
       '1:00:00',
       '2:00:00',
       'Benson',
-      'Not Much ok')
+      'Not Much ok'
+      ),(
+        3,
+        'Hello World',
+        '3:00:00',
+        '4:00:00',
+        'Zoom',
+        'Learn to Code'
+      )
     ON CONFLICT DO NOTHING
     """,
     """
@@ -88,6 +96,9 @@ def initTable():
     ),(
       'Test1',
       2
+    ),(
+      'Test1',
+      3
     )
     ON CONFLICT DO NOTHING
     """,

@@ -1,4 +1,4 @@
-from . import createTables, dropTables, initTables, clearTables, clubCategories, clubSearch, checkLogin, leadingClubs
+from . import createTables, dropTables, initTables, clearTables, clubCategories, clubSearch, checkLogin
 from .helper import getEvents, viewSelection, viewTables, changeClubs
 
 
@@ -21,6 +21,8 @@ class db:
     return getEvents.getEventList(clubName, **kwargs)
   def getEventfromClub2(self, **kwargs):
     return getEvents.getEventList2(**kwargs)
+  def getEventfromClub3(self,clubName, **kwargs):
+    return getEvents.getEventListWithID(clubName, **kwargs)
   def viewRow(self, tableName, primaryId):
     return viewSelection.viewRow(tableName,primaryId)
   def addClub(self,name,description,website,email,**kwargs):
