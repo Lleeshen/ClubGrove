@@ -1,5 +1,5 @@
 <template>
-  <div v-if= "item">
+  <div v-if= "isleader">
     <b-container fluid>
       <b-row class= "club-page text-left">
         <b-col>
@@ -19,7 +19,11 @@
           </b-row>
         </b-col>
         <b-col class = "text-center float-center">
-          <img src="@/assets/noImage.png" style = "max-width: 100%">
+          <img v-bind:src="image()" 
+          style = "max-width: 100%">
+          <div v-if="noImg">
+            Club does not have a picture
+          </div>
         </b-col>
       </b-row>
     </b-container>
@@ -56,7 +60,7 @@
   </b-container>
   </div>
   <div v-else>
-   Nothing is here.
+   You don't have access to this Page
   </div>
 </template>
 
@@ -70,24 +74,27 @@ export default {
     return {
       //Replace this with actual club results
       item: null,
-      item2: null
+      item2: null,
+      isleader: false,
+      noImg: false
+      //imgLoc: require("@/assets/club/Chinese Student Association.png")
 
     }
   },
   mounted() {
+    var self = this;
     var a = this.$route.params.name;
     var strin2 = 'http://localhost:5000/db/view/club/'.concat(a);
     var strin3 = 'http://localhost:5000/db/view/requests/'.concat(a);
-    console.log(strin2);
     axios
       .get(strin2)
       .then(response => {this.item = response.data;
-       console.log(response) })
+         self.checkLeader();})
       .catch(error => {console.log(error)});
     axios
       .get(strin3)
       .then(response => {this.item2 = response.data;
-       console.log(response) })
+       })
       .catch(error => {console.log(error)});
       
   },
@@ -121,8 +128,41 @@ export default {
         .catch(error => {
           console.log(error);
         })
+    },
+    checkLeader()
+    {
+      if(this.item && this.item[0])
+      {
+      var self = this;
+      var c = 'http://localhost:5000/api/getLeader?name='.concat(this.item[0].name);
+        this.$axios
+        .get(c)
+        .then(response =>{
+          //console.log(response.data);
+          if(response.data && response.data[0].count >= 1) {
+            self.isleader = true;
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        })
+      }
+    },
+    image()
+    {
+      var self = this;
+      try{
+        return require("@/assets/club/"+this.item[0].name+ ".png");
+      }
+      catch(err)
+      {
+        self.noImg = true;
+        console.log("Club does not have a picture");
+      }
+      return require("@/assets/noImage.png")
     }
   }
+
 }
 
 </script>

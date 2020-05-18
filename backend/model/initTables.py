@@ -118,7 +118,8 @@ def initTable():
     """
     INSERT INTO leaders VALUES(
       'test1@gmail.com','Chinese Student Association'
-    )
+    ),
+     ('test1@gmail.com','Fun Club')
     ON CONFLICT DO NOTHING
     """,
     """

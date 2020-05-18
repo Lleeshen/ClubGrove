@@ -12,11 +12,12 @@
           {{item[0].description}}
         </b-col>
         <b-col cols="5">
-          <img src="@/assets/noImage.png" style = "max-width: 100%">
+          <img :src="image()" style = "max-width: 100%">
         </b-col>
         <b-col>
         <div v-if="isLeader">
-          You are the Leader of this group.
+        <h3>Leadership Responsibilities</h3>
+        <b-button :to="link">Manage Club</b-button>
         </div>
         <div v-else-if="user">
         <b-button :disabled="isMember" v-on:click="generateJoinRequest()">Join Club </b-button>
@@ -74,7 +75,6 @@ export default {
       var self = this;
       if(self.user && self.item[0])
       {
-        var a = encodeURIComponent(this.user);
         var b = encodeURIComponent(this.item[0].name);
         return axios
           .get('http://localhost:5000/api/isMemberOrRequested/'.concat(this.item[0].name))
@@ -153,6 +153,19 @@ export default {
     {
       alert("a");
     },
+    image()
+    {
+      var self = this;
+      try{
+        return require("@/assets/club/"+this.item[0].name+ ".png");
+      }
+      catch(err)
+      {
+        self.noImg = true;
+        console.log("Club does not have a picture");
+      }
+      return require("@/assets/noImage.png")
+    }
   },
   mounted() {
     var a = this.$route.params.name;
@@ -175,7 +188,17 @@ export default {
           console.log(response.data[0].count);
         }})
       .catch(error => {console.log(error)})
-    
+  },
+  computed:
+  {
+      link: function()
+      {
+        if(this.item){
+          return encodeURI(this.item[0].name) + "/manage";
+        }
+        return "#";
+      }
+
   }
 }
 
