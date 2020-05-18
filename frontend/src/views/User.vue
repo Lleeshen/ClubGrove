@@ -28,9 +28,9 @@
     </b-container>
   <b-container>
   </b-container>
-  <b-modal id="modal-2" title="Pending Request" ok-only>
+  <b-modal id="modal-2" title="Pending Requests" ok-only>
     <p>
-        Here are a list of request:
+        Here are a list of pending request:
     </p>
     <div v-if= "requests">
       <div v-for="item in requests">
@@ -47,7 +47,7 @@
     </b-modal>
   <b-modal id="modal-1" title="Interested Clubs" ok-only>
     <p>
-        Here what you are intereseted in:
+        Here what you are interested in:
     </p>
     <div v-if= "interested">
       <div v-for="item in interested">

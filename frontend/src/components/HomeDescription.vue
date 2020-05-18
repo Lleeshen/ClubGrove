@@ -20,6 +20,7 @@
   <b-col>
   </b-col>
   <b-col cols="10">
+  <div class="description">
   <h2>Searching Clubs and Events</h2>
   <div class="decription-content">
     <p>Near the top of the page, there is a link called "Club Search" where you can search for
@@ -29,6 +30,7 @@
     No worries about deleted clubs existing or newly added clubs not being there
      whenever there is a search.</p>
     </div>
+  </div>
   </b-col>
   <b-col>
   </b-col>
@@ -64,20 +66,23 @@ a {
 
 .description {
   display: inline-block;
-  margin: 0px 0px 0px 0px;
+  margin: 10px 0px 0px 0px;
   padding: 10px;
-}
-h2 {
-  color: darkred;
 }
 
  .decription-content {
   background-color: #c7c7c7;
   padding: 10px;
+  text-align: left;
+  color: black;
 }
 
 img {
   padding: 10px;
+}
+
+h2,h3 {
+
 }
 
 </style>

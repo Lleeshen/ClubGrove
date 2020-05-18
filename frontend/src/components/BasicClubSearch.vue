@@ -127,4 +127,7 @@ h2 {
   margin: 0 10px 0 10px;
 }
 
+#searchBar{
+  font-family: Helvetica, Arial, sans-serif;
+}
 </style>

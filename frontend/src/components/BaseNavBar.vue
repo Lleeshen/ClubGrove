@@ -29,7 +29,13 @@ export default {
 <style scoped>
 
 .navbar {
-  background-color: aliceblue;
+  background-color: #B50043;
 }
 
+.navbar-light{
+  font-family: Helvetica, Arial, sans-serif;
+}
+.navbar-light .navbar-nav {
+  color: red !important;
+}
 </style>

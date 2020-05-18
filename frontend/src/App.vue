@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <div id="status">
-      <div v-if=this.loggedIn>
-        <b-button-group vertical>
-        <b-button square to="/user">Your Page</b-button>
-        <b-button square variant="info" @click=logOut> Log out </b-button>
-        </b-button-group>
+      <div v-if=this.loggedIn class="loginM">
+        <b-dropdown text="User Options">
+        <b-dropdown-item to="/user">My Page</b-dropdown-item>
+        <b-dropdown-item @click=logOut> Log out </b-dropdown-item>
+        </b-dropdown>
       </div>
-      <div v-else>
-      <b-button square variant="info" @click="startLogIn"> Sign in </b-button>
+      <div v-else class="loginM">
+      <b-button square @click="startLogIn"> Sign in </b-button>
       </div>
     </div>
-    <b-modal v-model="logInModal">
+    <b-modal v-model="logInModal" hide-footer>
       <b-form action="/club" @submit.prevent="logIn">
         <b-form-group>
           <label for="username">Username:</label>
@@ -95,22 +95,22 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: Garamond, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   margin: 0px 0px;
   font-size: 18px !important;
 }
 
 #nav a {
   font-weight: bold;
-  color: #42b983;
+  color: #E0E0E0;
 }
 
 #nav a.router-link-exact-active {
-  color: #2c3e50;
+  //color: #2c3e50;
+  color: #FFFFFF;
 }
 
 #title {
@@ -132,5 +132,9 @@ export default {
 
 h1, h2, h3 {
   color: darkred;
+}
+
+.loginM{
+  font-family: Helvetica, Arial, sans-serif;
 }
 </style>
