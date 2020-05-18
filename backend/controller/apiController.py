@@ -25,6 +25,18 @@ def getEvent2():
   res = model.dbModel.getEventfromClub2(**request.args.to_dict())
   return jsonify(res)
 
+@bp.route('addEvent',methods=['POST'])
+def addEvent():
+  return ['success']
+
+@bp.route('editEvent',methods=['POST'])
+def editEvent():
+  return ['success']
+
+@bp.route('deleteEvent',methods=['POST'])
+def deleteEvent():
+  return ['success']
+
 @bp.route('/getLeader',methods=['GET'])
 def getLeader():
   res = []

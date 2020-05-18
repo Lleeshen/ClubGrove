@@ -81,9 +81,12 @@
           </b-form-group>
           <b-form-group>
             <b-container>
-              <b-row>
+              <b-row v-if='this.editing'>
                 <b-col><b-button type="submit" variant="primary">Edit</b-button></b-col>
                 <b-col><b-button type="submit" variant="danger">Delete</b-button></b-col>
+              </b-row>
+              <b-row v-else>
+                <b-col><b-button type="submit" variant="primary">Add Event</b-button></b-col>
               </b-row>
             </b-container>
           </b-form-group>
