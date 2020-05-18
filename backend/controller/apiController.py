@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, jsonify, current_app, request
+    Blueprint, jsonify, current_app, request, session
 )
 from .. import model
 import logging
@@ -19,10 +19,14 @@ def getEvent2():
   res = model.dbModel.getEventfromClub2(**request.args.to_dict())
   return jsonify(res)
 
-@bp.route('/getUserInfo',methods=['GET'])
-def getUser():
-  current_app.logger.warn(request.args.to_dict())
-  res = model.dbModel.getUser(**request.args.to_dict())
+@bp.route('/getLeader',methods=['GET'])
+def getLeader():
+  res = []
+  LOG.debug(session)
+  if 'username' in session:
+    current_app.logger.warn(request.args.to_dict())
+    res = model.dbModel.getLeader(session['username'], **request.args.to_dict())
+    LOG.debug(res)
   return jsonify(res)
 
 @bp.route('/addClub',methods=['POST'])

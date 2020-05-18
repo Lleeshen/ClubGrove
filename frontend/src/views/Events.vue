@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="searchBar">
-      <b-form inline action="/club">
+      <b-form inline action="/events">
         <label class="sr-only" for="searchTerm">Event Name</label>
         <b-form-input class="searchFormElt" v-model="eventName" id="searchTerm" placeholder="Event name"></b-form-input>
         <!--<label class="sr-only" for="searchDescription">Event Description</label>
