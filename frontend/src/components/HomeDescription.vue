@@ -35,6 +35,11 @@
   <b-col>
   </b-col>
   </b-row>
+  <b-row>
+  <b-col>
+  <img src="@/assets/SCU.png" style = "max-height: 70%">
+  </b-col>
+  </b-row>
   </b-container>
 </template>
 
@@ -64,18 +69,6 @@ a {
   color: #42b983;
 }
 
-.description {
-  display: inline-block;
-  margin: 10px 0px 0px 0px;
-  padding: 10px;
-}
-
- .decription-content {
-  background-color: #c7c7c7;
-  padding: 10px;
-  text-align: left;
-  color: black;
-}
 
 img {
   padding: 10px;
