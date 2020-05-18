@@ -1,8 +1,15 @@
 <template>
   <div id="app">
     <div id="status">
-      <b-button v-if=this.loggedIn square variant="info" @click=logOut> Log out </b-button>
-      <b-button v-else square variant="info" @click="startLogIn"> Sign in </b-button>
+      <div v-if=this.loggedIn>
+        <b-button-group vertical>
+        <b-button square to="/user">Your Page</b-button>
+        <b-button square variant="info" @click=logOut> Log out </b-button>
+        </b-button-group>
+      </div>
+      <div v-else>
+      <b-button square variant="info" @click="startLogIn"> Sign in </b-button>
+      </div>
     </div>
     <b-modal v-model="logInModal">
       <b-form action="/club" @submit.prevent="logIn">

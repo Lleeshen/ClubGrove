@@ -16,7 +16,7 @@ def createTable():
     """
     CREATE TABLE IF NOT EXISTS club (
       name VARCHAR(30) PRIMARY KEY NOT NULL,
-      description VARCHAR(150) NOT NULL,
+      description VARCHAR(400) NOT NULL,
       website varchar(30),
       email varchar(20) NOT NULL
     )
