@@ -10,7 +10,7 @@
           <h3> Edit </h3>
         </b-col>
       </b-row>
-      <b-row v-for="event in events" :key=event.id class="event" v-on:click="editItem(event)">
+      <b-row v-for="event in events" :key=event.id class="event" @click="editItem(event)">
         <b-col v-for="field in fields" :key=field.key>
           <span>{{event[field['key']]}}</span>
         </b-col>
@@ -19,11 +19,11 @@
         </b-col>
       </b-row>
       <br />
-      <b-button variant='info' v-on:click="addItem()"> Create New Event </b-button>
+      <b-button variant='info' @click="addItem"> Create New Event </b-button>
       <b-modal v-model="showModal">
         <h3 v-if="this.editing"> Edit or Delete Event {{(this.selected).id}} </h3>
         <h3 v-else> New Event </h3>
-        <b-form>
+        <b-form @submit.prevent>
           <b-form-group
             id='input-group-1'
             label='Event Name:'
@@ -82,11 +82,11 @@
           <b-form-group>
             <b-container>
               <b-row v-if='this.editing'>
-                <b-col><b-button type="submit" variant="primary">Edit</b-button></b-col>
-                <b-col><b-button type="submit" variant="danger">Delete</b-button></b-col>
+                <b-col><b-button type="submit" variant="primary" @click="submitEdit">Edit</b-button></b-col>
+                <b-col><b-button type="submit" variant="danger" @click="submitDelete">Delete</b-button></b-col>
               </b-row>
               <b-row v-else>
-                <b-col><b-button type="submit" variant="primary">Add Event</b-button></b-col>
+                <b-col><b-button type="submit" variant="primary" @click="submitAdd">Add Event</b-button></b-col>
               </b-row>
             </b-container>
           </b-form-group>
@@ -143,13 +143,7 @@ export default {
               console.log(response.data);
               if(response.data.length == 1) {
                 this.loggedInAsLeader = true;
-                this.$axios
-                  .post('http://localhost:5000/api/getEvents3',{'nm': this.name})
-                  .then(response => {
-                    this.events = response.data;
-                    console.log(this.events);
-                  })
-                  .catch(error => {console.log(error)})
+                this.updateEvents();
               }
             })
             .catch(error => {console.log(error)})
@@ -158,6 +152,21 @@ export default {
       .catch(error => {console.log(error)});
   },
   methods: {
+    updateEvents: function () {
+      this.$axios
+        .post('http://localhost:5000/api/getEvents3',{'nm': this.name})
+        .then(response => {
+          this.events = response.data;
+          console.log(this.events);
+          this.selected = {};
+          this.showModal = false;
+          this.editing = false;
+          this.newItem = false;
+          this.editEvent = {
+          }
+        })
+        .catch(error => {console.log(error)})
+    },
     editItem: function (event) {
       this.selected = event;
       this.showModal = true;
@@ -172,7 +181,7 @@ export default {
       }
     },
     addItem: function() {
-      this.selected = event;
+      this.selected = {};
       this.showModal = true;
       this.editing = false;
       this.newItem = true;
@@ -183,6 +192,47 @@ export default {
         starttime: '09:00',
         endtime: '10:00',
       }
+    },
+    submitAdd: function(event) {
+      event.preventDefault();
+      console.log('request add',this.editEvent);
+      this.$axios
+        .post('http://localhost:5000/api/addEvent',{
+          name: this.name,
+          event: this.editEvent,
+        })
+        .then(response => {
+          console.log(response.data);
+          this.updateEvents()
+        })
+        .catch(error => {console.log(error)});
+    },
+    submitEdit: function(event) {
+      event.preventDefault();
+      console.log('request edit',this.selected.id,this.editEvent);
+      this.$axios
+        .post('http://localhost:5000/api/editEvent',{
+          id: this.selected.id,
+          event: this.editEvent,
+        })
+        .then(response => {
+          console.log(response.data);
+          this.updateEvents();
+        })
+        .catch(error => {console.log(error)});
+    },
+    submitDelete: function(event) {
+      event.preventDefault();
+      console.log('request delete',this.selected.id);
+      this.$axios
+        .post('http://localhost:5000/api/deleteEvent',{
+          id: this.selected.id,
+        })
+        .then(response => {
+          console.log(response.data);
+          this.updateEvents();
+        })
+        .catch(error => {console.log(error)});
     }
   },
   props: ['name']

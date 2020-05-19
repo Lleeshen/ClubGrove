@@ -27,14 +27,25 @@ def getEvent2():
 
 @bp.route('addEvent',methods=['POST'])
 def addEvent():
+  name = request.get_json().get('name','')
+  event = request.get_json().get('event','')
+  print(name,event)
+  model.dbModel.addEvent(name,event)
   return jsonify('success')
 
 @bp.route('editEvent',methods=['POST'])
 def editEvent():
+  eventId = request.get_json().get('id','')
+  event = request.get_json().get('event','')
+  print(eventId,event)
+  model.dbModel.editEvent(eventId,event)
   return jsonify('success')
 
 @bp.route('deleteEvent',methods=['POST'])
 def deleteEvent():
+  eventId = request.get_json().get('id','')
+  model.dbModel.deleteEvent(eventId)
+  print(eventId)
   return jsonify('success')
 
 @bp.route('/getLeader',methods=['GET'])

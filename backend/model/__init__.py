@@ -1,5 +1,5 @@
 from . import createTables, dropTables, initTables, clearTables, clubCategories, clubSearch, checkLogin
-from .helper import getEvents, viewSelection, viewTables, changeClubs, users, requestMange, getleader
+from .helper import getEvents, viewSelection, viewTables, changeClubs, users, requestMange, getleader, eventManage
 
 
 class db:
@@ -45,6 +45,12 @@ class db:
     return requestMange.view(clubname, **kwargs)
   def getLeader(self, user, **kwargs):
     return getleader.view(user, **kwargs)
+  def addEvent(self, clubName, event, **kwargs):
+    eventManage.addEvent(clubName, event, **kwargs)
+  def editEvent(self, eventId, event, **kwargs):
+    eventManage.editEvent(eventId, event, **kwargs)
+  def deleteEvent(self, eventId, **kwargs):
+    eventManage.deleteEvent(eventId, **kwargs)
 
 dbModel = db()
 # dbModel.init()
