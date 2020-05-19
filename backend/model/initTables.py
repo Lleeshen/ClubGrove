@@ -13,7 +13,7 @@ def initTable():
     """,
     """
     INSERT INTO club VALUES
-    ('Fun Club','',NULL,'k'),
+    ('Fun Club','','www.example.com','k'),
     ('Chinese Student Association',
     'The Chinese Student Association (CSA) aims to 
     educate about diversity, as well as to support 
@@ -41,9 +41,14 @@ def initTable():
     ('SCU Climbing', '',NULL,'email'),
     ('Innovator''s Student Union', '',NULL,'email'),
     ('Association of Transfer Students', 'The Association of Transfer Students aims to give transfer students a voice campus and help them feel connected',NULL,'email'),
-    ('SCU Chess Club', 'To provide the Santa Clara student body with an organized venue to practice and learn the great game of chess.',NULL,'email')
-
-
+    ('SCU Chess Club', 'To provide the Santa Clara student body with an organized venue to practice and learn the great game of chess.',NULL,'email'),
+    ('Clara Craft Club', 'Provide an inclusive, stress-free environment for the community of Santa Clara University and to encourage creativity through 
+    Do-It-Yourself (DIY) arts and crafts projects. CCC will cater to member craft requests to foster an inclusive and communicative atmosphere.',NULL,'email'),
+    ('History Club', 'The club aims to provide a social space beyond the classroom for students of all majors to share their passion for history and satisfy their 
+    curiosity about how the past can inform our understanding of the present.',NULL,'email'),
+    ('Santa Clara University Mock Trail Team','Provide students with the opportunity to learn about the nature and process of litigation through a study of the federal rules of evidence, 
+    coaching from experienced lawyers, and simulated trial experiences (organized by the American Mock Trial Association).', NULL, 'email'),
+    ('VRONCOS','To engage SCU students who are interested in various aspects of virtual reality, augmented reality, and mixed reality.', NULL, 'email')
     ON CONFLICT DO NOTHING
     """,
     """

@@ -32,6 +32,12 @@
       <b-row>
     <EventBar v-bind:name="$route.params.name"></EventBar>
       </b-row>
+      <b-row v-if="item[0].website">
+      <b-col>
+        <h3>Other Websites</h3>
+        <a :href="'//' +item[0].website">{{item[0].website}}</a>
+      </b-col>
+      </b-row>
     </b-container>
   <b-container>
   </b-container>

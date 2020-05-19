@@ -15,6 +15,7 @@
         class="ml-auto">
         <b-nav-item-dropdown text="User" right >
           <b-dropdown-item to="/user" variant="dark">My Page</b-dropdown-item>
+          <b-dropdown-item to="/admin" variant="dark" v-if="loggedInAsAdmin">Admin Options</b-dropdown-item>
           <b-dropdown-item @click=logOut variant="dark"> Log out</b-dropdown-item>
         </b-nav-item-dropdown>
         </b-navbar-nav>
@@ -55,6 +56,7 @@ export default {
       username: '',
       password: '',
       failedLogin: false,
+      loggedInAsAdmin: false
     }
   },
   mounted() {
@@ -64,6 +66,7 @@ export default {
         //console.log(response.data);
         if (response.data != '') {
           this.loggedIn = true;
+          this.loggedInAsAdmin = (response.data[1] === 1) ? true : false;
         }
       })
       .catch(error => {console.log(error)});

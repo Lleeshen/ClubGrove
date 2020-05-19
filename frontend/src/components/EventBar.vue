@@ -4,9 +4,9 @@
       <b-col>
         <h3> {{ name }} Events </h3>
       </b-col>
-      <b-col cols="8" class= "border border-dark">
+      <b-col cols="8" class= "border border-dark bg-SCU">
         <b-card-group v-if="items && items.length > 0" style="margin: 10px">
-      <div v-for="item in items" :key="item.name">
+      <div v-for="item in lessEvent" :key="item.name">
         <Baseholder 
             v-bind:items="item" 
             isEvent="true">
@@ -67,7 +67,15 @@ export default {
       eventLink: function()
       {
           return this.name.concat("/events");
-      } 
+      },
+      lessEvent: function()
+      {
+        if(this.items)
+        {
+          return this.items.slice(0,3);
+        }
+        return [];
+      }
 
   },
   props: ['name']
@@ -77,6 +85,11 @@ export default {
 
 <style scoped>
 .border{
-  border-width: 2px !important;
+  border-width: 1px !important;
+}
+
+.bg-SCU
+{
+  background-color: #AFB781;
 }
 </style>
