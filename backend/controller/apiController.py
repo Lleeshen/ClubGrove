@@ -29,7 +29,7 @@ def getEvent2():
 def addEvent():
   name = request.get_json().get('name','')
   event = request.get_json().get('event','')
-  print(name,event)
+  LOG.debug(name,event)
   model.dbModel.addEvent(name,event)
   return jsonify('success')
 

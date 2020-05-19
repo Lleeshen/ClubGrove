@@ -70,7 +70,7 @@ h1, h2, h3 {
   padding: 10px;
 }
 
- .decription-content {
+.description-content {
   background-color: #CECECE;
   padding: 10px;
   text-align: left;
@@ -78,11 +78,40 @@ h1, h2, h3 {
   border: solid 1px;
 }
 
-.description-content {
-  background-color: #CECECE;
-  padding: 10px;
-  text-align: left;
-  color: black;
-  border: solid 1px;
+.btn-custom {
+  background-color: #B50043 !important;
+  color: #F3F3F3 !important;
+}
+
+.btn-custom:hover{
+  background-color: #D51154 !important;
+  color: #FBFBFB !important;
+}
+
+.btn-customBlack {
+  background-color: #000000 !important;
+  color: #F3F3F3 !important;
+}
+
+.btn-customBlack:hover{
+  background-color: #AAAAAA !important;
+  color: #FBFBFB !important;
+}
+
+.pagination > li > a
+{
+  background-color: white;
+  color: #000000;
+}
+.pagination > li > a:hover,
+.pagination > li > a:active
+{
+  color: #000000 !important;
+}
+
+.pagination > .active > a
+{
+  background-color: #777777 !important;
+  color: #F3F3F3 !important;
 }
 </style>

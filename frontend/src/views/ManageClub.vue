@@ -13,8 +13,9 @@
           <br><br>
           <b-row>
           <b-col class="club-page text-left">
-          <h3>Requests</h3>
+          <h3>Responsibilities</h3>
               <b-button class = "float-left" size="sm" style="margin-bottom: 5px;" v-b-modal.modal-1>Accept Requests</b-button>
+              <b-button class = "float-left" size="sm" style="margin-left: 5px;" :to="link">Manage Events</b-button>
           </b-col>
           </b-row>
         </b-col>
@@ -160,6 +161,16 @@ export default {
         console.log("Club does not have a picture");
       }
       return require("@/assets/noImage.png")
+    }
+  },
+  computed:
+  {
+    link: function(){
+      if(this.item)
+      {
+        return "/club/" + this.item[0].name + "/events/manage";
+      }
+      return "/";
     }
   }
 

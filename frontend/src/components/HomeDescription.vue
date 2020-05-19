@@ -22,7 +22,7 @@
   <b-col cols="10">
   <div class="description">
   <h2>Searching Clubs and Events</h2>
-  <div class="decription-content">
+  <div class="description-content">
     <p>Near the top of the page, there is a link called "Club Search" where you can search for
     clubs. Clicking it will take you to show the available clubs. In the same general area,
     there is a link called "Event Search". Clicking it will take you will show you all the events.

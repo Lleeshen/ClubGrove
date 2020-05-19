@@ -2,10 +2,19 @@
   <b-container fluid class="mainPage">
     <b-row>
       <b-col>
-        <h3> Club  {{ name }} </h3>
-      </b-col>
-      <b-col cols="9">
-        <b-table bordered hover :items='items' :fields='fields'></b-table>
+        <h3> Club  {{ name }}  Events</h3>
+        <b-table bordered hover 
+          :items='items' 
+          :fields='fields'
+          :per-page="perPage"
+          :current-page="currentPage"
+          id="event-table"></b-table>
+        <b-pagination
+        v-model="currentPage"
+        :total-rows="rows"
+        :per-page="perPage"
+        aria-controls="event-table"
+        ></b-pagination>
       </b-col>
     </b-row>
   </b-container>
@@ -25,6 +34,8 @@ export default {
         {key: 'starttime', label: 'Start Time'},
         {key: 'endtime', label: 'End Time'}
       ],
+      perPage: 8,
+      currentPage: 1,
       items: null
     }
   },

@@ -13,6 +13,7 @@
       v-model="currentPage"
       :total-rows= "totalRows"
       :per-page="perPage"
+      variant="customBlack"
   ></b-pagination>
   </div>
 </template>

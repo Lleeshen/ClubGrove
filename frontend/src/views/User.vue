@@ -12,8 +12,16 @@
         <b-col class = "border">
           <h3>Info</h3>
            Email: {{user2[0]}} <br><br>
-           <b-button class = "float-left" size="sm" style="margin-bottom: 5px;" v-b-modal.modal-2>Pending Requests</b-button> <br><br>
-           <b-button class = "float-left" size="sm" style="margin-bottom: 5px;" v-b-modal.modal-1>Interested Clubs</b-button>
+           <b-button class = "float-left" 
+            variant="customBlack"
+            size="sm" 
+            style="margin-bottom: 5px;"
+            v-b-modal.modal-2>Pending Requests</b-button> <br><br>
+           <b-button class = "float-left" 
+            variant="customBlack"
+            size="sm" 
+            style="margin-bottom: 5px;" 
+            v-b-modal.modal-1>Interested Clubs</b-button>
         </b-col>
         </b-row>
         </b-col>

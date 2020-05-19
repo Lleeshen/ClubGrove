@@ -26,7 +26,7 @@
       </b-card-group>
       </b-col>
       <b-col>
-      <b-button v-bind:to="eventLink" class="mt-auto">More Club events</b-button>
+      <b-button v-bind:to="eventLink" class="mt-auto" variant="custom">More Club events</b-button>
       </b-col>
     </b-row>
   </b-container>

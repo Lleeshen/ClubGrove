@@ -143,10 +143,10 @@ def initTable():
      'Fun Club',
       1
     ),(
-      'Test1',
+      'Fun Club',
       2
     ),(
-      'Test1',
+      'Fun Club',
       3
     )
     ON CONFLICT DO NOTHING
