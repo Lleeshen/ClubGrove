@@ -27,15 +27,15 @@ def getEvent2():
 
 @bp.route('addEvent',methods=['POST'])
 def addEvent():
-  return ['success']
+  return jsonify('success')
 
 @bp.route('editEvent',methods=['POST'])
 def editEvent():
-  return ['success']
+  return jsonify('success')
 
 @bp.route('deleteEvent',methods=['POST'])
 def deleteEvent():
-  return ['success']
+  return jsonify('success')
 
 @bp.route('/getLeader',methods=['GET'])
 def getLeader():
