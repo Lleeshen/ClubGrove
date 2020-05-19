@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="searchBar">
-      <b-form inline action="/events">
+      <b-form inline action="/events" @submit.prevent="updateEvent">
         <label class="sr-only" for="searchTerm">Event Name</label>
         <b-form-input class="searchFormElt" v-model="eventName" id="searchTerm" placeholder="Event name"></b-form-input>
         <!--<label class="sr-only" for="searchDescription">Event Description</label>
@@ -11,22 +11,39 @@
         <b-form-select class="searchFormElt" v-model="selectedSortOption" :options="sortOptions" id="sortOption"></b-form-select>
         <label for="sortOptionT">Type</label>
         <b-form-select class="searchFormElt" v-model="selectedType" :options="sortOptionsType" id="sortOptionT"></b-form-select>
-        <b-button class="searchFormElt" variant="secondary" v-on:click="updateEvent">Search</b-button>
+        <b-button class="searchFormElt" variant="secondary" type="submit">Search</b-button>
       </b-form>
     </div>
     <h2> Event Results </h2>
-    <b-table bordered hover :items="items" :fields ="fields"></b-table>
+    <BasicholderPage v-if="hasitems()"
+    :items="items"
+    :isEvent="isevent">
+    </BasicholderPage>
+    <div v-else>
+      No results
+    </div>
+    <!--
+    <b-card-group deck v-if="items" style="margin: 10px">
+      <div v-for="item in items">
+        <Baseholder v-bind:items="item" 
+        :isEvent="false"></Baseholder>
+      </div>
+    </b-card-group>
+    -->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import Baseholder from '../components/Baseholder'
+import BasicholderPage from '../components/BasicholderPage'
 
 export default {
   name: 'eventSearch',
+  components: {Baseholder,BasicholderPage},
   data() {
     return {
-      eventName: null,
+      eventName: "",
       //searchDescription: null,
       selectedType: 'name',
       selectedSortOption: 'true',
@@ -48,7 +65,8 @@ export default {
       ],
       items: [
         { Name: 'Food Run', Description: 'Come get food with us at Cupertino, rides provided', startTime: '2/12/20 5:00 PM', endTime: '2/12/20 7:00 PM', location: 'Shappell Center' },
-      ]
+      ],
+      isevent: true
     }
   },
   methods:{
@@ -66,6 +84,14 @@ export default {
         .then(response => {this.items = response.data;
         console.log(response) })
         .catch(error => {console.log(error)})
+    },
+    hasitems()
+    {
+      if(this.items && Array.isArray(this.items) && this.items.length >=1 )
+      {
+        return true;
+      }
+      return false;
     }
   },
   mounted() {
@@ -94,6 +120,11 @@ h2 {
 
 .searchFormElt {
   margin: 0 10px 0 10px;
+}
+
+#searchBar
+{
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 </style>

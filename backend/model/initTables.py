@@ -13,9 +13,7 @@ def initTable():
     """,
     """
     INSERT INTO club VALUES
-    ('Test0','Test0',NULL,'k'),
-    ('Test1','Test1','s','k'),
-    ('Fun Club','',NULL,'k'),
+    ('Fun Club','','www.example.com','k'),
     ('Chinese Student Association',
     'The Chinese Student Association (CSA) aims to 
     educate about diversity, as well as to support 
@@ -28,7 +26,29 @@ def initTable():
     'We promote a sustainable lifestyle in an urban setting through eating locally and enjoying the outdoors.',NULL,'k'),
     ('Commuter Student Union', 
     'The Commuter Student Union serves as a centralized hub for commuters to link with one another, 
-    integrate into the student community and discuss important commuting-related issues.',NULL,'k')
+    integrate into the student community and discuss important commuting-related issues.',NULL,'k'),
+    ('Association for Computing Machinery', 
+    'ACM, the world''s largest educational and scientific computing society, delivers resources that advance computing as a 
+    science and a profession. ACM provides the computing field''s premier Digital Library and serves its members and the computing 
+    profession with leading-edge publications, conferences, and career resources.',NULL,'email'),
+    ('Engineers Without Borders', 
+    'Our vision is a world in which the communities we serve have the capacity to sustainably meet their basic human needs, and that 
+    our members have enriched global perspectives through the innovative, professional, and educational opportunities in which we engage.',NULL,'email'),
+    ('Psychology Club', 
+    'Psychology Club provides fun events and interesting faculty talks for students who are interested in psychology.',NULL,'email'),
+    ('SCU Gaming Guild', 
+    'A relaxed, "kick-back" style of gaming club, where people can come in and play games, talk about games, and make new friends.',NULL,'email'),
+    ('SCU Climbing', '',NULL,'email'),
+    ('Innovator''s Student Union', '',NULL,'email'),
+    ('Association of Transfer Students', 'The Association of Transfer Students aims to give transfer students a voice campus and help them feel connected',NULL,'email'),
+    ('SCU Chess Club', 'To provide the Santa Clara student body with an organized venue to practice and learn the great game of chess.',NULL,'email'),
+    ('Clara Craft Club', 'Provide an inclusive, stress-free environment for the community of Santa Clara University and to encourage creativity through 
+    Do-It-Yourself (DIY) arts and crafts projects. CCC will cater to member craft requests to foster an inclusive and communicative atmosphere.',NULL,'email'),
+    ('History Club', 'The club aims to provide a social space beyond the classroom for students of all majors to share their passion for history and satisfy their 
+    curiosity about how the past can inform our understanding of the present.',NULL,'email'),
+    ('Santa Clara University Mock Trail Team','Provide students with the opportunity to learn about the nature and process of litigation through a study of the federal rules of evidence, 
+    coaching from experienced lawyers, and simulated trial experiences (organized by the American Mock Trial Association).', NULL, 'email'),
+    ('VRONCOS','To engage SCU students who are interested in various aspects of virtual reality, augmented reality, and mixed reality.', NULL, 'email')
     ON CONFLICT DO NOTHING
     """,
     """
@@ -58,54 +78,69 @@ def initTable():
       '1:00:00',
       '2:00:00',
       'Benson',
-      'Not Much ok'
-      ),(
-        3,
-        'Hello World',
-        '3:00:00',
-        '4:00:00',
-        'Zoom',
-        'Learn to Code'
-      )
+      'Not Much ok'),(
+      3,
+      'Racing',
+      '5:00:00',
+      '10:00:00',
+      'Benson',
+      'Running in the 90s'),(
+      4,
+      'SSBM Tournament',
+      '12:00:00',
+      '14:00:00',
+      'Benson',
+      '4 stocks, No items on, Fox only, Final Destination'),(
+      5,
+      'Scavenger Hunt',
+      '12:00:00',
+      '14:00:00',
+      'Benson',
+      'I do not not want to collect eggs, they are trash- Animal Crossing')
     ON CONFLICT DO NOTHING
     """,
     """
     INSERT INTO interested VALUES(
       'test0@gmail.com',
-      'Test0'
+      'Chinese Student Association'
     )
     ON CONFLICT DO NOTHING
     """,
     """
     INSERT INTO requests VALUES(
       'test0@gmail.com',
-      'Test0'
+      'Fun Club'
     )
     ON CONFLICT DO NOTHING
     """,
     """
       INSERT INTO memberships VALUES(
       'test1@gmail.com',
-      'Test0'
+      'Fun Club'
+    ),
+    (
+      'test0@gmail.com',
+      'SCU Chess Club'
     )
     ON CONFLICT DO NOTHING
     """,
     """
     INSERT INTO leaders VALUES(
-      'test1@gmail.com','Test1'
-    )
+      'test1@gmail.com','Chinese Student Association'
+    ),
+     ('test1@gmail.com','Fun Club')
     ON CONFLICT DO NOTHING
     """,
     """
     INSERT INTO advising VALUES(
       'a@gmail.com',
-      'Test0'
+      'Chinese Student Association'
     )
     ON CONFLICT DO NOTHING
     """,
     """
     INSERT INTO clubevents VALUES(
-     'Test0',
+     'Fun Club',
       1
     ),(
       'Test1',
@@ -118,7 +153,7 @@ def initTable():
     """,
     """
     INSERT INTO clubkeywords VALUES
-    ('Test0','Sports')
+    ('Fun Club','Sports')
     ON CONFLICT DO NOTHING
     """,
     #5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8 is sha256 hash of password

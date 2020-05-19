@@ -6,7 +6,7 @@ import logging
 LOG = logging.getLogger(__name__)
 
 bp = Blueprint('apiController', __name__, url_prefix='/api')
-
+#get events
 @bp.route('/getEvents',methods=['POST'])
 def getEvent():
   clubName = request.get_json().get('nm','')
@@ -58,6 +58,7 @@ def getLeader():
     LOG.debug(res)
   return jsonify(res)
 
+#managing clubs
 @bp.route('/addClub',methods=['POST'])
 def addClub():
   clubName = request.get_json().get('name','')
@@ -72,6 +73,14 @@ def deleteClub():
   clubName = request.get_json().get('name','')
   model.dbModel.deleteClub(clubName)
   return jsonify('success')
+
+#club requests
+@bp.route('/generateClubRequest',methods=['POST'])
+def requestGenerateClub():
+  clubName = request.get_json().get('name','')
+  email = request.get_json().get('email','')
+  model.dbModel.generateRequest(clubName,email)
+  return jsonify('success') 
 
 @bp.route('/acceptClubRequest',methods=['POST'])
 def requestAddClub():
@@ -101,3 +110,21 @@ def interestedRemoveClub():
   email = request.get_json().get('email','')
   model.dbModel.notInterested(clubName, email)
   return jsonify('success')
+
+@bp.route('/interested',methods=['POST'])
+def interestedGenerateClub():
+  clubName = request.get_json().get('name','')
+  email = request.get_json().get('email','')
+  model.dbModel.generateInterested(clubName, email)
+  return jsonify('success')
+
+#club membership
+@bp.route('/isMemberOrRequested/<club>', methods=['GET'])
+def isMemorReq(club):
+  res = []
+  LOG.debug(session)
+  if 'username' in session:
+    current_app.logger.warn(request.args.to_dict())
+    res = model.dbModel.requestOrMember(club, session['username'], **request.args.to_dict())
+    LOG.debug(res)
+  return jsonify(res)

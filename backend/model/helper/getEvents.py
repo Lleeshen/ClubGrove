@@ -53,13 +53,14 @@ def getEventListWithID(clubName, **kargs):
     return result
 
 def getEventList2(**kwargs):
+    #solve case insesnity
     con = startdb.startdb()
     checkNamestatement = """
     SELECT name, description, place, starttime, endtime
         FROM events
     """
     if 'event' in kwargs and not kwargs['event'] == 'null':
-        checkNamestatement += 'Where name LIKE %s'
+        checkNamestatement += 'Where name ILIKE %s'
     if 'sort' in kwargs and kwargs['sort'] == 'false' or kwargs['sort'] == 'None':
         checkNamestatement += " ORDER BY {table_name} DESC"
     else:
@@ -73,6 +74,7 @@ def getEventList2(**kwargs):
         sqlState = sql.SQL(checkNamestatement).format(table_name = sql.Identifier('name'))
     if 'event' in kwargs:
         cur.execute(sqlState,('%' + kwargs['event'] + "%",))
+        LOG.debug(sqlState)
     else:
         cur.execute(sqlState)
     result = []

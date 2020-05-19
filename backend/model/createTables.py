@@ -15,7 +15,7 @@ def createTable():
     """,
     """
     CREATE TABLE IF NOT EXISTS club (
-      name VARCHAR(30) PRIMARY KEY NOT NULL,
+      name VARCHAR(50) PRIMARY KEY NOT NULL,
       description VARCHAR(400) NOT NULL,
       website varchar(30),
       email varchar(20) NOT NULL
@@ -39,54 +39,54 @@ def createTable():
       starttime TIME NOT NULL,
       endtime TIME NOT NULL,
       place VARCHAR(30) NOT NULL,
-      description VARCHAR(50) NOT NULL
+      description VARCHAR(350) NOT NULL
     )
     """,
     """
     CREATE TABLE IF NOT EXISTS interested (
       email VARCHAR(20) REFERENCES student(email),
-      name VARCHAR(30) REFERENCES club(name),
+      name VARCHAR(50) REFERENCES club(name),
       PRIMARY KEY (email, name)
     )
     """,
     """
     CREATE TABLE IF NOT EXISTS requests (
       email VARCHAR(20) REFERENCES student(email),
-      name VARCHAR(30) REFERENCES club(name),
+      name VARCHAR(50) REFERENCES club(name),
       PRIMARY KEY (email, name)
     )
     """,
     """
     CREATE TABLE IF NOT EXISTS memberships (
       email VARCHAR(20) REFERENCES student(email),
-      name VARCHAR(30) REFERENCES club(name),
+      name VARCHAR(50) REFERENCES club(name),
       PRIMARY KEY (email, name)
     )
     """,
     """
     CREATE TABLE IF NOT EXISTS leaders (
       email VARCHAR(20) REFERENCES student(email),
-      name VARCHAR(30) REFERENCES club(name),
+      name VARCHAR(50) REFERENCES club(name),
       PRIMARY KEY (email, name)
     )
     """,
     """
     CREATE TABLE IF NOT EXISTS advising (
       email VARCHAR(20) REFERENCES faculty(email),
-      name VARCHAR(30) REFERENCES club(name),
+      name VARCHAR(50) REFERENCES club(name),
       PRIMARY KEY (email, name)
     )
     """,
     """
     CREATE TABLE IF NOT EXISTS clubevents (
-      name VARCHAR(30) REFERENCES club(name),
+      name VARCHAR(50) REFERENCES club(name),
       id INT REFERENCES events(id),
       PRIMARY KEY (name, id)
     )
     """,
     """
     CREATE TABLE IF NOT EXISTS clubkeywords (
-      name VARCHAR(30) REFERENCES club(name),
+      name VARCHAR(50) REFERENCES club(name),
       keywords VARCHAR(20) REFERENCES keywords(keywords),
       PRIMARY KEY (name, keywords)
     )
