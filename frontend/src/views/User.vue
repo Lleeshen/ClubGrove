@@ -1,17 +1,21 @@
 <template>
   <div v-if="isValid">
-     <b-container fluid>
+     <b-container fluid class="ml-1">
      <b-row class= "club-page text-left">
         <b-col>
           <h2>User Page</h2>
         </b-col>
       </b-row>
       <b-row class= "club-page text-left">
-        <b-col sm="3" class = "border">
+        <b-col sm="3">
+        <b-row>
+        <b-col class = "border">
           <h3>Info</h3>
            Email: {{user2[0]}} <br><br>
            <b-button class = "float-left" size="sm" style="margin-bottom: 5px;" v-b-modal.modal-2>Pending Requests</b-button> <br><br>
            <b-button class = "float-left" size="sm" style="margin-bottom: 5px;" v-b-modal.modal-1>Interested Clubs</b-button>
+        </b-col>
+        </b-row>
         </b-col>
         <b-col>
         <BasicClubSearch v-bind:user="user2[0]"></BasicClubSearch>
@@ -24,9 +28,9 @@
     </b-container>
   <b-container>
   </b-container>
-  <b-modal id="modal-2" title="Pending Request" ok-only>
+  <b-modal id="modal-2" title="Pending Requests" ok-only>
     <p>
-        Here are a list of request:
+        Here are a list of pending request:
     </p>
     <div v-if= "requests">
       <div v-for="item in requests">
@@ -43,7 +47,7 @@
     </b-modal>
   <b-modal id="modal-1" title="Interested Clubs" ok-only>
     <p>
-        Here what you are intereseted in:
+        Here what you are interested in:
     </p>
     <div v-if= "interested">
       <div v-for="item in interested">

@@ -60,3 +60,21 @@ def requestMange(clubName, email, isAccept, section = "request"):
   con.commit()
   con.close()
   return
+
+def addInterested(clubName, email):
+  con = startdb.startdb()
+  SQLstatement = " INSERT INTO interested VALUES (%s,%s) "
+  cur = con.cursor(cursor_factory=psycopg2.extras.DictCursor)
+  cur.execute(SQLstatement,(email, clubName))
+  cur.close()
+  con.commit()
+  con.close()
+
+def removeInterested(clubName, email):
+  con = startdb.startdb()
+  SQLstatement = "DELETE from interested where name= %s and email = %s"
+  cur = con.cursor(cursor_factory=psycopg2.extras.DictCursor)
+  cur.execute(SQLstatement,(clubName, email))
+  cur.close()
+  con.commit()
+  con.close()

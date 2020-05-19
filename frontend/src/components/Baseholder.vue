@@ -1,22 +1,34 @@
 <template>
   <div v-if="hasParams()">
-    <b-card 
-      style="width: 20rem; height: 15rem" 
-      class="text-center" 
+    <b-card no-body
+      style="width: 20rem; height: 17rem""  
+      class="text-center d-flex flex-column" 
       v-bind:header= "items.name"
       border-variant="dark"
       bg-variant="light">
-    <b-card-text class="text-left">
-      {{shortenDescript()}}
-        <div v-if= "hasEventParams()">
-        Place: {{items.place}} <br>
-        Start Time: {{items.starttime}} <br>
-        End Time: {{items.starttime}}
+      <b-card-body class="d-flex flex-column" 
+        style="height: 8rem">
+        <b-card-text class="text-left">
+        <div v-if="items.description">
+          Summary: {{shortenDescript()}}
         </div>
-    </b-card-text>
-    <div v-if= "!isEvent">
-    <b-button v-bind:to="link" class="mt-auto">To club Page</b-button>
-    </div>
+        <div v-else>
+          No Description
+        </div>
+        <div v-if= "hasEventParams()">
+          Place: {{items.place}} <br>
+          Start Time: {{items.starttime}} <br>
+          End Time: {{items.starttime}}
+        </div>
+        </b-card-text>
+      </b-card-body>
+      <b-card-body>
+      <div v-if="!isEvent">
+        <b-button v-bind:to="link" class="align-self-end mt-auto">To club Page</b-button>
+      </div>
+      <div v-else-if= "isEvent">
+      </div>
+    </b-card-body>
   </b-card>
     
   </div>
@@ -36,8 +48,7 @@ export default {
   {
       hasParams: function() 
       {
-          if(this.items && this.items.name
-            && this.items.description)
+          if(this.items && this.items.name)
             {
                 return true;
             }
@@ -72,7 +83,7 @@ export default {
   {
       link: function()
       {
-          return "club/" + encodeURI(this.items.name);
+        return "club/" + encodeURI(this.items.name);
       }
 
   }
