@@ -1,6 +1,6 @@
 <template>
 <b-container fluid style="border: .5px solid grey; margin: 10px" >
-    <b-row class = "row align-items-center" style="background: lightblue">
+    <b-row class = "row align-items-center" style="background: antiquewhite">
       <b-col>
         <h3> {{ name }} Events </h3>
       </b-col>

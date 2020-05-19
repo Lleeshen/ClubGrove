@@ -112,6 +112,10 @@ def initTable():
       INSERT INTO memberships VALUES(
       'test1@gmail.com',
       'Fun Club'
+    ),
+    (
+      'test0@gmail.com',
+      'SCU Chess Club'
     )
     ON CONFLICT DO NOTHING
     """,

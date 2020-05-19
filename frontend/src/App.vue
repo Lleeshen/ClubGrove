@@ -71,7 +71,15 @@ h1, h2, h3 {
 }
 
  .decription-content {
-  background-color: #c7c7c7;
+  background-color: #CECECE;
+  padding: 10px;
+  text-align: left;
+  color: black;
+  border: solid 1px;
+}
+
+.description-content {
+  background-color: #CECECE;
   padding: 10px;
   text-align: left;
   color: black;

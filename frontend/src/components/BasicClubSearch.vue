@@ -8,6 +8,9 @@
         <b-form-select class="searchFormElt" v-model="selectedClubCat" :options="clubCatOptions" id="clubCategory"></b-form-select>
         <label for="sortOption">Sorting Option</label>
         <b-form-select class="searchFormElt" v-model="selectedSortOption" :options="sortOptions" id="sortOption"></b-form-select>
+        <label for="typeCategory" v-if="user">Status in Club</label>
+         <b-form-select class="searchFormElt" v-model="selectedUserOption" :options="userOptions" id="typeCategory" 
+        v-if="user"></b-form-select>
         <b-button class="searchFormElt" variant="secondary" type="submit">Search</b-button>
       </b-form>
     </div>
@@ -48,6 +51,11 @@ export default {
         { value: 'ASC', text: 'Alphabetical ascending'},
         { value: 'DESC', text: 'Alphabetical descending'},
       ],
+      userOptions: [
+        { value: 'All', text: 'Show All'},
+        { value: 'Member', text: 'Show member'}
+      ],
+      selectedUserOption: 'All',
       items: null,
       isUser: false
     }
@@ -85,7 +93,8 @@ export default {
           'searchTerm': this.clubName,
           'keyword': this.selectedClubCat,
           'sort': this.selectedSortOption,
-          'user': this.user
+          'user': this.user,
+          'type': this.selectedUserOption
         })
         .then(response => {
           //console.log(response.data);

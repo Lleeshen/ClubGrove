@@ -7,7 +7,7 @@
       border-variant="dark"
       bg-variant="light">
       <b-card-body class="d-flex flex-column" 
-        style="height: 7rem">
+        style="height: 8rem">
         <b-card-text class="text-left">
         <div v-if="items.description">
           Summary: {{shortenDescript()}}

@@ -9,7 +9,9 @@
       <b-row class= "club-page text-center">
         <b-col v-if="hasitem()">
           <h3>Description</h3>
+          <div class ="text-left">
           {{item[0].description}}
+          </div>
         </b-col>
         <b-col cols="5">
           <img :src="image()" style = "max-width: 100%">
