@@ -1,5 +1,5 @@
 from . import createTables, dropTables, initTables, clearTables, clubCategories, clubSearch, checkLogin
-from .helper import getEvents, viewSelection, viewTables, changeClubs, users, requestMange, getleader
+from .helper import getEvents, viewSelection, viewTables, changeClubs, users, requestMange, getleader, eventManage
 
 
 class db:
@@ -26,6 +26,8 @@ class db:
     return getEvents.getEventList(clubName, **kwargs)
   def getEventfromClub2(self, **kwargs):
     return getEvents.getEventList2(**kwargs)
+  def getEventfromClub3(self,clubName, **kwargs):
+    return getEvents.getEventListWithID(clubName, **kwargs)
   def viewRow(self, tableName, primaryId):
     return viewSelection.viewRow(tableName,primaryId)
 
@@ -36,7 +38,9 @@ class db:
       changeClubs.deleteClub(name)
   def checkLogin(self,username,password):
     return checkLogin.checkLogin(username,password)
-
+  def loginLeader(self,clubLeader,clubName):
+    return checkLogin.loginLeader(clubLeader,clubName)
+  
   #interested and requests
   def generateRequest(self,clubName,email):
     return requestMange.add(clubName,email)
@@ -62,6 +66,12 @@ class db:
   #leader information
   def getLeader(self, user, **kwargs):
     return getleader.view(user, **kwargs)
+  def addEvent(self, clubName, event, **kwargs):
+    eventManage.addEvent(clubName, event, **kwargs)
+  def editEvent(self, eventId, event, **kwargs):
+    eventManage.editEvent(eventId, event, **kwargs)
+  def deleteEvent(self, eventId, **kwargs):
+    eventManage.deleteEvent(eventId, **kwargs)
 
 dbModel = db()
 # dbModel.init()

@@ -84,7 +84,6 @@ export default {
     this.$axios
       .get('http://localhost:5000/db/view/club')
       .then(response => {
-        console.log(response.data);
         if(this.loggedInAsAdmin) {
           if(typeof response.data !== "string"){
             this.items = response.data;

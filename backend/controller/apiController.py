@@ -13,11 +13,40 @@ def getEvent():
   res = model.dbModel.getEventfromClub(clubName)
   return jsonify(res)
 
+@bp.route('/getEvents3',methods=['POST'])
+def getEvent3():
+  clubName = request.get_json().get('nm','')
+  res = model.dbModel.getEventfromClub3(clubName)
+  return jsonify(res)
+
 @bp.route('/getEvents2',methods=['GET'])
 def getEvent2():
   current_app.logger.warn(request.args.to_dict())
   res = model.dbModel.getEventfromClub2(**request.args.to_dict())
   return jsonify(res)
+
+@bp.route('addEvent',methods=['POST'])
+def addEvent():
+  name = request.get_json().get('name','')
+  event = request.get_json().get('event','')
+  print(name,event)
+  model.dbModel.addEvent(name,event)
+  return jsonify('success')
+
+@bp.route('editEvent',methods=['POST'])
+def editEvent():
+  eventId = request.get_json().get('id','')
+  event = request.get_json().get('event','')
+  print(eventId,event)
+  model.dbModel.editEvent(eventId,event)
+  return jsonify('success')
+
+@bp.route('deleteEvent',methods=['POST'])
+def deleteEvent():
+  eventId = request.get_json().get('id','')
+  model.dbModel.deleteEvent(eventId)
+  print(eventId)
+  return jsonify('success')
 
 @bp.route('/getLeader',methods=['GET'])
 def getLeader():
@@ -99,4 +128,3 @@ def isMemorReq(club):
     res = model.dbModel.requestOrMember(club, session['username'], **request.args.to_dict())
     LOG.debug(res)
   return jsonify(res)
-

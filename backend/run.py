@@ -82,6 +82,13 @@ def checkLoginStatus():
   else:
     return jsonify('')
 
+@app.route('/api/loginLeader',methods=['GET'])
+def leadingClubs():
+  clubLeader = request.args.get('name','')
+  clubName = request.args.get('clubName','')
+  res = model.dbModel.loginLeader(clubLeader,clubName)
+  return jsonify(res)
+
 @app.route('/',defaults={'path': ''},methods=['GET'])
 @app.route('/<path:path>')
 def home(path):

@@ -142,6 +142,12 @@ def initTable():
     INSERT INTO clubevents VALUES(
      'Fun Club',
       1
+    ),(
+      'Test1',
+      2
+    ),(
+      'Test1',
+      3
     )
     ON CONFLICT DO NOTHING
     """,

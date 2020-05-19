@@ -16,3 +16,22 @@ def checkLogin(username,password):
   cur.close()
   con.close()
   return result
+
+def loginLeader(clubLeader,clubName):
+  con = startdb.startdb()
+  clubLeadStatement = """
+      SELECT name FROM leaders
+      WHERE email = %s AND
+      leaders.name = %s
+  """
+  cur = con.cursor(cursor_factory=psycopg2.extras.DictCursor)
+  cur.execute(clubLeadStatement,(clubLeader,clubName))
+  result = []
+  item = cur.fetchall()
+  column = [desc[0] for desc in cur.description]
+  for row in item:
+      result.append(dict(zip(column,row)))
+  cur.close()
+  con.close()
+  print(result)
+  return result

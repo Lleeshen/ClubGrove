@@ -29,6 +29,29 @@ def getEventList(clubName, **kargs):
     print(result)
     return result
 
+def getEventListWithID(clubName, **kargs):
+    con = startdb.startdb()
+
+    checkNamestatement = """
+        SELECT id, name, description, place, starttime, endtime
+        FROM events
+        WHERE id IN (SELECT id
+        FROM clubevents
+        WHERE name = %s)
+    """
+
+    cur = con.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    cur.execute(checkNamestatement,(clubName,))
+    result = []
+    item = cur.fetchall()
+    column = [desc[0] for desc in cur.description]
+    for row in item:
+        result.append(dict(zip(column,row)))
+    cur.close()
+    con.close()
+    print(result)
+    return result
+
 def getEventList2(**kwargs):
     #solve case insesnity
     con = startdb.startdb()
@@ -42,7 +65,7 @@ def getEventList2(**kwargs):
         checkNamestatement += " ORDER BY {table_name} DESC"
     else:
         checkNamestatement += " ORDER BY {table_name} ASC"
-    
+   
     cur = con.cursor(cursor_factory=psycopg2.extras.DictCursor)
     sqlState = sql.SQL("")
     if 'name' in kwargs and kwargs['name']:
@@ -63,9 +86,9 @@ def getEventList2(**kwargs):
     cur.close()
     con.close()
     return result
-    
 
-        
+
+
 
 
 
