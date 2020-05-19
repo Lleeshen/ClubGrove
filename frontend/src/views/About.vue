@@ -19,14 +19,18 @@
     </b-row>
     <b-row>
     <b-col>
-    Le
+    Travis Le
     </b-col>
     <b-col>
+
     </b-col>
     </b-row>
     <b-row>
     <b-col>
-    Shen
+    Lyman Shen
+    </b-col>
+    <b-col>
+
     </b-col>
     </b-row>
     </b-container>
@@ -42,10 +46,10 @@
     </b-row>
     <b-row>
     <b-col>
-    Musurlian
+    Angela Musurlian
     </b-col>
     <b-col>
-    ""
+
     </b-col>
     </b-row>
     </b-container>

@@ -13,7 +13,7 @@ def initTable():
     """,
     """
     INSERT INTO club VALUES
-    ('Fun Club','','www.example.com','k'),
+    ('Fun Club','',NULL,'k'),
     ('Chinese Student Association',
     'The Chinese Student Association (CSA) aims to 
     educate about diversity, as well as to support 
@@ -23,7 +23,7 @@ def initTable():
      outreach to the Asian community through community 
      service events.',NULL,'k'),
     ('The Forge Garden Club', 
-    'We promote a sustainable lifestyle in an urban setting through eating locally and enjoying the outdoors.',NULL,'k'),
+    'We promote a sustainable lifestyle in an urban setting through eating locally and enjoying the outdoors.','www.scu.edu/sustainability/programs/theforge/','k'),
     ('Commuter Student Union', 
     'The Commuter Student Union serves as a centralized hub for commuters to link with one another, 
     integrate into the student community and discuss important commuting-related issues.',NULL,'k'),

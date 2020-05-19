@@ -7,7 +7,7 @@
   <b-col cols="7">
   <div class="description">
     <h2>What's Our Goal</h2>
-    <div class="decription-content">
+    <div class="description-content">
     <p>Our goal is to provide a accessible way join an organization.
       Building this website will help club officers, students, and guests
       to see what the clubs a particular school has. At first, this website is 

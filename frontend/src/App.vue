@@ -89,13 +89,19 @@ h1, h2, h3 {
 }
 
 .btn-customBlack {
-  background-color: #000000 !important;
+  background-color: #111111 !important;
   color: #F3F3F3 !important;
 }
 
 .btn-customBlack:hover{
-  background-color: #AAAAAA !important;
+  background-color: #888888 !important;
   color: #FBFBFB !important;
+}
+
+.btn-customBlack:disabled {
+  background-color: #AAAAAA !important;
+  color: #F3F3F3 !important;
+  pointer-events: none;
 }
 
 .pagination > li > a

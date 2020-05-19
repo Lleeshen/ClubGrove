@@ -46,6 +46,7 @@
       <b-col>
         <h3>Other Websites</h3>
         <a :href="'//' +item[0].website">{{item[0].website}}</a>
+        <br><br>
       </b-col>
       </b-row>
     </b-container>
