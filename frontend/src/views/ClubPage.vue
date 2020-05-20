@@ -23,6 +23,10 @@
         variant="custom"
         :to="link"
         >Manage Club</b-button>
+        <br /> <br />
+        <b-button variant="custom" 
+        :to="link2"
+        >Manage Club Events</b-button>
         </div>
         <div v-else-if="user">
         <h3>Join Options</h3>
@@ -129,7 +133,7 @@ export default {
       if(this.hasitem() && this.item[0].name)
       {
         this.$axios
-          .post('http://localhost:5000/api/interested',{'name': this.item[0].name, 
+          .post('http://localhost:5000/api/interested',{'name': this.item[0].name,
           'email': this.user[0]})
           .then(response => {
           console.log(response.data);
@@ -157,7 +161,7 @@ export default {
         else
         {
           this.$axios
-          .post('http://localhost:5000/api/generateClubRequest',{'name': this.item[0].name, 
+          .post('http://localhost:5000/api/generateClubRequest',{'name': this.item[0].name,
           'email': this.user[0]})
           .then(response => {//this.items = response.data;
           console.log(response.data);
@@ -203,7 +207,7 @@ export default {
       .then(response => {
         if(response.data.length >=1)
         {
-          this.isLeader = response.data[0].count; 
+          this.isLeader = response.data[0].count;
           console.log(response.data[0].count);
         }})
       .catch(error => {console.log(error)})
@@ -216,8 +220,14 @@ export default {
           return encodeURI(this.item[0].name) + "/manage";
         }
         return "#";
+      },
+      link2: function()
+      {
+        if(this.item){
+          return encodeURI(this.item[0].name) + "/events/manage";
+        }
+        return "#";
       }
-
   }
 }
 
