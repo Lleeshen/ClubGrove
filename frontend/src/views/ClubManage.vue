@@ -243,7 +243,7 @@ export default {
 <style scoped>
 .event {
   margin: 2px;
-  height: 30px;
+  height: 'auto';
   background-color:  aliceblue;
 }
 </style>
