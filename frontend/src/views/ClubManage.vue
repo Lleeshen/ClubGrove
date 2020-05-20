@@ -1,7 +1,7 @@
 <template>
   <div v-if="loggedInAsLeader">
     <b-container fluid>
-      <h2> Club  {{ name }} </h2>
+      <b-button :to="link" class="invisible"><h2 class="visible"> Club  {{ name }} </h2></b-button>
       <b-row>
         <b-col v-for="field in fields" :key="field.key">
           <h3>{{field['label']}}</h3>
@@ -235,7 +235,12 @@ export default {
         .catch(error => {console.log(error)});
     }
   },
-  props: ['name']
+  props: ['name'],
+  computed: {
+    link: function() {
+      return '..'
+    }
+  }
 }
 
 </script>
