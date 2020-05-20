@@ -20,10 +20,10 @@ def viewdbrow(tableName, number):
     res = model.dbModel.viewRow2(number, **request.args.to_dict())
   elif(tableName == "memberships"):
     if 'username' in session:
-
       res = model.dbModel.viewMembership(number, session['username'], **request.args.to_dict())
-      LOG.debug(number + session['username'])
+      LOG.debug(res)
     else:
+      LOG.debug('ok')
       return jsonify([])
   else:
     res = model.dbModel.viewRow(tableName,number)

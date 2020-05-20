@@ -35,10 +35,19 @@ def add(clubName, email):
   con.commit()
   con.close()
 
-def remove(clubName, email):
+def removeRM(clubName, email):
   con = startdb.startdb()
-  SQLstatement = "DELETE from requests where name= %s and email = %s"
+  SQLstatement = "Select * from leaders where name= %s and email = %s"
   cur = con.cursor(cursor_factory=psycopg2.extras.DictCursor)
+  cur.execute(SQLstatement,(clubName, email))
+  item = cur.fetchall()
+  if len(item) > 0:
+    cur.close()
+    con.close()
+    return
+  SQLstatement = "DELETE from requests where name= %s and email = %s"
+  cur.execute(SQLstatement,(clubName, email))
+  SQLstatement = "DELETE from memberships where name= %s and email = %s"
   cur.execute(SQLstatement,(clubName, email))
   cur.close()
   con.commit()

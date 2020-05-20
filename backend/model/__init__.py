@@ -44,6 +44,8 @@ class db:
   #interested and requests
   def generateRequest(self,clubName,email):
     return requestMange.add(clubName,email)
+  def removeRequestorMembership(self,clubName,email):
+    return requestMange.removeRM(clubName,email)
   def generateInterested(self,clubName,email):
     return requestMange.addInterested(clubName,email)
   def acceptRequest(self,clubName,email):
@@ -60,6 +62,8 @@ class db:
   #memeberships
   def viewMembership(self, clubname, email, **kwargs):
     return users.info(clubname, email, **kwargs)
+  def viewMembership2(self, email, **kwargs):
+    return users.viewMemberships(email, **kwargs)
   def requestOrMember(self, clubname, email, **kwargs):
     return users.requestOrMember(clubname, email, **kwargs)
   

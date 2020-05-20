@@ -21,7 +21,12 @@
             variant="customBlack"
             size="sm" 
             style="margin-bottom: 5px;" 
-            v-b-modal.modal-1>Interested Clubs</b-button>
+            v-b-modal.modal-1>Interested Clubs</b-button><br><br>
+            <b-button class = "float-left" 
+            variant="customBlack"
+            size="sm" 
+            style="margin-bottom: 5px;"
+            v-b-modal.modal-3>Memberships</b-button>
         </b-col>
         </b-row>
         </b-col>
@@ -36,6 +41,24 @@
     </b-container>
   <b-container>
   </b-container>
+  <b-modal id="modal-3" title="Memberships" ok-only>
+    <p>
+        Here are a list of clubs you are a part of:
+    </p>
+    <div v-if= "memberships">
+      <div v-for="item in memberships">
+          <b-container fluid >
+            <b-row>
+              <b-col> {{ item.name }} </b-col>
+              <b-col><b-button variant="customBlack" @click=" removeMembership(item.name)">Leave</b-button> </b-col>
+           </b-row>
+          </b-container>
+      </div>
+    </div>
+    <div v-else>
+      no
+    </div>
+    </b-modal>
   <b-modal id="modal-2" title="Pending Requests" ok-only>
     <p>
         Here are a list of pending request:
@@ -45,6 +68,7 @@
           <b-container fluid>
             <b-row>
               <b-col> {{ item.name }} </b-col>
+              <b-col><b-button variant="customBlack" @click=" removeMembership(item.name)">Leave</b-button> </b-col>
            </b-row>
           </b-container>
       </div>
@@ -62,7 +86,8 @@
           <b-container fluid>
             <b-row>
               <b-col> {{ item.name }} </b-col>
-              <b-col><b-button variant="primary" @click="addRequest(item.name)"> Join? </b-button> </b-col>
+              <b-col><b-button variant="customBlack" @click="addRequest(item.name)"> Join </b-button> </b-col>
+              <b-col><b-button variant="customBlack" @click="removeFrominterested(item.name)">Uninterested</b-button> </b-col>
            </b-row>
           </b-container>
           </div>
@@ -93,7 +118,8 @@ export default {
       user2: null,
       isValid: false,
       requests: null,
-      interested: null
+      interested: null,
+      memberships: null
 
     }
   },
@@ -111,6 +137,7 @@ export default {
           //console.log(self.user2[0]);
           self.getRequests(self.user2[0]);
           self.getinterested(self.user2[0]);
+          self.getMemberships(self.user2[0]);
         }
       })
     },
@@ -147,6 +174,18 @@ export default {
       })
       .catch(error => {console.log(error)});
     },
+    getMemberships(name){
+      var self = this;
+      var a = encodeURIComponent(name);
+      //console.log(name);
+      return axios
+      .get('http://localhost:5000/api/viewMembership')
+      .then(response => {
+        //console.log(response.data);
+        self.memberships = response.data;
+      })
+      .catch(error => {console.log(error)});
+    },
     addRequest(clubName)
     {
       console.log(clubName);
@@ -160,6 +199,42 @@ export default {
           if(response.data === "success") {
             console.log(self.interested);
             self.interested = self.interested.filter((club) => club.name !== clubName);
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        })
+    },
+    removeFrominterested(clubName)
+    {
+      console.log(clubName);
+      var self = this;
+      console.log(this.user2[0]);
+      console.log(this.interested);
+      this.$axios
+        .post('http://localhost:5000/api/notInterested',{'name': clubName, 'email': this.user2[0]})
+        .then(response =>{
+          //console.log(response.data);
+          if(response.data === "success") {
+            self.interested = self.interested.filter((club) => club.name !== clubName);
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        })
+    },
+    removeMembership(clubName)
+    {
+      console.log(clubName);
+      var self = this;
+      console.log(this.user2[0]);
+      console.log(this.interested);
+      this.$axios
+        .post('http://localhost:5000/api/removeClubRequest',{'name': clubName, 'email': this.user2[0]})
+        .then(response =>{
+         //console.log(response.data);
+         if(response.data === "success") {
+           self.requests = self.requests.filter((club) => club.name !== clubName);
           }
         })
         .catch(error => {
