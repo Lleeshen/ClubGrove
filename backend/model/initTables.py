@@ -46,7 +46,7 @@ def initTable():
     Do-It-Yourself (DIY) arts and crafts projects. CCC will cater to member craft requests to foster an inclusive and communicative atmosphere.',NULL,'email'),
     ('History Club', 'The club aims to provide a social space beyond the classroom for students of all majors to share their passion for history and satisfy their
     curiosity about how the past can inform our understanding of the present.',NULL,'email'),
-    ('Santa Clara University Mock Trail Team','Provide students with the opportunity to learn about the nature and process of litigation through a study of the federal rules of evidence,
+    ('Santa Clara University Mock Trial Team','Provide students with the opportunity to learn about the nature and process of litigation through a study of the federal rules of evidence,
     coaching from experienced lawyers, and simulated trial experiences (organized by the American Mock Trial Association).', NULL, 'email'),
     ('VRONCOS','To engage SCU students who are interested in various aspects of virtual reality, augmented reality, and mixed reality.', NULL, 'email')
     ON CONFLICT DO NOTHING
