@@ -7,8 +7,8 @@ def initTable():
   statements = (
     """
     INSERT INTO student VALUES
-    ('test0@gmail.com','John Doe','1111111111') ,
-    ('test1@gmail.com','John Doe','1111111112')
+    ('student@gmail.com','John Doe','1111111111') ,
+    ('leader@gmail.com','John Doe','1111111112')
     ON CONFLICT DO NOTHING
     """,
     """
@@ -67,24 +67,24 @@ def initTable():
     """
      INSERT INTO events VALUES(
       1,
-      'CLub Club',
+      'An Event',
       '10:00:00',
       '12:00:00',
       'Benson',
-      'Not Much'
+      'This is an event.'
     ),(
       2,
-      'CLub Club2',
+      'Club Event',
       '1:00:00',
       '2:00:00',
       'Benson',
-      'Not Much ok'),(
+      'A club event is happening.'),(
       3,
       'Racing',
       '5:00:00',
       '10:00:00',
       'Benson',
-      'Running in the 90s'),(
+      'Racing RC cars around the block'),(
       4,
       'SSBM Tournament',
       '12:00:00',
@@ -96,13 +96,13 @@ def initTable():
       '12:00:00',
       '14:00:00',
       'Benson',
-      'I do not not want to collect eggs, they are trash- Animal Crossing'),(
+      'The curse of hunting for easter eggs'),(
       6,
       'Food Run',
       '17:00:00',
       '20:00:00',
       'Shappell Lounge',
-      'Get food at Mitsuwa'
+      'Geting food at Mitsuwa'
       ),(
       7,
       'Culture Show',
@@ -115,34 +115,34 @@ def initTable():
     """,
     """
     INSERT INTO interested VALUES(
-      'test0@gmail.com',
+      'student@gmail.com',
       'Chinese Student Association'
     )
     ON CONFLICT DO NOTHING
     """,
     """
     INSERT INTO requests VALUES(
-      'test0@gmail.com',
+      'student@gmail.com',
       'Fun Club'
     )
     ON CONFLICT DO NOTHING
     """,
     """
       INSERT INTO memberships VALUES(
-      'test1@gmail.com',
+      'leader@gmail.com',
       'Fun Club'
     ),
     (
-      'test0@gmail.com',
+      'student@gmail.com',
       'SCU Chess Club'
     )
     ON CONFLICT DO NOTHING
     """,
     """
     INSERT INTO leaders VALUES(
-      'test1@gmail.com','Chinese Student Association'
+      'leader@gmail.com','Chinese Student Association'
     ),
-     ('test1@gmail.com','Fun Club')
+     ('leader@gmail.com','Association for Computing Machinery')
     ON CONFLICT DO NOTHING
     """,
     """
@@ -163,6 +163,9 @@ def initTable():
       'Fun Club',
       3
     ),(
+      'Association for Computing Machinery',
+      5
+    ),(
       'Chinese Student Association',
       6
     ),(
@@ -181,8 +184,8 @@ def initTable():
     INSERT INTO users VALUES
     ('llshen@scu.edu','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',0),
     ('admin@scu.edu','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',1),
-    ('test0@gmail.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',0),
-    ('test1@gmail.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',0)
+    ('student@gmail.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',0),
+    ('leader@gmail.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',0)
     ON CONFLICT DO NOTHING
     """
   )
