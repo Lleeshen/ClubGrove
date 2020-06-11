@@ -18,13 +18,13 @@
         <div v-if= "hasEventParams()">
           Place: {{items.place}} <br>
           Start Time: {{items.starttime}} <br>
-          End Time: {{items.starttime}}
+          End Time: {{items.endtime}}
         </div>
         </b-card-text>
       </b-card-body>
       <b-card-body>
       <div v-if="!isEvent">
-        <b-button v-bind:to="link" class="align-self-end mt-auto">To club Page</b-button>
+        <b-button v-bind:to="link" class="align-self-end mt-auto" variant="custom">To Club Page</b-button>
       </div>
       <div v-else-if= "isEvent">
       </div>
@@ -93,4 +93,5 @@ export default {
 .card {
   border: 2px;
 }
+
 </style>

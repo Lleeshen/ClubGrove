@@ -7,13 +7,13 @@ def initTable():
   statements = (
     """
     INSERT INTO student VALUES
-    ('test0@gmail.com','John Doe','1111111111') ,
-    ('test1@gmail.com','John Doe','1111111112')
+    ('student@gmail.com','John Doe','1111111111') ,
+    ('leader@gmail.com','John Doe','1111111112')
     ON CONFLICT DO NOTHING
     """,
     """
     INSERT INTO club VALUES
-    ('Fun Club','','www.example.com','k'),
+    ('Fun Club','',NULL,'k'),
     ('Chinese Student Association',
     'The Chinese Student Association (CSA) aims to
     educate about diversity, as well as to support
@@ -22,10 +22,10 @@ def initTable():
      students of Santa Clara University. CSA also promotes
      outreach to the Asian community through community
      service events.',NULL,'k'),
-    ('The Forge Garden Club',
-    'We promote a sustainable lifestyle in an urban setting through eating locally and enjoying the outdoors.',NULL,'k'),
-    ('Commuter Student Union',
-    'The Commuter Student Union serves as a centralized hub for commuters to link with one another,
+    ('The Forge Garden Club', 
+    'We promote a sustainable lifestyle in an urban setting through eating locally and enjoying the outdoors.','www.scu.edu/sustainability/programs/theforge/','k'),
+    ('Commuter Student Union', 
+    'The Commuter Student Union serves as a centralized hub for commuters to link with one another, 
     integrate into the student community and discuss important commuting-related issues.',NULL,'k'),
     ('Association for Computing Machinery',
     'ACM, the world''s largest educational and scientific computing society, delivers resources that advance computing as a
@@ -46,7 +46,7 @@ def initTable():
     Do-It-Yourself (DIY) arts and crafts projects. CCC will cater to member craft requests to foster an inclusive and communicative atmosphere.',NULL,'email'),
     ('History Club', 'The club aims to provide a social space beyond the classroom for students of all majors to share their passion for history and satisfy their
     curiosity about how the past can inform our understanding of the present.',NULL,'email'),
-    ('Santa Clara University Mock Trail Team','Provide students with the opportunity to learn about the nature and process of litigation through a study of the federal rules of evidence,
+    ('Santa Clara University Mock Trial Team','Provide students with the opportunity to learn about the nature and process of litigation through a study of the federal rules of evidence,
     coaching from experienced lawyers, and simulated trial experiences (organized by the American Mock Trial Association).', NULL, 'email'),
     ('VRONCOS','To engage SCU students who are interested in various aspects of virtual reality, augmented reality, and mixed reality.', NULL, 'email')
     ON CONFLICT DO NOTHING
@@ -67,24 +67,24 @@ def initTable():
     """
      INSERT INTO events VALUES(
       1,
-      'CLub Club',
+      'An Event',
       '10:00:00',
       '12:00:00',
       'Benson',
-      'Not Much'
+      'This is an event.'
     ),(
       2,
-      'CLub Club2',
+      'Club Event',
       '1:00:00',
       '2:00:00',
       'Benson',
-      'Not Much ok'),(
+      'A club event is happening.'),(
       3,
       'Racing',
       '5:00:00',
       '10:00:00',
       'Benson',
-      'Running in the 90s'),(
+      'Racing RC cars around the block'),(
       4,
       'SSBM Tournament',
       '12:00:00',
@@ -96,13 +96,13 @@ def initTable():
       '12:00:00',
       '14:00:00',
       'Benson',
-      'I do not not want to collect eggs, they are trash- Animal Crossing'),(
+      'The curse of hunting for easter eggs'),(
       6,
       'Food Run',
       '17:00:00',
       '20:00:00',
       'Shappell Lounge',
-      'Get food at Mitsuwa'
+      'Geting food at Mitsuwa'
       ),(
       7,
       'Culture Show',
@@ -115,34 +115,34 @@ def initTable():
     """,
     """
     INSERT INTO interested VALUES(
-      'test0@gmail.com',
+      'student@gmail.com',
       'Chinese Student Association'
     )
     ON CONFLICT DO NOTHING
     """,
     """
     INSERT INTO requests VALUES(
-      'test0@gmail.com',
+      'student@gmail.com',
       'Fun Club'
     )
     ON CONFLICT DO NOTHING
     """,
     """
       INSERT INTO memberships VALUES(
-      'test1@gmail.com',
+      'leader@gmail.com',
       'Fun Club'
     ),
     (
-      'test0@gmail.com',
+      'student@gmail.com',
       'SCU Chess Club'
     )
     ON CONFLICT DO NOTHING
     """,
     """
     INSERT INTO leaders VALUES(
-      'test1@gmail.com','Chinese Student Association'
+      'leader@gmail.com','Chinese Student Association'
     ),
-     ('test1@gmail.com','Fun Club')
+     ('leader@gmail.com','Association for Computing Machinery')
     ON CONFLICT DO NOTHING
     """,
     """
@@ -156,6 +156,15 @@ def initTable():
     INSERT INTO clubevents VALUES(
      'Fun Club',
       1
+    ),(
+      'Fun Club',
+      2
+    ),(
+      'Fun Club',
+      3
+    ),(
+      'Association for Computing Machinery',
+      5
     ),(
       'Chinese Student Association',
       6
@@ -175,8 +184,8 @@ def initTable():
     INSERT INTO users VALUES
     ('llshen@scu.edu','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',0),
     ('admin@scu.edu','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',1),
-    ('test0@gmail.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',0),
-    ('test1@gmail.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',0)
+    ('student@gmail.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',0),
+    ('leader@gmail.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',0)
     ON CONFLICT DO NOTHING
     """
   )

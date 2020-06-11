@@ -139,4 +139,8 @@ h2 {
 #searchBar{
   font-family: Helvetica, Arial, sans-serif;
 }
+
+label{
+  text-shadow: 0px 2px #CCCCCC;
+}
 </style>

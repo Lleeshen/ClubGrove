@@ -29,7 +29,7 @@ def getEvent2():
 def addEvent():
   name = request.get_json().get('name','')
   event = request.get_json().get('event','')
-  print(name,event)
+  LOG.debug(name,event)
   model.dbModel.addEvent(name,event)
   return jsonify('success')
 
@@ -82,6 +82,13 @@ def requestGenerateClub():
   model.dbModel.generateRequest(clubName,email)
   return jsonify('success') 
 
+@bp.route('/removeClubRequest',methods=['POST'])
+def requestRemoveClub():
+  clubName = request.get_json().get('name','')
+  email = request.get_json().get('email','')
+  model.dbModel.removeRequestorMembership(clubName,email)
+  return jsonify('success') 
+
 @bp.route('/acceptClubRequest',methods=['POST'])
 def requestAddClub():
   clubName = request.get_json().get('name','')
@@ -90,7 +97,7 @@ def requestAddClub():
   return jsonify('success')
 
 @bp.route('/declineClubRequest',methods=['POST'])
-def requestRemoveClub():
+def requestdeclineClub():
   clubName = request.get_json().get('name','')
   email = request.get_json().get('email','')
   model.dbModel.declineRequest(clubName, email)
@@ -119,6 +126,16 @@ def interestedGenerateClub():
   return jsonify('success')
 
 #club membership
+@bp.route('/viewMembership',methods=['GET'])
+def viewMembership():
+  res = []
+  LOG.debug(session)
+  if 'username' in session:
+    current_app.logger.warn(request.args.to_dict())
+    res = model.dbModel.viewMembership2(session['username'], **request.args.to_dict())
+    LOG.debug(res)
+  return jsonify(res)
+
 @bp.route('/isMemberOrRequested/<club>', methods=['GET'])
 def isMemorReq(club):
   res = []

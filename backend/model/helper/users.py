@@ -15,6 +15,7 @@ def info(clubname, email, **kwargs):
     cur.execute(checkNamestatement,(clubname, email,))
     result = []
     item = cur.fetchall()
+    LOG.debug(clubname+email)
     LOG.debug(item)
     column = [desc[0] for desc in cur.description]
     for row in item:
@@ -47,6 +48,23 @@ def requestOrMember(clubname, email, **kwargs):
         if len(item) > 0:
             return {'member' : False, 'interested': True}
     return result2
+    column = [desc[0] for desc in cur.description]
+    for row in item:
+        result.append(dict(zip(column,row)))
+    cur.close()
+    con.close()
+    LOG.debug(result)
+    return result
+
+def viewMemberships(email, **kwargs):
+    con = startdb.startdb()
+    checkNamestatement = """
+    SELECT * from memberships where email = %s
+    """
+    cur = con.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    cur.execute(checkNamestatement,(email,))
+    result = []
+    item = cur.fetchall()
     column = [desc[0] for desc in cur.description]
     for row in item:
         result.append(dict(zip(column,row)))

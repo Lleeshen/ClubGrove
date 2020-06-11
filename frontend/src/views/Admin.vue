@@ -44,7 +44,7 @@
           <label for="clubEmail">Email:</label>
           <b-form-input v-model="newClubEmail" id="clubEmail"></b-form-input>
         </b-form-group>
-        <b-button variant="secondary" type="submit">Add event</b-button>
+        <b-button variant="secondary" type="submit">Add Club</b-button>
         <div v-if=failedAdd id="formText"> {{failedAdd}} </div>
       </b-form>
     </b-modal>

@@ -5,7 +5,8 @@
         <h3> {{ name }} Events </h3>
       </b-col>
       <b-col cols="8" class= "border border-dark bg-SCU">
-        <b-card-group v-if="items && items.length > 0" style="margin: 10px">
+        <b-card-group v-if="items && items.length > 0" style="margin: 10px"
+        >
       <div v-for="item in lessEvent" :key="item.name">
         <Baseholder 
             v-bind:items="item" 
@@ -26,7 +27,7 @@
       </b-card-group>
       </b-col>
       <b-col>
-      <b-button v-bind:to="eventLink" class="mt-auto">More Club events</b-button>
+      <b-button v-bind:to="eventLink" class="mt-auto" variant="custom">More Club events</b-button>
       </b-col>
     </b-row>
   </b-container>

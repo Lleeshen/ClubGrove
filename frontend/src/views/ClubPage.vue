@@ -19,15 +19,27 @@
         <b-col>
         <div v-if="isLeader">
         <h3>Leadership Responsibilities</h3>
-        <b-button :to="link">Manage Club</b-button>
+        <b-button 
+        variant="custom"
+        :to="link"
+        >Manage Club</b-button>
         <br /> <br />
-        <b-button :to="link2">Manage Club Events</b-button>
+        <b-button variant="custom" 
+        :to="link2"
+        >Manage Club Events</b-button>
         </div>
         <div v-else-if="user">
-        <b-button :disabled="isMember" v-on:click="generateJoinRequest()">Join Club </b-button>
-        <b-button :disabled="isMemberOrInterested()" v-on:click="generateRequestForInterested()">Follow Club</b-button><br>
-
-          You are logged in.
+        <h3>Join Options</h3>
+        <b-button 
+          variant="customBlack"
+          :disabled="isMember" 
+          v-on:click="generateJoinRequest()"
+          style="margin-right: 5px;">Join Club </b-button>
+        <b-button 
+          variant="customBlack"
+          :disabled="isMemberOrInterested()" 
+          v-on:click="generateRequestForInterested()"
+          >Follow Club</b-button><br>
         </div>
         </b-col>
       </b-row>
@@ -38,6 +50,7 @@
       <b-col>
         <h3>Other Websites</h3>
         <a :href="'//' +item[0].website">{{item[0].website}}</a>
+        <br><br>
       </b-col>
       </b-row>
     </b-container>
